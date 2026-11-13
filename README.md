@@ -11,7 +11,7 @@ Static HTML build of the QuietID site (a Veilant product). This is the design pr
 - `about.html` — story, principles, `#security`, `#contact` form
 - `login.html`, `signup.html` — account pages; sign-up runs scan › results › plan › account › done on one page
 - `privacy.html`, `terms.html` — placeholders for Veilant's legal text
-- `docs/QuietID_Site_Architecture_and_Content.docx` — architecture and copy for every page, by section ID
+- `docs/QuietID_Website_Copy_v3.docx` — all site copy for copywriter review, by page and section ID
 - `assets/css/quietid.css` — styles; the custom properties at the top map to the future `theme.json` tokens
 - `assets/js/site.js` — page-load motion, scroll reveals, counters, menus, hero scan demo
 - `assets/img/` — logo set, favicons, radar mark, hero background
