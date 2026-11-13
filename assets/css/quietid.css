@@ -751,19 +751,18 @@ html.qid-loaded .qid-page-hero__grid > :nth-child(2) { animation: qid-slide-in .
 .qid-account__msg { margin-top: 1rem; font-size: var(--qid-step--1); color: var(--qid-blue); font-weight: 600; }
 
 /* ---------- people photography ----------
-   Brand rule: candid real people in natural colour, with a light house grade so every
-   photo reads as one set: slightly muted saturation, cooler blue-leaning shadows and a
-   faint QuietID-blue wash. Drop a licensed photo in as <img> inside .qid-photo; the
+   Brand rule: candid real people in full colour with a QuietID-blue tint: blue lifted
+   into the highlights from the top, cooler shadows, so every photo reads as one set. Drop a licensed photo in as <img> inside .qid-photo; the
    grade is applied here, so no editing is needed per image. */
 .qid-photo { position: relative; margin: 0; overflow: hidden; border-radius: 1rem; aspect-ratio: 4 / 5; background: var(--qid-navy); isolation: isolate; }
 .qid-photo--wide { aspect-ratio: 3 / 2; }
 .qid-photo--square { aspect-ratio: 1; }
-.qid-photo img { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.76) contrast(1.06) brightness(1.03); }
+.qid-photo img { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(1.08) contrast(1.06) brightness(1.02); }
 /* cool the shadows, lift the highlights a touch toward blue */
 .qid-photo:has(img)::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(180deg, rgba(47, 123, 255, .16), rgba(20, 28, 81, .42)); mix-blend-mode: soft-light; }
+  background: linear-gradient(180deg, rgba(47, 123, 255, .35), rgba(0, 71, 199, .25) 55%, rgba(20, 28, 81, .45)); mix-blend-mode: soft-light; }
 .qid-photo:has(img)::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: rgba(47, 123, 255, .10); mix-blend-mode: color; }
+  background: linear-gradient(200deg, rgba(47, 123, 255, .22), rgba(47, 123, 255, 0) 60%); mix-blend-mode: screen; }
 /* placeholder until a licensed photo is supplied */
 .qid-photo__ph { position: absolute; inset: 0; display: grid; place-items: end start; padding: 1.25rem; color: rgba(255, 255, 255, .92);
   background:
@@ -888,3 +887,38 @@ html.qid-loaded .qid-hero__sub--side { animation: qid-rise .8s .45s cubic-bezier
   .qid-hero__sub--mobile { display: block; }
   .qid-hero__side { margin-bottom: clamp(2.5rem, 4.5vw, 3.75rem); }
 }
+
+
+/* ---------- photos: the service at work ----------
+   A slow scan line passes over each photo, and a pulsing ring marks the spot where
+   data is being acted on (a phone, a screen). Position the ring with --x / --y. */
+.qid-scanline { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+.qid-scanline::before { content: ""; position: absolute; left: 0; right: 0; height: 35%; top: -35%;
+  background: linear-gradient(to bottom, rgba(47, 123, 255, 0), rgba(47, 123, 255, .14) 80%, rgba(169, 207, 255, .85) 99%, rgba(255, 255, 255, .95));
+  animation: qid-photo-scan 5.5s cubic-bezier(.45, 0, .55, 1) infinite; }
+@keyframes qid-photo-scan { 0% { top: -35%; } 60%, 100% { top: 100%; } }
+.qid-pulse { position: absolute; z-index: 2; left: var(--x, 50%); top: var(--y, 50%); width: 4.75rem; height: 4.75rem; transform: translate(-50%, -50%); pointer-events: none; }
+.qid-pulse::before, .qid-pulse::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(169, 207, 255, .95); animation: qid-ring 2.6s ease-out infinite; }
+.qid-pulse::after { animation-delay: 1.3s; }
+.qid-pulse i { position: absolute; left: 50%; top: 50%; width: .85rem; height: .85rem; margin: -.425rem 0 0 -.425rem; border-radius: 50%; background: var(--qid-signal); box-shadow: 0 0 0 4px rgba(255, 255, 255, .85), 0 0 18px rgba(47, 123, 255, .9); }
+@keyframes qid-ring { 0% { transform: scale(.25); opacity: 1; } 100% { transform: scale(1.35); opacity: 0; } }
+
+/* callouts: live product events, with a progress bar or a redaction */
+.qid-callout { min-width: 15.5rem; align-items: flex-start; }
+.qid-callout > span:not(.qid-callout__icon):not(.qid-chip) { flex: 1; min-width: 0; }
+.qid-callout__bar { display: block; height: 5px; margin-top: .55rem; border-radius: 99px; background: var(--qid-gray); overflow: hidden; }
+.qid-callout__bar i { display: block; height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--qid-blue), var(--qid-signal)); transition: width 1.8s cubic-bezier(.2, .7, .2, 1) .9s; }
+.qid-photo-wrap.is-in .qid-callout__bar i, html:not(.qid-js) .qid-callout__bar i { width: var(--p, 60%); }
+.qid-redact { position: relative; display: inline-block; font-weight: 600; color: var(--qid-navy); }
+.qid-redact::after { content: ""; position: absolute; left: -2px; right: -2px; top: 15%; bottom: 10%; border-radius: 2px; background: var(--qid-navy); transform: scaleX(0); transform-origin: left; transition: transform .7s cubic-bezier(.6, 0, .2, 1) 1.3s; }
+.qid-photo-wrap.is-in .qid-redact::after, html:not(.qid-js) .qid-redact::after { transform: scaleX(1); }
+.qid-callout__time { display: block; margin-top: .3rem; font-size: .7rem; color: var(--qid-slate); }
+.qid-chip--live { background: rgba(47, 123, 255, .12); color: var(--qid-blue); }
+.qid-chip--live::before { animation: qid-pulse .7s ease-in-out infinite alternate; }
+@media (prefers-reduced-motion: reduce) {
+  .qid-scanline::before, .qid-pulse::before, .qid-pulse::after { animation: none; }
+  .qid-scanline { display: none; }
+  .qid-callout__bar i { width: var(--p, 60%); transition: none; }
+  .qid-redact::after { transform: scaleX(1); transition: none; }
+}
+.qid-callout { max-width: 21.5rem; } .qid-callout .qid-chip { flex: none; }
