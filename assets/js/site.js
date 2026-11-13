@@ -17,7 +17,13 @@
     ['.qid-plan', 'up', 130], ['.qid-plans__all', 'up', 0], ['.qid-steps__more', 'up', 0],
     ['.qid-biz__grid > div', 'up', 0], ['.qid-biz__list li', 'right', 90],
     ['.qid-faq-grid > div:first-child', 'up', 0], ['.qid-faq details', 'up', 70],
-    ['.qid-close h2', 'up', 0], ['.qid-close .qid-scan', 'up', 0], ['.qid-footer__top > div', 'up', 80]
+    ['.qid-close h2', 'up', 0], ['.qid-close .qid-scan', 'up', 0], ['.qid-footer__top > div', 'up', 80],
+    /* interior pages */
+    ['.qid-feature', 'up', 90], ['.qid-split__copy', 'up', 0], ['.qid-mock', 'scale', 0], ['.qid-checks li', 'up', 70],
+    ['.qid-points li', 'up', 110], ['.qid-tile', 'up', 120], ['.qid-proof > div', 'up', 100],
+    ['.qid-band__copy', 'up', 0], ['.qid-form', 'scale', 0], ['.qid-compare-wrap', 'up', 0],
+    ['.qid-process > li', 'up', 0], ['.qid-timeline li', 'up', 140], ['.qid-limits > div', 'up', 120],
+    ['.qid-principles li', 'up', 120], ['.qid-story__mark', 'scale', 0], ['.qid-person', 'up', 90]
   ];
   var tagged = [];
   groups.forEach(function (g) {
@@ -32,12 +38,12 @@
   var counted = function (el) {
     var to = parseFloat(el.getAttribute('data-count-to'));
     var from = parseFloat(el.getAttribute('data-count-from') || '0');
-    if (reduce) { el.textContent = to; return; }
+    if (reduce) { el.textContent = to.toLocaleString('en-US'); return; }
     var t0 = null, dur = 1600;
     var step = function (ts) {
       if (!t0) t0 = ts;
       var p = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(from + (to - from) * e);
+      el.textContent = Math.round(from + (to - from) * e).toLocaleString('en-US');
       if (p < 1) requestAnimationFrame(step);
     };
     el.textContent = from; requestAnimationFrame(step);
@@ -79,6 +85,75 @@
     document.addEventListener('click', function (e) { if (!group.contains(e.target)) set(false); });
     group.addEventListener('keydown', function (e) { if (e.key === 'Escape') { set(false); btn.focus(); } });
   });
+
+  /* Demo and contact forms: no backend yet, so show the thank-you state in place. */
+  document.querySelectorAll('[data-form]').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      form.classList.add('is-sent');
+      var done = form.querySelector('.qid-form__done');
+      if (done) { done.setAttribute('tabindex', '-1'); done.focus(); }
+    });
+  });
+
+  /* Login: placeholder until it hands off to the QuietID account system. */
+  var login = document.querySelector('[data-demo-login]');
+  if (login) login.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!login.querySelector('.qid-account__msg')) {
+      var m = document.createElement('p'); m.className = 'qid-account__msg'; m.setAttribute('role', 'status');
+      m.textContent = 'Login connects to the QuietID account system at launch.';
+      login.appendChild(m);
+    }
+  });
+
+  /* Pricing: monthly / annual toggle (prices are placeholders until confirmed). */
+  var billing = document.querySelector('[data-billing]');
+  if (billing) billing.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    billing.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    var label = b.getAttribute('data-period') === 'annual' ? 'Billed annually' : 'Billed monthly';
+    document.querySelectorAll('[data-period-label]').forEach(function (l) { l.textContent = label; });
+  });
+
+  /* Sign up: scan > results > plan > account > done, on one page. Prefills from the scan forms elsewhere. */
+  var stepper = document.querySelector('[data-stepper]');
+  if (stepper) {
+    var steps = stepper.querySelectorAll('[data-step]');
+    var marks = stepper.querySelectorAll('.qid-progress li');
+    var current = 1;
+    var show = function (n, focus) {
+      current = n;
+      steps.forEach(function (s) { s.classList.toggle('is-active', +s.getAttribute('data-step') === n); });
+      marks.forEach(function (m, i) {
+        m.classList.toggle('is-done', i + 1 < n);
+        m.classList.toggle('is-current', i + 1 === n);
+        if (i + 1 === n) m.setAttribute('aria-current', 'step'); else m.removeAttribute('aria-current');
+      });
+      stepper.querySelector('.qid-progress').style.display = n > 4 ? 'none' : '';
+      if (focus) { var h = stepper.querySelector('[data-step="' + n + '"] h2'); if (h) { h.setAttribute('tabindex', '-1'); h.focus(); } }
+    };
+    var params = new URLSearchParams(location.search);
+    var scanForm = stepper.querySelector('.qid-scan');
+    ['first', 'last', 'state'].forEach(function (k) {
+      var v = params.get(k), f = scanForm && scanForm.elements[k];
+      if (v && f) f.value = v;
+    });
+    var plan = params.get('plan');
+    if (plan) { var r = stepper.querySelector('input[name="plan"][value="' + plan + '"]'); if (r) r.checked = true; }
+    var syncPlan = function () {
+      var c = stepper.querySelector('input[name="plan"]:checked');
+      stepper.querySelector('[data-plan-name]').textContent = c && c.value === 'family' ? 'Family' : 'Individual';
+    };
+    stepper.querySelectorAll('input[name="plan"]').forEach(function (r) { r.addEventListener('change', syncPlan); });
+    syncPlan();
+    if (scanForm) scanForm.addEventListener('submit', function (e) { e.preventDefault(); show(2, true); });
+    stepper.querySelectorAll('[data-next]').forEach(function (b) { b.addEventListener('click', function () { show(current + 1, true); }); });
+    stepper.querySelectorAll('[data-back]').forEach(function (b) { b.addEventListener('click', function () { show(current - 1, true); }); });
+    var acct = stepper.querySelector('form[data-step="4"]');
+    if (acct) acct.addEventListener('submit', function (e) { e.preventDefault(); show(5, true); });
+    show(params.get('first') && params.get('last') && params.get('state') ? 2 : 1, false);
+  }
 
   /* Hero: scan finds the listings, then QuietID redacts and removes them, then loops. */
   var panel = document.querySelector('.qid-exposure');
