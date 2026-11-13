@@ -826,3 +826,26 @@ html.qid-js .qid-photo-wrap.is-in .qid-callout:nth-of-type(2) { transition-delay
 
 /* callouts stay inside the photo on smaller screens */
 @media (max-width: 1060px) { .qid-photo-wrap { overflow: hidden; border-radius: 1rem; } }
+
+/* ---------- government & high-risk positioning ---------- */
+/* longer hero headline: smaller display size so two lines fit */
+.qid-hero--long h1 { font-size: clamp(2.6rem, 1rem + 4.6vw, 5rem); line-height: .98; }
+.qid-hero--long h1 span { display: block; }
+.qid-trust { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: 1.5rem 0 0; padding: 1.25rem 0 0; list-style: none; border-top: 1px solid rgba(255, 255, 255, .16); font-size: var(--qid-step--1); font-weight: 600; color: rgba(255, 255, 255, .88); }
+.qid-trust li { display: flex; align-items: center; gap: .5rem; }
+.qid-trust .qid-icon { width: 1.1rem; height: 1.1rem; color: var(--qid-signal); }
+.qid-kicker { font-size: var(--qid-step--1); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--qid-blue); margin-bottom: 1rem !important; }
+.qid-kicker--light { color: rgba(255, 255, 255, .8); }
+.qid-section__head .qid-kicker { font-size: var(--qid-step--1); color: var(--qid-blue); margin-top: 0; }
+.qid-biz__list li span strong { display: block; font-size: var(--qid-step-1); }
+.qid-biz__list li span { font-weight: 400; color: rgba(255, 255, 255, .86); }
+.qid-biz__note { font-size: var(--qid-step--1) !important; }
+.qid-close__sub a { color: var(--qid-white); font-weight: 600; }
+.qid-close__sub a:hover { color: var(--qid-sky); }
+/* hero subhead: Veilant's positioning line under the brand headline */
+.qid-hero__sub { margin-top: 1.5rem; max-width: 34rem; font-size: var(--qid-step-3); font-weight: 600; line-height: 1.15; letter-spacing: -.02em; color: var(--qid-white); text-wrap: balance; }
+.qid-hero__sub + .qid-hero__lede { margin-top: 1rem; }
+html.qid-js .qid-hero__sub { opacity: 0; }
+html.qid-loaded .qid-hero__sub { animation: qid-rise .7s .62s cubic-bezier(.2, .7, .2, 1) both; }
+@media (prefers-reduced-motion: reduce) { html.qid-js .qid-hero__sub { opacity: 1; } }
+.qid-hero__sub span { display: block; }
