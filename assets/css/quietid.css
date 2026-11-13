@@ -652,7 +652,7 @@ html.qid-js .qid-dash:not(.is-in) .qid-score__meter i { left: 82%; }
 .qid-limits .qid-checks li:first-child { border-top: 0; }
 
 /* about */
-.qid-principles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+.qid-principles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
 .qid-principles li { padding: 2rem; border-radius: 1rem; background: var(--qid-white); box-shadow: 0 12px 30px rgba(20, 28, 81, .07); }
 .qid-principles h3 { font-size: var(--qid-step-2); letter-spacing: -.015em; margin-top: 1.25rem; }
 .qid-principles p { margin-top: .75rem; color: var(--qid-slate); }
@@ -748,3 +748,42 @@ html.qid-loaded .qid-page-hero__grid > :nth-child(2) { animation: qid-slide-in .
 .qid-close .qid-scan__note { color: rgba(255, 255, 255, .7); }
 .qid-account h2 { font-size: var(--qid-step-3); }
 .qid-account__msg { margin-top: 1rem; font-size: var(--qid-step--1); color: var(--qid-blue); font-weight: 600; }
+
+/* ---------- people photography ----------
+   Brand rule: candid real people in natural colour, with a light house grade so every
+   photo reads as one set: slightly muted saturation, cooler blue-leaning shadows and a
+   faint QuietID-blue wash. Drop a licensed photo in as <img> inside .qid-photo; the
+   grade is applied here, so no editing is needed per image. */
+.qid-photo { position: relative; margin: 0; overflow: hidden; border-radius: 1rem; aspect-ratio: 4 / 5; background: var(--qid-navy); isolation: isolate; }
+.qid-photo--wide { aspect-ratio: 3 / 2; }
+.qid-photo--square { aspect-ratio: 1; }
+.qid-photo img { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.82) contrast(1.05) brightness(1.02); }
+/* cool the shadows, lift the highlights a touch toward blue */
+.qid-photo:has(img)::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(47, 123, 255, .10), rgba(20, 28, 81, .28)); mix-blend-mode: soft-light; }
+.qid-photo:has(img)::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: rgba(47, 123, 255, .07); mix-blend-mode: color; }
+/* placeholder until a licensed photo is supplied */
+.qid-photo__ph { position: absolute; inset: 0; display: grid; place-items: end start; padding: 1.25rem; color: rgba(255, 255, 255, .92);
+  background:
+    radial-gradient(circle at 50% 38%, rgba(169, 207, 255, .38) 0 13%, transparent 13.5%),
+    radial-gradient(ellipse 34% 26% at 50% 82%, rgba(169, 207, 255, .3) 0 98%, transparent 100%),
+    linear-gradient(160deg, var(--qid-signal) 0%, #1d3fa3 45%, var(--qid-navy) 100%); }
+.qid-photo__ph span { display: block; max-width: 22rem; padding: .7rem .9rem; border: 1px dashed rgba(255, 255, 255, .55); border-radius: .5rem; background: rgba(20, 28, 81, .55); font-size: .8125rem; line-height: 1.45; }
+.qid-photo__ph b { display: block; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--qid-sky); margin-bottom: .2rem; }
+/* a product card overlapping a photo */
+.qid-layered { position: relative; }
+.qid-layered .qid-photo { width: 72%; margin-left: auto; }
+.qid-layered > .qid-mock { position: absolute; left: 0; bottom: 8%; width: 70%; }
+@media (max-width: 600px) {
+  .qid-layered .qid-photo { width: 100%; }
+  .qid-layered > .qid-mock { position: relative; width: 100%; margin-top: -4rem; bottom: auto; }
+}
+
+/* focus section: why QuietID does one thing */
+.qid-focus { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+.qid-focus h2 { font-size: var(--qid-step-4); }
+.qid-focus__copy > p { margin-top: 1.25rem; font-size: var(--qid-step-1); color: var(--qid-slate); }
+.qid-focus .qid-points { margin-top: 1.75rem; }
+.qid-flag { display: inline-block; margin-left: .5rem; padding: .15rem .55rem; border-radius: 99px; background: rgba(141, 208, 185, .3); color: #1d6b51; font-size: .75rem; font-weight: 600; vertical-align: middle; letter-spacing: 0; }
+@media (max-width: 1060px) { .qid-focus { grid-template-columns: 1fr; } .qid-layered { max-width: 40rem; } }

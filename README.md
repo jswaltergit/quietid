@@ -29,6 +29,10 @@ Run a local server from the repo root, for example `python3 -m http.server`, the
 Dashed boxes (`.qid-tbd`) mark facts Veilant must confirm: prices, timing, coverage counts, enterprise features, support, legal.
 Forms (demo, contact, login, sign-up) have no backend yet; they show their thank-you or next step in place.
 
+## Photography
+
+Photo frames (`.qid-photo`) hold placeholders with the shot description. Replace the placeholder `<div class="qid-photo__ph">…</div>` with `<img src="assets/img/…" alt="…">`; the house grade (natural colour, slightly muted, cool blue-leaning shadows) is applied by CSS. Use licensed images only. Shot list: content doc, GLOBAL-4.
+
 ## Editing interior pages
 
 All pages share the Home page's header, footer and icon set. Keep them in sync when the nav or footer changes.
