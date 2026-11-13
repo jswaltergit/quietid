@@ -1086,9 +1086,3 @@ section:has(> .qid-split):not(.qid-section--gray):not(.qid-band) { background: r
 
 /* account pages: soft gradient wash instead of flat grey */
 .qid-account { background: radial-gradient(50% 60% at 50% 0%, rgba(90, 157, 224, .14), transparent 70%), linear-gradient(180deg, #f3f4fa, var(--qid-mist)); }
-
-/* Hero headline: "Find it. Remove it." on one line, "Go quiet." below */
-.qid-hero h1 .qid-hero__line { display: block; white-space: nowrap; }
-.qid-hero h1 .qid-hero__line > span { display: inline-block; }
-.qid-hero h1 { font-size: clamp(2.5rem, 1.4rem + 4.4vw, 5.6rem); }
-@media (max-width: 920px) { .qid-hero h1 { font-size: clamp(2rem, 12.4vw, 4.4rem); } }
