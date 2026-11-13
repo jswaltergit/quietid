@@ -33,6 +33,8 @@ Forms (demo, contact, login, sign-up) have no backend yet; they show their thank
 
 Photo frames (`.qid-photo`) hold placeholders with the shot description. Replace the placeholder `<div class="qid-photo__ph">…</div>` with `<img src="assets/img/…" alt="…">`; the house grade (natural colour, slightly muted, cool blue-leaning shadows) is applied by CSS. Use licensed images only. Shot list: content doc, GLOBAL-4.
 
+The four photos now in place are **placeholders** loaded from Pexels (free licence, marked with a `PLACEHOLDER PHOTO` comment in the HTML). Replace each with a licensed file in `assets/img/photos/` before launch.
+
 ## Editing interior pages
 
 All pages share the Home page's header, footer and icon set. Keep them in sync when the nav or footer changes.

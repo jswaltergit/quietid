@@ -24,7 +24,7 @@
     ['.qid-band__copy', 'up', 0], ['.qid-form', 'scale', 0], ['.qid-compare-wrap', 'up', 0],
     ['.qid-process > li', 'up', 0], ['.qid-timeline li', 'up', 140], ['.qid-limits > div', 'up', 120],
     ['.qid-principles li', 'up', 120], ['.qid-story__mark', 'scale', 0], ['.qid-person', 'up', 90],
-    ['.qid-photo', 'scale', 0], ['.qid-focus__copy', 'up', 0]
+    ['.qid-photo-wrap', 'scale', 0], ['.qid-photo', 'scale', 0], ['.qid-focus__copy', 'up', 0]
   ];
   var tagged = [];
   groups.forEach(function (g) {
