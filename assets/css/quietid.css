@@ -849,3 +849,26 @@ html.qid-js .qid-hero__sub { opacity: 0; }
 html.qid-loaded .qid-hero__sub { animation: qid-rise .7s .62s cubic-bezier(.2, .7, .2, 1) both; }
 @media (prefers-reduced-motion: reduce) { html.qid-js .qid-hero__sub { opacity: 1; } }
 .qid-hero__sub span { display: block; }
+
+/* ---------- shorter Home hero (same look, tighter rhythm) ---------- */
+.qid-hero { padding-top: clamp(2.25rem, 4.5vw, 4rem); }
+.qid-hero__copy { padding-bottom: clamp(2.5rem, 4.5vw, 3.75rem); }
+.qid-exposure { margin-bottom: clamp(2.5rem, 4.5vw, 3.75rem); }
+.qid-hero h1 { font-size: clamp(2.75rem, 1rem + 4.6vw, 5.25rem); line-height: .93; }
+.qid-hero__sub { margin-top: 1.1rem; font-size: var(--qid-step-2); }
+.qid-hero__sub + .qid-hero__lede { margin-top: .7rem; }
+.qid-hero__lede { font-size: var(--qid-step-0); max-width: 31rem; }
+.qid-hero .qid-scan { margin-top: 1.5rem; }
+.qid-hero .qid-scan__note { margin-top: .6rem; }
+.qid-trust { margin-top: 1.1rem; padding-top: 1rem; }
+.qid-trust__cta { flex-basis: 100%; margin-top: .15rem; }
+.qid-trust__cta a { color: var(--qid-white); text-decoration: underline; text-underline-offset: .2em; }
+.qid-trust__cta a:hover { color: var(--qid-sky); }
+@media (max-width: 920px) {
+  .qid-trust__cta { margin-left: 0; flex-basis: 100%; }
+  .qid-exposure { margin-top: 0; }
+}
+@media (max-width: 600px) {
+  /* phones: the scan demo is a nice-to-have; keep it compact */
+  .qid-exposure { padding: 1.1rem 1.1rem .9rem; }
+}
