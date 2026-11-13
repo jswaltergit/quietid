@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>document.documentElement.classList.add("qid-js")</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How QuietID works</title>
+  <meta name="description" content="How QuietID finds your personal information on data broker and people-search sites, removes it, and keeps it from coming back.">
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="assets/css/quietid.css">
+</head>
+<body>
+<a class="qid-skip" href="#main">Skip to content</a>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none"><symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5 12 4l8.5 6.5"/><path d="M5.5 9v10.5h4.5v-5.5h4v5.5h4.5V9"/></symbol><symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.75" width="11" height="18.5" rx="2.25"/><path d="M10.5 17.75h3"/></symbol><symbol id="i-people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3.25"/><path d="M3.25 19.5c.6-3.3 2.9-5 5.75-5s5.15 1.7 5.75 5"/><circle cx="16.75" cy="9.5" r="2.5"/><path d="M15.5 14.6c2.6-.3 4.6 1.2 5.25 4.4"/></symbol><symbol id="i-cake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="1.5"/><path d="M4 15c2 1.3 4 1.3 6 0s4-1.3 6 0 3 1 4 .5"/><path d="M12 11V8"/><path d="M12 4.5c.9.9.9 2 0 2.9-.9-.9-.9-2 0-2.9Z"/></symbol><symbol id="i-brief" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="7.5" width="17" height="12" rx="1.75"/><path d="M9 7.5V5.75c0-.7.55-1.25 1.25-1.25h3.5c.7 0 1.25.55 1.25 1.25V7.5"/><path d="M3.5 12.5h17"/></symbol><symbol id="i-find" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.25"/><path d="m15.25 15.25 5 5"/><path d="M10.5 7.25a3.25 3.25 0 0 1 3.25 3.25"/></symbol><symbol id="i-remove" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.75" width="13" height="16.5" rx="1.75"/><path d="M7.5 8.5h6M7.5 12h3"/><circle cx="17.5" cy="17.5" r="3.75" fill="var(--qid-icon-bg, #fff)"/><path d="m16 16 3 3m0-3-3 3"/></symbol><symbol id="i-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2.75 12S6 5.75 12 5.75 21.25 12 21.25 12 18 18.25 12 18.25 2.75 12 2.75 12Z"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="i-report" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M8 9.5l3.5 3 3-2.5 4.5 5"/><path d="M15.5 15h3.5v-3.5"/></symbol><symbol id="i-exec" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 20c.8-4 3.6-6 7-6s6.2 2 7 6"/><path d="m12 14 1 2.5-1 3.5-1-3.5z"/></symbol><symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.25 19 6v5.25c0 4.4-2.9 8-7 9.5-4.1-1.5-7-5.1-7-9.5V6z"/><path d="m9 12 2.25 2.25L15.25 10"/></symbol><symbol id="i-family" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="8" r="2.5"/><circle cx="16.5" cy="8" r="2.5"/><circle cx="12" cy="13" r="2"/><path d="M3.5 19c.4-2.8 1.9-4.5 4-4.5M20.5 19c-.4-2.8-1.9-4.5-4-4.5M8.75 20c.4-1.9 1.6-3 3.25-3s2.85 1.1 3.25 3"/></symbol><symbol id="i-radar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.25"/><circle cx="12" cy="12" r="4"/><path d="M12 12 17.8 6.2"/><circle cx="15.5" cy="14.5" r=".9" fill="currentColor"/></symbol><symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol><symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="1.75"/><path d="M8.5 10.5V7.75a3.5 3.5 0 0 1 7 0v2.75"/><path d="M12 14.5v2.5"/></symbol><symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4" width="17" height="16" rx="1.75"/><path d="M3.5 8.5h17"/><path d="M7 12.5h4M7 16h7"/><circle cx="16.5" cy="14" r="1.6"/></symbol><symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.25" y="5.5" width="17.5" height="13" rx="1.75"/><path d="m3.75 7 8.25 6 8.25-6"/></symbol><symbol id="i-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 20.5V5.25c0-.7.55-1.25 1.25-1.25h7.5c.7 0 1.25.55 1.25 1.25V20.5"/><path d="M14.5 9.5h3.75c.7 0 1.25.55 1.25 1.25v9.75"/><path d="M3 20.5h18M8 8h3M8 11.5h3M8 15h3"/></symbol><symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.75C4 5.05 4.55 4.5 5.25 4.5h13.5c.7 0 1.25.55 1.25 1.25v9.5c0 .7-.55 1.25-1.25 1.25H10l-4.5 3.5V16.5H5.25C4.55 16.5 4 15.95 4 15.25z"/><path d="M8.5 9.5h7M8.5 12.5h4.5"/></symbol><symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="m10.9 12.1 8.6-8.6M16.5 6.5l2.5 2.5M14 9l2 2"/></symbol></svg>
+
+<header class="qid-header" data-menu="closed">
+  <div class="qid-wrap qid-header__bar">
+    <a class="qid-header__logo" href="index.html" aria-label="QuietID home">
+      <img src="assets/img/QuietID_Logo_BlueWhite_Web.svg" alt="QuietID" width="140" height="37">
+    </a>
+    <button class="qid-menu-toggle" type="button" aria-expanded="false" aria-controls="qid-nav">
+      <span></span><span></span><span></span><span class="qid-visually-hidden">Menu</span>
+    </button>
+    <nav class="qid-nav" id="qid-nav" aria-label="Main">
+      <div class="qid-nav__group" data-open="false">
+        <button class="qid-nav__parent" type="button" aria-expanded="false" aria-controls="qid-plans-menu">Plans</button>
+        <ul class="qid-nav__menu" id="qid-plans-menu">
+          <li><a href="plans-individuals.html">Individuals &amp; families<small>For you and the people you live with</small></a></li>
+          <li><a href="plans-enterprise.html">Enterprise<small>For executives, staff and their families</small></a></li>
+        </ul>
+      </div>
+      <a href="pricing.html">Pricing</a>
+      <a href="how-it-works.html" aria-current="page">How it works</a>
+      <a href="about.html">About us</a>
+    </nav>
+    <div class="qid-header__actions">
+      <a class="qid-btn qid-btn--ghost" href="login.html">Login</a>
+      <a class="qid-btn qid-btn--primary" href="signup.html">Sign up</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HOW-1 HERO -->
+  <section class="qid-page-hero qid-page-hero--short" aria-labelledby="page-title">
+    <div class="qid-wrap qid-page-hero__grid qid-page-hero__grid--single">
+      <div>
+        <p class="qid-eyebrow">How it works</p>
+        <h1 id="page-title">How QuietID works.</h1>
+        <p class="qid-page-hero__lede">We find your listings, file the removals, and keep checking. You see every step on your&nbsp;dashboard.</p>
+        <div class="qid-page-hero__actions">
+          <a class="qid-btn qid-btn--primary" href="signup.html">Start free scan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW-2 PROCESS -->
+  <section class="qid-section" aria-labelledby="process-title">
+    <div class="qid-wrap">
+      <div class="qid-section__head">
+        <h2 id="process-title">Five steps, then we keep going.</h2>
+      </div>
+      <ol class="qid-process">
+        <li>
+          <div><h3>Scan</h3>
+          <p>We search <span class="qid-tbd">000+</span> data broker and people-search sites for your name, addresses, phone numbers and email.</p></div>
+          <p class="qid-process__aside"><strong>What we look for</strong>Current and past addresses, phone numbers, email, relatives, age and employer.</p>
+        </li>
+        <li>
+          <div><h3>Confirm</h3>
+          <p>We match each listing to you, so we only remove what's yours. You can review matches on your dashboard.</p></div>
+          <p class="qid-process__aside"><strong>Why it matters</strong>Common names turn up many people. Matching keeps your requests accurate.</p>
+        </li>
+        <li>
+          <div><h3>Remove</h3>
+          <p>We file opt-out requests with every site that lists you and follow up until each one is done.</p></div>
+          <p class="qid-process__aside"><strong>How long it takes</strong>Some sites act in days; others take weeks. Each request shows its status.</p>
+        </li>
+        <li>
+          <div><h3>Monitor</h3>
+          <p>Brokers refresh their data and relist people. We re-scan <span class="qid-tbd">on a set schedule</span> and file again when your details reappear.</p></div>
+          <p class="qid-process__aside"><strong>No extra cost</strong>Re-removals are included in every plan.</p>
+        </li>
+        <li>
+          <div><h3>Report</h3>
+          <p>Your dashboard shows what was found, what came down and what's in progress, with a Risk Score that drops as removals land.</p></div>
+          <p class="qid-process__aside"><strong>Alerts</strong>We tell you when your details show up somewhere new.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- HOW-3 TIMELINE -->
+  <section class="qid-section qid-section--gray" aria-labelledby="expect-title">
+    <div class="qid-wrap">
+      <div class="qid-section__head">
+        <h2 id="expect-title">What to expect.</h2>
+      </div>
+      <ol class="qid-timeline">
+        <li><h3>First day</h3><p>Your scan results and first removal requests. <span class="qid-tbd">Confirm</span></p></li>
+        <li><h3>First weeks</h3><p>Most removals complete and your Risk Score starts to drop. <span class="qid-tbd">Confirm</span></p></li>
+        <li><h3>Ongoing</h3><p>Regular re-scans, and new requests whenever your data comes back.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- HOW-4 LIMITS -->
+  <section class="qid-section" aria-labelledby="limits-title">
+    <div class="qid-wrap">
+      <div class="qid-section__head">
+        <h2 id="limits-title">What we can and can't remove.</h2>
+        <p>We're clear about the limits, so you know what to expect.</p>
+      </div>
+      <div class="qid-limits">
+        <div>
+          <h3>We remove</h3>
+          <ul class="qid-checks">
+            <li>Listings on data broker and people-search sites</li>
+            <li>Background-check style profiles</li>
+            <li>Marketing and lead-generation databases <span class="qid-tbd">confirm</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>We can't remove</h3>
+          <ul class="qid-checks qid-checks--x">
+            <li>Government records at the source, such as property and court records</li>
+            <li>News articles and other published reporting</li>
+            <li>Content you post yourself on social media</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW-5 YOUR DATA -->
+  <section class="qid-section qid-section--gray" aria-labelledby="data-title">
+    <div class="qid-wrap qid-split">
+      <div class="qid-split__copy">
+        <h2 id="data-title">Your details, handled carefully.</h2>
+        <p>We ask only for what we need to find and remove your listings, and we use it for nothing else.</p>
+        <p class="qid-steps__more"><a href="about.html#security">Read about our security</a></p>
+      </div>
+      <ul class="qid-checks">
+        <li><strong>We never sell your data</strong><span>Your details are used only to file removals on your behalf.</span></li>
+        <li><strong>Protected in storage</strong><span class="qid-tbd">Encryption and storage details to confirm</span></li>
+        <li><strong>Yours to delete</strong><span>Close your account and your data goes with it. <span class="qid-tbd">Confirm</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+    <section class="qid-section qid-close" aria-labelledby="close-title">
+    <div class="qid-wrap qid-close__grid">
+      <div>
+        <h2 id="close-title">See where you're listed.</h2>
+        <p class="qid-close__sub">The scan is free and takes about a minute.</p>
+      </div>
+      <form class="qid-scan" action="signup.html" method="get">
+          <div class="qid-scan__fields">
+            <label><span class="qid-visually-hidden">First name</span><input name="first" autocomplete="given-name" placeholder="First name" required></label>
+            <label><span class="qid-visually-hidden">Last name</span><input name="last" autocomplete="family-name" placeholder="Last name" required></label>
+            <label><span class="qid-visually-hidden">State</span>
+              <select name="state" autocomplete="address-level1" required>
+                <option value="">State</option>
+                <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DC</option><option>DE</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+              </select>
+            </label>
+          </div>
+          <button class="qid-btn qid-btn--primary qid-btn--block" type="submit">Start free scan</button>
+          <p class="qid-scan__note">See where you're listed in about a minute. No card needed for the scan.</p>
+        </form>
+    </div>
+  </section>
+
+
+</main>
+
+<footer class="qid-footer">
+  <div class="qid-wrap">
+    <div class="qid-footer__top">
+      <div>
+        <img src="assets/img/QuietID_Logo_BlueWhite_Web.svg" alt="QuietID" width="128" height="34" loading="lazy" decoding="async">
+        <p class="qid-footer__by">Powered by <a href="https://www.veilant.com">Veilant</a></p>
+      </div>
+      <div>
+        <h2>Product</h2>
+        <ul><li><a href="plans-individuals.html">Individuals &amp; families</a></li><li><a href="plans-enterprise.html">Enterprise</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="how-it-works.html">How it works</a></li></ul>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <ul><li><a href="about.html">About us</a></li><li><a href="about.html#security">Security</a></li><li><a href="about.html#contact">Contact</a></li></ul>
+      </div>
+      <div>
+        <h2>Account</h2>
+        <ul><li><a href="login.html">Login</a></li><li><a href="signup.html">Sign up</a></li></ul>
+      </div>
+    </div>
+    <div class="qid-footer__legal">
+      <p>&copy; 2026 Veilant. All rights reserved.</p>
+      <p><a href="privacy.html">Privacy policy</a> &nbsp; <a href="terms.html">Terms</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
