@@ -872,3 +872,19 @@ html.qid-loaded .qid-hero__sub { animation: qid-rise .7s .62s cubic-bezier(.2, .
   /* phones: the scan demo is a nice-to-have; keep it compact */
   .qid-exposure { padding: 1.1rem 1.1rem .9rem; }
 }
+
+/* ---------- hero: positioning line above the scan demo, bigger headline ---------- */
+.qid-hero h1 { font-size: clamp(3rem, 1rem + 5.6vw, 6.25rem); }
+.qid-hero__side { align-self: center; margin-bottom: clamp(2.5rem, 4.5vw, 3.75rem); }
+.qid-hero__side .qid-exposure { margin-bottom: 0; }
+.qid-hero__sub--side { margin: 0 0 1.25rem; font-size: var(--qid-step-3); max-width: none; }
+.qid-hero__sub--mobile { display: none; }
+.qid-hero__sub--mobile + .qid-hero__lede, .qid-hero h1 + .qid-hero__lede { margin-top: 1.25rem; }
+html.qid-js .qid-hero__sub--side { opacity: 0; }
+html.qid-loaded .qid-hero__sub--side { animation: qid-rise .8s .45s cubic-bezier(.2, .7, .2, 1) both; }
+@media (prefers-reduced-motion: reduce) { html.qid-js .qid-hero__sub--side { opacity: 1; } }
+@media (max-width: 920px) {
+  .qid-hero__sub--side { display: none; }
+  .qid-hero__sub--mobile { display: block; }
+  .qid-hero__side { margin-bottom: clamp(2.5rem, 4.5vw, 3.75rem); }
+}
