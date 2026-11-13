@@ -53,6 +53,7 @@ body {
   color: var(--qid-navy);
   background: var(--qid-white);
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip; /* slide-in reveals start off-screen; never let them cause sideways scroll */
 }
 img, svg { display: block; max-width: 100%; }
 a { color: var(--qid-blue); text-underline-offset: 0.2em; }
