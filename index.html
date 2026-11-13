@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>document.documentElement.classList.add("qid-js")</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuietID — Find it. Remove it. Go quiet.</title>
+  <meta name="description" content="QuietID finds your personal information on data broker and people-search sites, removes it, and keeps watch so it stays gone. Built by Veilant.">
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="assets/css/quietid.css">
+</head>
+<body>
+<a class="qid-skip" href="#main">Skip to content</a>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none"><symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5 12 4l8.5 6.5"/><path d="M5.5 9v10.5h4.5v-5.5h4v5.5h4.5V9"/></symbol><symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.75" width="11" height="18.5" rx="2.25"/><path d="M10.5 17.75h3"/></symbol><symbol id="i-people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3.25"/><path d="M3.25 19.5c.6-3.3 2.9-5 5.75-5s5.15 1.7 5.75 5"/><circle cx="16.75" cy="9.5" r="2.5"/><path d="M15.5 14.6c2.6-.3 4.6 1.2 5.25 4.4"/></symbol><symbol id="i-cake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="1.5"/><path d="M4 15c2 1.3 4 1.3 6 0s4-1.3 6 0 3 1 4 .5"/><path d="M12 11V8"/><path d="M12 4.5c.9.9.9 2 0 2.9-.9-.9-.9-2 0-2.9Z"/></symbol><symbol id="i-brief" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="7.5" width="17" height="12" rx="1.75"/><path d="M9 7.5V5.75c0-.7.55-1.25 1.25-1.25h3.5c.7 0 1.25.55 1.25 1.25V7.5"/><path d="M3.5 12.5h17"/></symbol><symbol id="i-find" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.25"/><path d="m15.25 15.25 5 5"/><path d="M10.5 7.25a3.25 3.25 0 0 1 3.25 3.25"/></symbol><symbol id="i-remove" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.75" width="13" height="16.5" rx="1.75"/><path d="M7.5 8.5h6M7.5 12h3"/><circle cx="17.5" cy="17.5" r="3.75" fill="var(--qid-icon-bg, #fff)"/><path d="m16 16 3 3m0-3-3 3"/></symbol><symbol id="i-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2.75 12S6 5.75 12 5.75 21.25 12 21.25 12 18 18.25 12 18.25 2.75 12 2.75 12Z"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="i-report" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M8 9.5l3.5 3 3-2.5 4.5 5"/><path d="M15.5 15h3.5v-3.5"/></symbol><symbol id="i-exec" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 20c.8-4 3.6-6 7-6s6.2 2 7 6"/><path d="m12 14 1 2.5-1 3.5-1-3.5z"/></symbol><symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.25 19 6v5.25c0 4.4-2.9 8-7 9.5-4.1-1.5-7-5.1-7-9.5V6z"/><path d="m9 12 2.25 2.25L15.25 10"/></symbol><symbol id="i-family" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="8" r="2.5"/><circle cx="16.5" cy="8" r="2.5"/><circle cx="12" cy="13" r="2"/><path d="M3.5 19c.4-2.8 1.9-4.5 4-4.5M20.5 19c-.4-2.8-1.9-4.5-4-4.5M8.75 20c.4-1.9 1.6-3 3.25-3s2.85 1.1 3.25 3"/></symbol><symbol id="i-radar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.25"/><circle cx="12" cy="12" r="4"/><path d="M12 12 17.8 6.2"/><circle cx="15.5" cy="14.5" r=".9" fill="currentColor"/></symbol></svg>
+
+<header class="qid-header" data-menu="closed">
+  <div class="qid-wrap qid-header__bar">
+    <a class="qid-header__logo" href="index.html" aria-label="QuietID home">
+      <img src="assets/img/QuietID_Logo_BlueWhite_Web.svg" alt="QuietID" width="140" height="37">
+    </a>
+    <button class="qid-menu-toggle" type="button" aria-expanded="false" aria-controls="qid-nav">
+      <span></span><span></span><span></span><span class="qid-visually-hidden">Menu</span>
+    </button>
+    <nav class="qid-nav" id="qid-nav" aria-label="Main">
+      <div class="qid-nav__group" data-open="false">
+        <button class="qid-nav__parent" type="button" aria-expanded="false" aria-controls="qid-plans-menu">Plans</button>
+        <ul class="qid-nav__menu" id="qid-plans-menu">
+          <li><a href="plans-individuals.html">Individuals &amp; families<small>For you and the people you live with</small></a></li>
+          <li><a href="plans-enterprise.html">Enterprise<small>For executives, staff and their families</small></a></li>
+        </ul>
+      </div>
+      <a href="pricing.html">Pricing</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="about.html">About us</a>
+    </nav>
+    <div class="qid-header__actions">
+      <a class="qid-btn qid-btn--ghost" href="login.html">Login</a>
+      <a class="qid-btn qid-btn--primary" href="signup.html">Sign up</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="qid-hero" aria-labelledby="hero-title">
+    <div class="qid-wrap qid-hero__grid">
+      <div class="qid-hero__copy">
+        <h1 id="hero-title"><span>Find it.</span> <span>Remove it.</span> <span class="qid-hero__quiet">Go quiet.</span></h1>
+        <p class="qid-hero__lede">People-search sites publish your address, phone number and family for anyone who looks. QuietID finds those listings, removes them, and keeps watch so they stay gone.</p>
+
+        <form class="qid-scan" action="signup.html" method="get">
+          <div class="qid-scan__fields">
+            <label><span class="qid-visually-hidden">First name</span><input name="first" autocomplete="given-name" placeholder="First name" required></label>
+            <label><span class="qid-visually-hidden">Last name</span><input name="last" autocomplete="family-name" placeholder="Last name" required></label>
+            <label><span class="qid-visually-hidden">State</span>
+              <select name="state" autocomplete="address-level1" required>
+                <option value="">State</option>
+                <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DC</option><option>DE</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+              </select>
+            </label>
+          </div>
+          <button class="qid-btn qid-btn--primary qid-btn--block" type="submit">Start free scan</button>
+          <p class="qid-scan__note">See where you're listed in about a minute. No card needed for the scan.</p>
+        </form>
+
+        <p class="qid-hero__biz">Protecting a team? <a href="plans-enterprise.html">See QuietID for business</a></p>
+      </div>
+
+      <div class="qid-exposure" data-phase="idle" aria-label="Example: QuietID scanning for one person's listings and removing them">
+        <div class="qid-exposure__head">
+          <svg class="qid-exposure__radar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104.85 104.85" aria-hidden="true" focusable="false">
+  <style>
+    .qr-sweep { transform-box: fill-box; transform-origin: center; animation: qr-spin 3.2s linear infinite; }
+    .qr-blip { opacity: 0; transform-box: fill-box; transform-origin: center; animation: qr-blip 3.2s ease-out infinite; }
+    .qr-ping { transform-box: fill-box; transform-origin: center; animation: qr-ping 3.2s ease-out infinite; }
+    .qr-ping--2 { animation-delay: 1.60s; }
+    @keyframes qr-spin { to { transform: rotate(360deg); } }
+    @keyframes qr-blip { 0% { opacity: 1; transform: scale(1.5); } 12% { opacity: 1; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(1); } }
+    @keyframes qr-ping { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(4.6); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .qr-sweep, .qr-blip, .qr-ping { animation: none; } .qr-blip { opacity: 1; } .qr-ping { opacity: 0; } }
+  </style>
+  <defs><linearGradient id="qr-grad" x1="43.7574978" y1="31.3199272" x2="42.1474878" y2="64.3251322" gradientUnits="userSpaceOnUse">
+      <stop offset=".0622233" stop-color="#2f7bff"/>
+      <stop offset=".1995101" stop-color="#2f7bff" stop-opacity=".7674224"/>
+      <stop offset=".3844344" stop-color="#2f7bff" stop-opacity=".4945914"/>
+      <stop offset=".5622531" stop-color="#2f7bff" stop-opacity=".2796717"/>
+      <stop offset=".7286882" stop-color="#2f7bff" stop-opacity=".1256619"/>
+      <stop offset=".879256" stop-color="#2f7bff" stop-opacity=".0324481"/>
+      <stop offset="1" stop-color="#2f7bff" stop-opacity="0"/>
+    </linearGradient><clipPath id="qr-clip"><path d="M65.5932587,11.2540327C50.5878818-3.7513442,26.2593558-3.7513442,11.2540327,11.2540327l20.3231571,20.3231571c1.7521636-1.7521636,4.1727421-2.8359122,6.8464559-2.8359122,5.3474275,0,9.6823681,4.3349406,9.6823681,9.6823681,0,2.6737138-1.0838025,5.0942384-2.8359661,6.846402l20.323211,20.323211c15.005377-15.005377,15.005377-39.333849,0-54.339226Z"/><path d="M45.2700477,45.2700477c-1.7521636,1.7521636-4.1726882,2.8359122-6.846402,2.8359122-5.3474275,0-9.6823681-4.3349406-9.6823681-9.6823142,0-2.6737138,1.0837486-5.0942923,2.8359122-6.8464559L11.2540327,11.2540327c-15.005377,15.005377-15.005377,39.333849,0,54.339226,7.5026885,7.5026885,17.3361507,11.2540058,27.169613,11.2540058h38.4235649l-31.5771629-31.5772168Z"/></clipPath></defs>
+  <g transform="translate(14 14)">
+  <circle class="qr-ping" cx="38.4236323" cy="38.4236323" r="9.6823681" fill="none" stroke="#2f7bff" stroke-width=".7"/>
+  <circle class="qr-ping qr-ping--2" cx="38.4236323" cy="38.4236323" r="9.6823681" fill="none" stroke="#2f7bff" stroke-width=".7"/>
+  <g clip-path="url(#qr-clip)">
+    <line x1="8" y1="8" x2="34" y2="34" stroke="#2f7bff" stroke-width="3"/>
+    <path d="M65.5932587,11.2540327C50.5878818-3.7513442,26.2593558-3.7513442,11.2540327,11.2540327l20.3231571,20.3231571c1.7521636-1.7521636,4.1727421-2.8359122,6.8464559-2.8359122,5.3474275,0,9.6823681,4.3349406,9.6823681,9.6823681,0,2.6737138-1.0838025,5.0942384-2.8359661,6.846402l20.323211,20.323211c15.005377-15.005377,15.005377-39.333849,0-54.339226Z" fill="url(#qr-grad)"/>
+    <path d="M45.2700477,45.2700477c-1.7521636,1.7521636-4.1726882,2.8359122-6.846402,2.8359122-5.3474275,0-9.6823681-4.3349406-9.6823681-9.6823142,0-2.6737138,1.0837486-5.0942923,2.8359122-6.8464559L11.2540327,11.2540327c-15.005377,15.005377-15.005377,39.333849,0,54.339226,7.5026885,7.5026885,17.3361507,11.2540058,27.169613,11.2540058h38.4235649l-31.5771629-31.5772168Z" fill="#2f7bff"/>
+    <circle cx="38.4236323" cy="38.4236323" r="24.05" fill="none" stroke="#a9cfff" stroke-opacity=".3" stroke-width=".35"/>
+    <g class="qr-sweep"><circle cx="38.4236323" cy="38.4236323" r="61.48" fill="none"/><path d="M38.4236323 38.4236323L33.96 -22.89L38.85 -23.05Z" fill="#ffffff" fill-opacity="0.750"/><path d="M38.4236323 38.4236323L29.51 -22.41L34.38 -22.92Z" fill="#ffffff" fill-opacity="0.713"/><path d="M38.4236323 38.4236323L25.12 -21.60L29.94 -22.47Z" fill="#a9cfff" fill-opacity="0.677"/><path d="M38.4236323 38.4236323L20.79 -20.47L25.54 -21.69Z" fill="#a9cfff" fill-opacity="0.641"/><path d="M38.4236323 38.4236323L16.56 -19.03L21.20 -20.59Z" fill="#a9cfff" fill-opacity="0.607"/><path d="M38.4236323 38.4236323L12.44 -17.29L16.96 -19.19Z" fill="#a9cfff" fill-opacity="0.573"/><path d="M38.4236323 38.4236323L8.46 -15.26L12.83 -17.47Z" fill="#a9cfff" fill-opacity="0.540"/><path d="M38.4236323 38.4236323L4.64 -12.94L8.84 -15.47Z" fill="#a9cfff" fill-opacity="0.508"/><path d="M38.4236323 38.4236323L1.00 -10.35L5.00 -13.17Z" fill="#a9cfff" fill-opacity="0.477"/><path d="M38.4236323 38.4236323L-2.45 -7.50L1.34 -10.61Z" fill="#a9cfff" fill-opacity="0.447"/><path d="M38.4236323 38.4236323L-5.68 -4.41L-2.12 -7.79Z" fill="#a9cfff" fill-opacity="0.418"/><path d="M38.4236323 38.4236323L-8.67 -1.09L-5.38 -4.72Z" fill="#a9cfff" fill-opacity="0.389"/><path d="M38.4236323 38.4236323L-11.42 2.43L-8.39 -1.42Z" fill="#a9cfff" fill-opacity="0.361"/><path d="M38.4236323 38.4236323L-13.90 6.15L-11.17 2.09Z" fill="#a9cfff" fill-opacity="0.335"/><path d="M38.4236323 38.4236323L-16.11 10.04L-13.67 5.78Z" fill="#a9cfff" fill-opacity="0.309"/><path d="M38.4236323 38.4236323L-18.03 14.07L-15.91 9.66Z" fill="#a9cfff" fill-opacity="0.284"/><path d="M38.4236323 38.4236323L-19.65 18.24L-17.85 13.68Z" fill="#a9cfff" fill-opacity="0.260"/><path d="M38.4236323 38.4236323L-20.96 22.51L-19.50 17.83Z" fill="#a9cfff" fill-opacity="0.237"/><path d="M38.4236323 38.4236323L-21.96 26.87L-20.85 22.10Z" fill="#a9cfff" fill-opacity="0.215"/><path d="M38.4236323 38.4236323L-22.64 31.29L-21.88 26.45Z" fill="#a9cfff" fill-opacity="0.194"/><path d="M38.4236323 38.4236323L-23.00 35.74L-22.59 30.86Z" fill="#a9cfff" fill-opacity="0.174"/><path d="M38.4236323 38.4236323L-23.03 40.21L-22.98 35.31Z" fill="#a9cfff" fill-opacity="0.155"/><path d="M38.4236323 38.4236323L-22.74 44.67L-23.04 39.78Z" fill="#a9cfff" fill-opacity="0.137"/><path d="M38.4236323 38.4236323L-22.12 49.10L-22.78 44.24Z" fill="#a9cfff" fill-opacity="0.120"/><path d="M38.4236323 38.4236323L-21.18 53.47L-22.19 48.68Z" fill="#a9cfff" fill-opacity="0.104"/><path d="M38.4236323 38.4236323L-19.93 57.76L-21.29 53.05Z" fill="#a9cfff" fill-opacity="0.089"/><path d="M38.4236323 38.4236323L-18.37 61.95L-20.07 57.35Z" fill="#a9cfff" fill-opacity="0.075"/><path d="M38.4236323 38.4236323L-16.51 66.01L-18.54 61.55Z" fill="#a9cfff" fill-opacity="0.062"/><path d="M38.4236323 38.4236323L-14.37 69.93L-16.71 65.63Z" fill="#a9cfff" fill-opacity="0.050"/><path d="M38.4236323 38.4236323L-11.94 73.69L-14.58 69.56Z" fill="#a9cfff" fill-opacity="0.039"/><path d="M38.4236323 38.4236323L-9.24 77.25L-12.18 73.33Z" fill="#a9cfff" fill-opacity="0.030"/><path d="M38.4236323 38.4236323L-6.29 80.61L-9.51 76.92Z" fill="#a9cfff" fill-opacity="0.021"/><path d="M38.4236323 38.4236323L-3.11 83.75L-6.59 80.30Z" fill="#a9cfff" fill-opacity="0.014"/><path d="M38.4236323 38.4236323L0.29 86.65L-3.43 83.46Z" fill="#a9cfff" fill-opacity="0.009"/><path d="M38.4236323 38.4236323L3.90 89.29L-0.04 86.38Z" fill="#a9cfff" fill-opacity="0.004"/><path d="M38.4236323 38.4236323L7.68 91.66L3.54 89.05Z" fill="#a9cfff" fill-opacity="0.001"/><line x1="38.4236323" y1="38.4236323" x2="38.42" y2="-23.05" stroke="#a9cfff" stroke-width="1.1"/></g>
+    <g class="qr-blip" style="animation-delay:0.44s"><circle cx="56.81" cy="23.00" r="1.9" fill="#a9cfff"/><circle cx="56.81" cy="23.00" r="4" fill="none" stroke="#a9cfff" stroke-width=".6"/></g><g class="qr-blip" style="animation-delay:1.02s"><circle cx="65.61" cy="51.10" r="1.9" fill="#a9cfff"/><circle cx="65.61" cy="51.10" r="4" fill="none" stroke="#a9cfff" stroke-width=".6"/></g><g class="qr-blip" style="animation-delay:1.64s"><circle cx="36.85" cy="56.36" r="1.9" fill="#a9cfff"/><circle cx="36.85" cy="56.36" r="4" fill="none" stroke="#a9cfff" stroke-width=".6"/></g><g class="qr-blip" style="animation-delay:2.13s"><circle cx="15.04" cy="51.92" r="1.9" fill="#a9cfff"/><circle cx="15.04" cy="51.92" r="4" fill="none" stroke="#a9cfff" stroke-width=".6"/></g><g class="qr-blip" style="animation-delay:2.62s"><circle cx="9.42" cy="24.90" r="1.9" fill="#a9cfff"/><circle cx="9.42" cy="24.90" r="4" fill="none" stroke="#a9cfff" stroke-width=".6"/></g><g class="qr-blip" style="animation-delay:3.02s"><circle cx="31.24" cy="18.69" r="1.9" fill="#a9cfff"/><circle cx="31.24" cy="18.69" r="4" fill="none" stroke="#a9cfff" stroke-width=".6"/></g>
+  </g>
+  </g>
+</svg>
+          <div class="qid-exposure__who">
+            <p class="qid-exposure__name">J. Ellis, Arlington, VA</p>
+            <p class="qid-exposure__status" aria-live="polite" data-status>Ready to scan</p>
+          </div>
+          <p class="qid-exposure__count"><strong data-count>0</strong><span>listings public</span></p>
+        </div>
+        <div class="qid-exposure__progress" aria-hidden="true"><i data-progress></i></div>
+        <ul class="qid-exposure__list">
+          <li class="qid-row"><span class="qid-row__site">Whitepages</span><span class="qid-row__data"><small>Home address</small><span data-redact>1412 Maple Ct, Arlington VA</span></span><span class="qid-row__status"><span class="qid-chip qid-chip--exposed">Exposed</span></span></li>
+          <li class="qid-row"><span class="qid-row__site">Spokeo</span><span class="qid-row__data"><small>Cell phone</small><span data-redact>(703) 555-0148</span></span><span class="qid-row__status"><span class="qid-chip qid-chip--exposed">Exposed</span></span></li>
+          <li class="qid-row"><span class="qid-row__site">BeenVerified</span><span class="qid-row__data"><small>Email</small><span data-redact>jordan.ellis@example.com</span></span><span class="qid-row__status"><span class="qid-chip qid-chip--exposed">Exposed</span></span></li>
+          <li class="qid-row"><span class="qid-row__site">Radaris</span><span class="qid-row__data"><small>Relatives</small><span data-redact>M. Ellis, K. Ellis</span></span><span class="qid-row__status"><span class="qid-chip qid-chip--exposed">Exposed</span></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S OUT THERE -->
+  <section class="qid-section" aria-labelledby="exposed-title">
+    <div class="qid-wrap qid-exposed">
+      <div class="qid-exposed__intro">
+        <h2 id="exposed-title">You're already listed. Almost everyone is.</h2>
+        <p>Data brokers buy records from public filings, apps and retailers, then sell a profile of you to anyone with a few dollars. Here's what a typical listing shows.</p>
+      </div>
+      <figure class="qid-record" aria-label="Example of a people-search listing">
+        <div class="qid-record__bar"><span></span><span></span><span></span><p>people-search-site.com/jordan-ellis</p></div>
+        <div class="qid-record__top">
+          <div class="qid-record__avatar" aria-hidden="true">JE</div>
+          <div><p class="qid-record__name">Jordan Ellis, 41</p><p class="qid-record__meta">Arlington, VA. 3 past addresses on file.</p></div>
+          <span class="qid-chip qid-chip--exposed">Public</span>
+        </div>
+        <ul class="qid-record__rows">
+          <li class="qid-record__row">
+            <span class="qid-record__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-home"/></svg></span>
+            <span class="qid-record__field"><span class="qid-record__label">Home address</span><span class="qid-record__value">1412 Maple Ct, Arlington VA</span></span>
+            <span class="qid-record__risk">Current and past addresses, often with a map.</span>
+          </li>
+          <li class="qid-record__row">
+            <span class="qid-record__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+            <span class="qid-record__field"><span class="qid-record__label">Phone and email</span><span class="qid-record__value">(703) 555-0148</span></span>
+            <span class="qid-record__risk">The raw material for scam calls and phishing.</span>
+          </li>
+          <li class="qid-record__row">
+            <span class="qid-record__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-people"/></svg></span>
+            <span class="qid-record__field"><span class="qid-record__label">Relatives</span><span class="qid-record__value">M. Ellis, K. Ellis</span></span>
+            <span class="qid-record__risk">Family names and ages, linked to your profile.</span>
+          </li>
+          <li class="qid-record__row">
+            <span class="qid-record__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-cake"/></svg></span>
+            <span class="qid-record__field"><span class="qid-record__label">Age and birthday</span><span class="qid-record__value">41, born March</span></span>
+            <span class="qid-record__risk">Enough to answer common security questions.</span>
+          </li>
+          <li class="qid-record__row">
+            <span class="qid-record__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-brief"/></svg></span>
+            <span class="qid-record__field"><span class="qid-record__label">Employer</span><span class="qid-record__value">Listed with job title</span></span>
+            <span class="qid-record__risk">Where you work, and when you are likely there.</span>
+          </li>
+        </ul>
+        <figcaption>Sample listing. Details are illustrative.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="qid-section qid-section--gray" aria-labelledby="steps-title">
+    <div class="qid-wrap">
+      <div class="qid-section__head">
+        <h2 id="steps-title">Your data comes back. So do we.</h2>
+        <p>Brokers relist people all the time. QuietID finds your data, removes it, and keeps checking so it stays off the market.</p>
+      </div>
+      <ol class="qid-steps">
+        <li class="qid-step"><span class="qid-step__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-find"/></svg></span><h3>Find</h3><p>We scan data broker and people-search sites for your name, addresses and phone numbers.</p></li>
+        <li class="qid-step"><span class="qid-step__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-remove"/></svg></span><h3>Remove</h3><p>We file opt-out requests with every site that lists you, and track each one to completion.</p></li>
+        <li class="qid-step"><span class="qid-step__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-monitor"/></svg></span><h3>Monitor</h3><p>We keep re-scanning after the first removals, and file again whenever your data reappears.</p></li>
+        <li class="qid-step"><span class="qid-step__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-report"/></svg></span><h3>Report</h3><p>Your dashboard shows what was found, what came down and what's still in progress.</p></li>
+      </ol>
+      <p class="qid-steps__more"><a href="how-it-works.html">See how QuietID works</a></p>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section class="qid-section" aria-labelledby="dash-title">
+    <div class="qid-wrap qid-dash-wrap">
+      <div class="qid-dash-wrap__copy">
+        <h2 id="dash-title">Watch your exposure drop.</h2>
+        <p>Every profile gets its own dashboard and Risk Score, so you can see progress instead of taking it on faith.</p>
+        <ul>
+          <li><svg class="qid-icon" aria-hidden="true"><use href="#i-report"/></svg><span>Risk Score updated as removals land</span></li>
+          <li><svg class="qid-icon" aria-hidden="true"><use href="#i-remove"/></svg><span>Pending and completed removals, site by site</span></li>
+          <li><svg class="qid-icon" aria-hidden="true"><use href="#i-radar"/></svg><span>Alerts when your data shows up somewhere new</span></li>
+        </ul>
+      </div>
+      <figure class="qid-dash" aria-label="Example QuietID dashboard">
+        <div class="qid-dash__bar"><img src="assets/img/QuietID_Mark_White_Web.svg" alt="" width="24" height="24" loading="lazy" decoding="async">Your dashboard<span>Sample data</span></div>
+        <div class="qid-dash__body">
+          <div class="qid-score">
+            <p class="qid-score__label">Risk Score</p>
+            <p class="qid-score__value" data-count-from="82" data-count-to="14">14</p>
+            <p class="qid-score__trend">Down from 82 at sign-up</p>
+            <div class="qid-score__meter" aria-hidden="true"><i></i></div>
+          </div>
+          <div class="qid-dash__panel">
+            <div class="qid-dash__stats">
+              <p><strong data-count-to="41">41</strong><span>Removed</span></p>
+              <p><strong data-count-to="6">6</strong><span>In progress</span></p>
+              <p><strong data-count-to="2">2</strong><span>New this month</span></p>
+            </div>
+            <div class="qid-alert"><strong>New listing found</strong>Your phone number appeared on a new people-search site. A removal request has been filed.</div>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section class="qid-section qid-section--gray" aria-labelledby="plans-title">
+    <div class="qid-wrap">
+      <div class="qid-section__head">
+        <h2 id="plans-title">Cover yourself, your household or your company.</h2>
+      </div>
+      <div class="qid-plans">
+        <article class="qid-plan">
+          <h3>Individual</h3>
+          <p class="qid-plan__who">One person, one dashboard.</p>
+          <p class="qid-plan__price">From <strong><span class="qid-tbd">$00</span></strong> a month</p>
+          <ul><li>Unlimited scans and removal requests</li><li>Continuous monitoring</li><li>Risk Score and reports</li></ul>
+          <a class="qid-btn qid-btn--primary" href="signup.html?plan=individual">Start free scan</a>
+        </article>
+        <article class="qid-plan qid-plan--featured">
+          <span class="qid-plan__flag">Best for households</span>
+          <h3>Family</h3>
+          <p class="qid-plan__who">Couples and households, up to 5 people.</p>
+          <p class="qid-plan__price">From <strong><span class="qid-tbd">$00</span></strong> a month</p>
+          <ul><li>A dashboard for each person</li><li>Everything in Individual</li><li>One bill for the household</li></ul>
+          <a class="qid-btn qid-btn--primary" href="signup.html?plan=family">Start free scan</a>
+        </article>
+        <article class="qid-plan">
+          <h3>Enterprise</h3>
+          <p class="qid-plan__who">Executives, staff and their families.</p>
+          <p class="qid-plan__price">Priced per person</p>
+          <ul><li>Admin view across your organization</li><li>Bulk enrollment</li><li>Exposure reporting for security teams</li></ul>
+          <a class="qid-btn qid-btn--outline" href="plans-enterprise.html#demo">Book a demo</a>
+        </article>
+      </div>
+      <p class="qid-plans__all"><a href="pricing.html">Compare plans and pricing</a></p>
+    </div>
+  </section>
+
+  <!-- ENTERPRISE -->
+  <section class="qid-section qid-biz" aria-labelledby="biz-title">
+    <div class="qid-wrap qid-biz__grid">
+      <div>
+        <h2 id="biz-title">Your people are your attack surface.</h2>
+        <p>Phishing, social engineering and harassment start with a home address and a phone number. QuietID takes that information offline for the people your organization can't afford to expose.</p>
+        <div class="qid-biz__actions">
+          <a class="qid-btn qid-btn--light" href="plans-enterprise.html#demo">Book a demo</a>
+          <a class="qid-btn qid-btn--outline" href="plans-enterprise.html">QuietID for business</a>
+        </div>
+      </div>
+      <ul class="qid-biz__list">
+        <li><svg class="qid-icon" aria-hidden="true"><use href="#i-exec"/></svg><span>Executive and board protection</span></li>
+        <li><svg class="qid-icon" aria-hidden="true"><use href="#i-shield"/></svg><span>High-risk and front-line staff</span></li>
+        <li><svg class="qid-icon" aria-hidden="true"><use href="#i-family"/></svg><span>Coverage for employees' families</span></li>
+        <li><svg class="qid-icon" aria-hidden="true"><use href="#i-radar"/></svg><span>Backed by Veilant cybersecurity infrastructure</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="qid-section" aria-labelledby="faq-title">
+    <div class="qid-wrap qid-faq-grid">
+      <div>
+        <h2 id="faq-title">Questions, answered.</h2>
+        <p>Something else on your mind? <a href="about.html#contact">Contact our team</a>.</p>
+      </div>
+      <div class="qid-faq">
+        <details>
+          <summary>What is a data broker?</summary>
+          <p>A company that collects personal information from public records, apps, retailers and other sources, packages it into profiles and sells access. People-search sites are the most visible kind: anyone can look you up by name.</p>
+        </details>
+        <details>
+          <summary>How long does removal take?</summary>
+          <p>It depends on the site. Some remove a listing within days; others take weeks. Your dashboard shows the status of every request, so you always know where things stand. Typical time to first removals: <span class="qid-tbd">[to confirm]</span>.</p>
+        </details>
+        <details>
+          <summary>Will my information come back?</summary>
+          <p>Often, yes. Brokers refresh their data and relist people. That's why QuietID keeps scanning after the first removals and files new requests when your data reappears.</p>
+        </details>
+        <details>
+          <summary>What do you need from me, and what do you store?</summary>
+          <p>Enough to find and verify your listings: your name, current and past addresses, phone numbers and email. We use it to file removals on your behalf. We never sell your data.</p>
+        </details>
+        <details>
+          <summary>Can I cover my family?</summary>
+          <p>Yes. Family plans cover up to 5 people, each with their own dashboard and results.</p>
+        </details>
+        <details>
+          <summary>Can I cancel anytime?</summary>
+          <p>Yes. Cancel from your account settings. Refund terms: <span class="qid-tbd">[to confirm]</span>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="qid-section qid-close" aria-labelledby="close-title">
+    <div class="qid-wrap qid-close__grid">
+      <h2 id="close-title">See what's out there. Then make it go quiet.</h2>
+      <form class="qid-scan" action="signup.html" method="get">
+        <div class="qid-scan__fields">
+          <label><span class="qid-visually-hidden">First name</span><input name="first" autocomplete="given-name" placeholder="First name" required></label>
+          <label><span class="qid-visually-hidden">Last name</span><input name="last" autocomplete="family-name" placeholder="Last name" required></label>
+          <label><span class="qid-visually-hidden">State</span><input name="state" autocomplete="address-level1" placeholder="State" maxlength="2" required></label>
+        </div>
+        <button class="qid-btn qid-btn--primary qid-btn--block" type="submit">Start free scan</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="qid-footer">
+  <div class="qid-wrap">
+    <div class="qid-footer__top">
+      <div>
+        <img src="assets/img/QuietID_Logo_BlueWhite_Web.svg" alt="QuietID" width="128" height="34" loading="lazy" decoding="async">
+        <p class="qid-footer__by">Powered by <a href="https://www.veilant.com">Veilant</a></p>
+      </div>
+      <div>
+        <h2>Product</h2>
+        <ul><li><a href="plans-individuals.html">Individuals &amp; families</a></li><li><a href="plans-enterprise.html">Enterprise</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="how-it-works.html">How it works</a></li></ul>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <ul><li><a href="about.html">About us</a></li><li><a href="about.html#security">Security</a></li><li><a href="about.html#contact">Contact</a></li></ul>
+      </div>
+      <div>
+        <h2>Account</h2>
+        <ul><li><a href="login.html">Login</a></li><li><a href="signup.html">Sign up</a></li></ul>
+      </div>
+    </div>
+    <div class="qid-footer__legal">
+      <p>&copy; 2026 Veilant. All rights reserved.</p>
+      <p><a href="privacy.html">Privacy policy</a> &nbsp; <a href="terms.html">Terms</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
