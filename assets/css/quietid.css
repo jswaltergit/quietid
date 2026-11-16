@@ -1090,7 +1090,7 @@ section:has(> .qid-split):not(.qid-section--gray):not(.qid-band) { background: r
 /* ---------- hero variant (index-2): video scene with data from his device ---------- */
 .qid-hero--video { background: #10174a; }
 .qid-hero--video::before { display: none; }
-.qid-hero__media { position: absolute; inset: 0 0 0 15%; z-index: -2; overflow: hidden; }
+.qid-hero__media { position: absolute; inset: 0 0 0 8%; z-index: -2; overflow: hidden; }
 .qid-hero__media video { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(1.05) contrast(1.04); }
 /* blue overlay: keeps full colour but pulls the scene into the brand */
 .qid-hero__media::after { content: ""; position: absolute; inset: 0;
@@ -1103,18 +1103,19 @@ section:has(> .qid-split):not(.qid-section--gray):not(.qid-band) { background: r
 }
 .qid-hero--video .qid-wrap { position: relative; z-index: 1; }
 .qid-hero__beam { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: visible; transition: opacity .6s ease; }
-.qid-beam__fill { transition: opacity .8s ease; opacity: .55; }
-.qid-beam__edge { stroke: #a9cfff; stroke-width: 1; stroke-opacity: .45; transition: stroke-opacity .8s ease; }
-.qid-beam__frame { fill: none; stroke: #fff; stroke-width: 1.5; stroke-opacity: .8; stroke-linecap: round; }
-.qid-hero__beam[data-phase="scan"] .qid-beam__fill, .qid-hero__beam[data-phase="remove"] .qid-beam__fill { opacity: 1; }
-.qid-hero__beam[data-phase="scan"] .qid-beam__edge, .qid-hero__beam[data-phase="remove"] .qid-beam__edge { stroke-opacity: .75; }
+.qid-orbit__track { fill: none; stroke: #a9cfff; stroke-opacity: .3; stroke-width: 1; }
+.qid-orbit__track--outer { stroke-opacity: .1; stroke-dasharray: 2 6; }
+.qid-orbit__seg { fill: none; stroke-width: 2.5; stroke-linecap: round; }
+.qid-link { fill: none; stroke-width: 1.5; stroke-dasharray: 600; stroke-dashoffset: 600; opacity: 0; transition: stroke-dashoffset .9s cubic-bezier(.4, 0, .2, 1), opacity .5s ease; }
+.qid-link[data-state="found"] { stroke-dashoffset: 0; opacity: 1; }
+.qid-link[data-state="removed"] { stroke-dashoffset: 0; opacity: .18; }
 .qid-beam__packet { fill: #fff; }
 /* the sub-line moves to the left column so the scene stays clear */
 .qid-hero--video .qid-hero__sub--side { display: none; }
 .qid-hero--video .qid-hero__sub--mobile { display: block; }
 @media (min-width: 921px) { .qid-hero--video .qid-hero__grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); } }
 .qid-hero--video .qid-hero__side { align-self: center; margin-top: 2rem; }
-.qid-hero--video .qid-exposure { width: 100%; max-width: 23.5rem; margin-left: auto; background: rgba(255, 255, 255, .94);
+.qid-hero--video .qid-exposure { width: 100%; max-width: 22.5rem; margin-left: auto; background: rgba(255, 255, 255, .94);
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: 0 30px 70px rgba(3, 8, 40, .45), 0 0 0 1px rgba(169, 207, 255, .35); }
 .qid-hero--video .qid-exposure__count strong { font-size: 2.75rem; }
 .qid-hero--video .qid-exposure__name { font-size: var(--qid-step-0); }

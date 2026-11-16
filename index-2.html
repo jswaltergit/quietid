@@ -49,22 +49,22 @@
   <!-- HERO -->
   <section class="qid-hero qid-hero--video" aria-labelledby="hero-title">
     <div class="qid-hero__media" aria-hidden="true">
-      <video data-hero-video autoplay muted loop playsinline preload="auto" poster="assets/video/hero-man-poster.jpg">
+      <video data-hero-video autoplay muted playsinline preload="auto" poster="assets/video/hero-man-poster.jpg">
         <source src="assets/video/hero-man.webm" type="video/webm">
         <source src="assets/video/hero-man.mp4" type="video/mp4">
       </video>
     </div>
     <svg class="qid-hero__beam" data-hero-beam aria-hidden="true" focusable="false">
       <defs>
-        <linearGradient id="qid-beam-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1" y2="0" data-beam-grad>
-          <stop offset="0" stop-color="#a9cfff" stop-opacity=".42"/>
-          <stop offset="1" stop-color="#a9cfff" stop-opacity=".05"/>
+        <linearGradient id="qid-link-grad" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#a9cfff" stop-opacity=".9"/>
+          <stop offset="1" stop-color="#a9cfff" stop-opacity=".15"/>
         </linearGradient>
       </defs>
-      <polygon class="qid-beam__fill" fill="url(#qid-beam-grad)" data-beam-fill points="0,0"/>
-      <line class="qid-beam__edge" data-beam-edge="a" x1="0" y1="0" x2="0" y2="0"/>
-      <line class="qid-beam__edge" data-beam-edge="b" x1="0" y1="0" x2="0" y2="0"/>
-      <path class="qid-beam__frame" data-beam-frame d=""/>
+      <g data-beam-links></g>
+      <circle class="qid-orbit__track" data-orbit-track r="0"/>
+      <circle class="qid-orbit__track qid-orbit__track--outer" data-orbit-outer r="0"/>
+      <g data-orbit-arc></g>
       <g data-beam-packets></g>
     </svg>
     <div class="qid-wrap qid-hero__grid">
