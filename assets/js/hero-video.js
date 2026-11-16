@@ -20,6 +20,8 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var HOLD = 1.1;                          /* seconds of footage before it holds */
   var CORNER = [.605, .27];                  /* phone's top-right corner in the mirrored frame at the hold */
+  var ZOOM = .84;                            /* clip height as a share of the hero: lower = more zoomed out */
+  var ORBIT = [.555, .32];                   /* orbit centre: over the phone's upper half */
   var VW = 1280, VH = 720;
 
   var track = svg.querySelector('[data-orbit-track]');
@@ -55,26 +57,29 @@
   var measure = function () {
     /* slide the scene so the phone's corner lands just left of the card, whatever the screen width */
     var desk = getComputedStyle(svg).display !== 'none' && window.innerWidth > 920;
-    media.style.left = '0px';
+    media.style.left = '0px'; media.style.width = ''; media.style.top = '';
     var hb = hero.getBoundingClientRect(), vb = video.getBoundingClientRect();
     if (desk) {
-      var s0 = Math.max(vb.width / VW, vb.height / VH), rw0 = VW * s0;
-      var cx0 = vb.left - hb.left + (vb.width - rw0) / 2 + CORNER[0] * rw0;
-      var want = panel.getBoundingClientRect().left - hb.left - 46;
-      var shift = Math.max(-.16 * hb.width, Math.min(.1 * hb.width, want - cx0));
-      media.style.left = Math.round(shift) + 'px';
+      /* show as much of the frame as possible: fit the clip to the hero's height (no extra zoom),
+         slide it so the phone's corner lands just left of the card, and only widen it if the right edge would show */
+      /* the clip sits a little smaller than the hero, anchored to the bottom, its top and left edges fading into navy */
+      var Hh = hb.height * ZOOM, Wh = hb.width, want = panel.getBoundingClientRect().left - hb.left - 46;
+      var w = Hh * VW / VH, left = want - CORNER[0] * w;
+      left = Math.max(Math.min(left, .38 * Wh), Wh - w * 1.3);   /* the right edge may come in a little; it fades out */
+      media.style.width = Math.round(w) + 'px'; media.style.left = Math.round(left) + 'px';
+      media.style.top = Math.round(hb.height - Hh) + 'px';
       vb = video.getBoundingClientRect();
     }
     svg.setAttribute('viewBox', '0 0 ' + hb.width + ' ' + hb.height);
     var s = Math.max(vb.width / VW, vb.height / VH), rw = VW * s, rh = VH * s;
     var offX = vb.left - hb.left + (vb.width - rw) / 2, offY = vb.top - hb.top + (vb.height - rh) / 2;
-    var cx = offX + CORNER[0] * rw, cy = offY + CORNER[1] * rh;
+    var cx = offX + ORBIT[0] * rw, cy = offY + ORBIT[1] * rh;
     var pb = panel.getBoundingClientRect();
-    /* the orbit circles the phone's corner; make sure the card's top-left corner sits inside it */
+    /* the orbit takes in the top of the phone; make sure the card's top-left corner sits inside it */
     var kx = pb.left - hb.left, ky = pb.top - hb.top;
-    var r = Math.max(.085 * rw, Math.min(Math.hypot(kx - cx, ky - cy) + 34, .13 * rw));
+    var r = Math.max(.15 * rw, Math.min(Math.hypot(kx - cx, ky - cy) + 34, .19 * rw));
     var copy = hero.querySelector('.qid-hero__copy .qid-scan');
-    var clear = cx < kx + 40 && cx > (copy ? copy.getBoundingClientRect().right - hb.left + 40 : 0);
+    var clear = cx < kx + 40 && cx > (copy ? copy.getBoundingClientRect().right - hb.left - 30 : 0);
     geo = { hb: hb, cx: cx, cy: cy, r: r, clear: clear };
   };
   var onAt = null;                         /* when the orbit switches on, as the footage comes to rest */
