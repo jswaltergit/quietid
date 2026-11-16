@@ -51,8 +51,20 @@
   setPhase(); new MutationObserver(setPhase).observe(panel, { attributes: true, attributeFilter: ['data-phase'] });
 
   var geo = null;
+  var media = hero.querySelector('.qid-hero__media');
   var measure = function () {
+    /* slide the scene so the phone's corner lands just left of the card, whatever the screen width */
+    var desk = getComputedStyle(svg).display !== 'none' && window.innerWidth > 920;
+    media.style.left = '0px';
     var hb = hero.getBoundingClientRect(), vb = video.getBoundingClientRect();
+    if (desk) {
+      var s0 = Math.max(vb.width / VW, vb.height / VH), rw0 = VW * s0;
+      var cx0 = vb.left - hb.left + (vb.width - rw0) / 2 + CORNER[0] * rw0;
+      var want = panel.getBoundingClientRect().left - hb.left - 46;
+      var shift = Math.max(-.16 * hb.width, Math.min(.1 * hb.width, want - cx0));
+      media.style.left = Math.round(shift) + 'px';
+      vb = video.getBoundingClientRect();
+    }
     svg.setAttribute('viewBox', '0 0 ' + hb.width + ' ' + hb.height);
     var s = Math.max(vb.width / VW, vb.height / VH), rw = VW * s, rh = VH * s;
     var offX = vb.left - hb.left + (vb.width - rw) / 2, offY = vb.top - hb.top + (vb.height - rh) / 2;
@@ -62,7 +74,7 @@
     var kx = pb.left - hb.left, ky = pb.top - hb.top;
     var r = Math.max(.085 * rw, Math.min(Math.hypot(kx - cx, ky - cy) + 34, .16 * rw));
     var copy = hero.querySelector('.qid-hero__copy .qid-scan');
-    var clear = cx < kx + 20 && cx - r > (copy ? copy.getBoundingClientRect().right - hb.left - 30 : 0);
+    var clear = cx < kx + 40 && cx - r > (copy ? copy.getBoundingClientRect().right - hb.left - 30 : 0);
     geo = { hb: hb, cx: cx, cy: cy, r: r, clear: clear };
   };
   var onAt = null;                         /* when the orbit switches on, as the footage comes to rest */
