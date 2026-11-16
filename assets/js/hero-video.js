@@ -72,9 +72,9 @@
     var pb = panel.getBoundingClientRect();
     /* the orbit circles the phone's corner; make sure the card's top-left corner sits inside it */
     var kx = pb.left - hb.left, ky = pb.top - hb.top;
-    var r = Math.max(.085 * rw, Math.min(Math.hypot(kx - cx, ky - cy) + 34, .16 * rw));
+    var r = Math.max(.085 * rw, Math.min(Math.hypot(kx - cx, ky - cy) + 34, .13 * rw));
     var copy = hero.querySelector('.qid-hero__copy .qid-scan');
-    var clear = cx < kx + 40 && cx - r > (copy ? copy.getBoundingClientRect().right - hb.left - 30 : 0);
+    var clear = cx < kx + 40 && cx > (copy ? copy.getBoundingClientRect().right - hb.left + 40 : 0);
     geo = { hb: hb, cx: cx, cy: cy, r: r, clear: clear };
   };
   var onAt = null;                         /* when the orbit switches on, as the footage comes to rest */
