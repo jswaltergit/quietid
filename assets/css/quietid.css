@@ -1171,3 +1171,11 @@ section:has(> .qid-split):not(.qid-section--gray):not(.qid-band) { background: r
 @media (prefers-reduced-motion: reduce) {
   .qid-header--overlay .qid-header__bar, .qid-header--overlay .qid-header__logo img, .qid-header--overlay::before, .qid-header--overlay::after { transition: none; }
 }
+
+/* index-2: a more compact free-scan form */
+.qid-hero--video .qid-scan { max-width: 31rem; }
+.qid-hero--video .qid-scan__fields { grid-template-columns: 1fr 1fr 6.75rem; gap: .4rem; }
+.qid-hero--video .qid-scan input, .qid-hero--video .qid-scan select { min-height: 2.75rem; padding: 0 1.1rem; font-size: .9375rem; }
+.qid-hero--video .qid-scan select { height: 2.75rem; padding-right: 2.25rem; background-position: right 1.1rem center; }
+.qid-hero--video .qid-scan .qid-btn { min-height: 2.75rem; margin-top: .4rem; font-size: .9375rem; }
+@media (max-width: 920px) { .qid-hero--video .qid-scan { max-width: none; } .qid-hero--video .qid-scan__fields { grid-template-columns: 1fr 1fr; } }
