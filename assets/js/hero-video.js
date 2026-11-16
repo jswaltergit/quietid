@@ -11,7 +11,7 @@
   var NS = 'http://www.w3.org/2000/svg';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var HOLD = 1.1;                          /* seconds of footage before it holds */
-  var PHONE = [.515, .405];                  /* phone centre in the mirrored frame at the hold */
+  var CORNER = [.605, .27];                  /* phone's top-right corner in the mirrored frame at the hold */
   var VW = 1280, VH = 720;
 
   var track = svg.querySelector('[data-orbit-track]');
@@ -48,15 +48,17 @@
     svg.setAttribute('viewBox', '0 0 ' + hb.width + ' ' + hb.height);
     var s = Math.max(vb.width / VW, vb.height / VH), rw = VW * s, rh = VH * s;
     var offX = vb.left - hb.left + (vb.width - rw) / 2, offY = vb.top - hb.top + (vb.height - rh) / 2;
-    var cx = offX + PHONE[0] * rw, cy = offY + PHONE[1] * rh;
-    var r = Math.max(.17 * rw, .3 * rh) * .46;
+    var cx = offX + CORNER[0] * rw, cy = offY + CORNER[1] * rh;
     var pb = panel.getBoundingClientRect();
+    /* the orbit circles the phone's corner; make sure the card's top-left corner sits inside it */
+    var kx = pb.left - hb.left, ky = pb.top - hb.top;
+    var r = Math.max(.085 * rw, Math.min(Math.hypot(kx - cx, ky - cy) + 34, .16 * rw));
     var copy = hero.querySelector('.qid-hero__copy .qid-scan');
-    var clear = cx < (pb.left - hb.left) - 40 && cx > (copy ? copy.getBoundingClientRect().right - hb.left + 10 : 0);
-    svg.style.opacity = clear ? '' : 0;
-    geo = { hb: hb, cx: cx, cy: cy, r: r };
-    [track, outer].forEach(function (c, n) { c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', r * (n ? 1.16 : 1)); });
+    var clear = cx < kx + 20 && cx - r > (copy ? copy.getBoundingClientRect().right - hb.left - 30 : 0);
+    geo = { hb: hb, cx: cx, cy: cy, r: r, clear: clear };
   };
+  var onAt = null;                         /* when the orbit switches on, just after the footage holds */
+  var switchOn = function (now) { if (onAt === null) onAt = now + 350; };
 
   var arcPath = function (cx, cy, r, a0, a1) {
     var x0 = cx + r * Math.cos(a0), y0 = cy + r * Math.sin(a0), x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
@@ -66,11 +68,16 @@
   var live = [], lastSpawn = 0;
   var draw = function (now) {
     if (!geo) measure();
-    var g = geo, hb = g.hb, phase = svg.getAttribute('data-phase');
+    var g0 = geo, hb = g0.hb, phase = svg.getAttribute('data-phase');
+    var since = onAt === null ? -1 : now - onAt;
+    svg.style.opacity = (since >= 0 && g0.clear) ? 1 : 0;
+    var grow = since < 0 ? 0 : Math.min(1, since / 700); grow = 1 - Math.pow(1 - grow, 3);
+    var g = { cx: g0.cx, cy: g0.cy, r: g0.r * (.82 + .18 * grow) };
+    [track, outer].forEach(function (c, n) { c.setAttribute('cx', g.cx); c.setAttribute('cy', g.cy); c.setAttribute('r', g.r * (n ? 1.16 : 1)); });
     var busy = phase === 'scan' || phase === 'remove';
     /* orbit: faster while working, slow drift otherwise */
     var speed = busy ? .0021 : .0008;
-    var head = (now * speed) % (Math.PI * 2);
+    var head = -Math.PI / 2 + Math.max(0, since) * speed;
     if (reduce) head = -Math.PI / 4;
     var step = (SPAN / SEG) * Math.PI / 180;
     for (var i = 0; i < SEG; i++) segs[i].setAttribute('d', arcPath(g.cx, g.cy, g.r, head - i * step, head - (i + 1) * step - .004));
@@ -80,10 +87,14 @@
     rows.forEach(function (row, n) {
       var rb = row.getBoundingClientRect();
       var tx = panel.getBoundingClientRect().left - hb.left - 2, ty = rb.top - hb.top + rb.height / 2;
-      var ang = Math.atan2(ty - g.cy, tx - g.cx);
+      /* leave the orbit from its lower-left, fanned out, and swoop into the card's edge */
+      var lift = Math.max(-.3, Math.min(.97, (ty - 34 - g.cy) / g.r));
+      var ang = Math.max(Math.PI - Math.asin(lift), (150 - n * 16) * Math.PI / 180);
       var sx = g.cx + g.r * Math.cos(ang), sy = g.cy + g.r * Math.sin(ang);
-      var dx = tx - sx;
-      var d = 'M' + sx.toFixed(1) + ' ' + sy.toFixed(1) + 'C' + (sx + dx * .45).toFixed(1) + ' ' + (sy + (ty - sy) * .05).toFixed(1) + ' ' + (tx - dx * .45).toFixed(1) + ' ' + ty.toFixed(1) + ' ' + tx.toFixed(1) + ' ' + ty.toFixed(1);
+      var out = 54;
+      var d = 'M' + sx.toFixed(1) + ' ' + sy.toFixed(1) +
+        'C' + (sx + Math.cos(ang) * out).toFixed(1) + ' ' + (sy + Math.sin(ang) * out).toFixed(1) + ' ' +
+        (tx - 70).toFixed(1) + ' ' + ty.toFixed(1) + ' ' + tx.toFixed(1) + ' ' + ty.toFixed(1);
       var el = links[n];
       if (el.getAttribute('d') !== d) el.setAttribute('d', d);
       var state = row.classList.contains('is-removed') ? 'removed' : row.classList.contains('is-found') ? 'found' : 'off';
@@ -111,10 +122,11 @@
   };
 
   /* the footage: play a beat, then hold on the phone */
-  var holdAt = function () { if (video.currentTime >= HOLD) { video.pause(); video.currentTime = HOLD; return true; } return false; };
-  var running = false;
+  var holdAt = function (now) { if (video.currentTime >= HOLD) { video.pause(); video.currentTime = HOLD; switchOn(now); return true; } return false; };
+  var running = false, started = performance.now();
   var loop = function (now) {
-    if (!video.paused) holdAt();
+    if (!video.paused) holdAt(now);
+    else if (video.currentTime >= HOLD - .05 || now - started > 2600) switchOn(now);
     draw(now);
     if (running) requestAnimationFrame(loop);
   };
@@ -124,7 +136,7 @@
 
   if (reduce) {
     video.removeAttribute('autoplay'); video.pause();
-    var still = function () { try { video.currentTime = HOLD; } catch (e) {} geo = null; draw(0); };
+    var still = function () { try { video.currentTime = HOLD; } catch (e) {} geo = null; onAt = -1000; draw(0); };
     if (video.readyState >= 1) still(); else video.addEventListener('loadedmetadata', still, { once: true });
     window.addEventListener('resize', still);
     new MutationObserver(function () { draw(0); }).observe(panel, { attributes: true, subtree: true });
