@@ -63,7 +63,7 @@
       /* show as much of the frame as possible: fit the clip to the hero's height (no extra zoom),
          slide it so the phone's corner lands just left of the card, and only widen it if the right edge would show */
       /* the clip sits a little smaller than the hero, anchored to the bottom, its top and left edges fading into navy */
-      var Hh = hb.height * ZOOM, Wh = hb.width, want = panel.getBoundingClientRect().left - hb.left - 46;
+      var Hh = hb.height * ZOOM, Wh = hb.width, want = panel.getBoundingClientRect().left - hb.left + 4;
       var w = Hh * VW / VH, left = want - CORNER[0] * w;
       left = Math.max(Math.min(left, .38 * Wh), Wh - w * 1.3);   /* the right edge may come in a little; it fades out */
       media.style.width = Math.round(w) + 'px'; media.style.left = Math.round(left) + 'px';
