@@ -1183,3 +1183,4 @@ section:has(> .qid-split):not(.qid-section--gray):not(.qid-band) { background: r
 /* index-2: a bigger headline */
 .qid-hero--video h1 { font-size: clamp(3.25rem, 1rem + 6.3vw, 7.25rem); }
 @media (min-width: 921px) { .qid-hero--video .qid-scan__note { white-space: nowrap; } }
+.qid-scan__label { margin: 0 0 .6rem; font-size: .9375rem; font-weight: 600; letter-spacing: .005em; color: #fff; }
