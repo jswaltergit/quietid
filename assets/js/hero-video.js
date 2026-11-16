@@ -57,8 +57,9 @@
     var clear = cx < kx + 20 && cx - r > (copy ? copy.getBoundingClientRect().right - hb.left - 30 : 0);
     geo = { hb: hb, cx: cx, cy: cy, r: r, clear: clear };
   };
-  var onAt = null;                         /* when the orbit switches on, just after the footage holds */
-  var switchOn = function (now) { if (onAt === null) onAt = now + 350; };
+  var onAt = null;                         /* when the orbit switches on, as the footage comes to rest */
+  var switchOn = function (now) { if (onAt === null) onAt = now; };
+  var angle = -Math.PI / 2, curSpeed = 0, lastNow = null;
 
   var arcPath = function (cx, cy, r, a0, a1) {
     var x0 = cx + r * Math.cos(a0), y0 = cy + r * Math.sin(a0), x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
@@ -71,13 +72,16 @@
     var g0 = geo, hb = g0.hb, phase = svg.getAttribute('data-phase');
     var since = onAt === null ? -1 : now - onAt;
     svg.style.opacity = (since >= 0 && g0.clear) ? 1 : 0;
-    var grow = since < 0 ? 0 : Math.min(1, since / 700); grow = 1 - Math.pow(1 - grow, 3);
+    var grow = since < 0 ? 0 : Math.min(1, since / 1100); grow = 1 - Math.pow(1 - grow, 3);
     var g = { cx: g0.cx, cy: g0.cy, r: g0.r * (.82 + .18 * grow) };
     [track, outer].forEach(function (c, n) { c.setAttribute('cx', g.cx); c.setAttribute('cy', g.cy); c.setAttribute('r', g.r * (n ? 1.16 : 1)); });
     var busy = phase === 'scan' || phase === 'remove';
     /* orbit: faster while working, slow drift otherwise */
-    var speed = busy ? .0021 : .0008;
-    var head = -Math.PI / 2 + Math.max(0, since) * speed;
+    var dt = lastNow === null ? 16 : Math.min(64, now - lastNow); lastNow = now;
+    var target = since < 0 ? 0 : (busy ? .0011 : .00045);
+    curSpeed += (target - curSpeed) * Math.min(1, dt / 1200);   /* ease between speeds, never jump */
+    angle += curSpeed * dt;
+    var head = angle;
     if (reduce) head = -Math.PI / 4;
     var step = (SPAN / SEG) * Math.PI / 180;
     for (var i = 0; i < SEG; i++) segs[i].setAttribute('d', arcPath(g.cx, g.cy, g.r, head - i * step, head - (i + 1) * step - .004));
@@ -103,12 +107,12 @@
     });
 
     /* round data packets flow along the live lines while scanning or removing */
-    if (!reduce && busy && ends.length && now - lastSpawn > 120) {
+    if (!reduce && busy && ends.length && now - lastSpawn > 260) {
       var path = ends[Math.floor(Math.random() * ends.length)];
       var c = document.createElementNS(NS, 'circle');
       c.setAttribute('class', 'qid-beam__packet'); c.setAttribute('r', 2.2);
       packetsG.appendChild(c);
-      live.push({ el: c, path: path, born: now, dur: 800 + Math.random() * 400 });
+      live.push({ el: c, path: path, born: now, dur: 1800 + Math.random() * 700 });
       lastSpawn = now;
     }
     live = live.filter(function (d) {
@@ -125,8 +129,8 @@
   var holdAt = function (now) { if (video.currentTime >= HOLD) { video.pause(); video.currentTime = HOLD; switchOn(now); return true; } return false; };
   var running = false, started = performance.now();
   var loop = function (now) {
-    if (!video.paused) holdAt(now);
-    else if (video.currentTime >= HOLD - .05 || now - started > 2600) switchOn(now);
+    if (!video.paused) { if (video.currentTime >= HOLD - .35) switchOn(now); holdAt(now); }
+    else if (video.currentTime >= HOLD - .05 || now - started > 2200) switchOn(now);
     draw(now);
     if (running) requestAnimationFrame(loop);
   };
@@ -150,4 +154,69 @@
       } else { stop(); }
     }).observe(hero);
   } else { go(); }
+})();
+
+/* index-2 hero: a quiet field of blue data points drifting through the scene. */
+(function () {
+  var hero = document.querySelector('.qid-hero--video');
+  var media = hero && hero.querySelector('.qid-hero__media');
+  if (!media || !window.HTMLCanvasElement) return;
+  var cv = document.createElement('canvas');
+  cv.className = 'qid-hero__field'; cv.setAttribute('aria-hidden', 'true');
+  /* sits above the colour overlays (so it reads as light, not murk), below the orbit and the content */
+  var beam = hero.querySelector('[data-hero-beam]');
+  hero.insertBefore(cv, beam || media.nextSibling);
+  var ctx = cv.getContext('2d');
+  if (!ctx) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W = 0, H = 0, dpr = 1;
+  var size = function () {
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    W = hero.clientWidth; H = hero.clientHeight;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+  /* a rolling surface of points in perspective, plus loose motes that rise and twinkle */
+  var COLS = 170, ROWS = 30;
+  var motes = [];
+  for (var m = 0; m < 70; m++) motes.push({ x: Math.random(), y: Math.random(), s: .4 + Math.random() * 1.1, v: .004 + Math.random() * .01, p: Math.random() * 6.28 });
+  var frame = function (t) {
+    ctx.clearRect(0, 0, W, H);
+    var horizon = H * .44, f = W * .55;
+    for (var r = 0; r < ROWS; r++) {
+      var z = 1 + r * .16 - ((t * .00006) % .16);           /* the field slides slowly toward the viewer */
+      var depth = 1 - r / ROWS;
+      for (var c = 0; c < COLS; c++) {
+        var x = (c / (COLS - 1) - .5) * 15;
+        var y = .62 + .26 * Math.sin(x * .8 + t * .00022) * Math.cos(z * 1.1 - t * .00018);
+        var sx = W * .6 + (x / z) * f, sy = horizon + (y / z) * f * .9;
+        if (sx < -4 || sx > W + 4 || sy > H + 4) continue;
+        var a = .95 * Math.pow(depth, 1.3);
+        var lift = (y - .46) / .32;                           /* crests catch more light */
+        ctx.fillStyle = 'rgba(' + (lift > .7 ? '169,207,255' : '90,157,224') + ',' + Math.min(.95, a * (.65 + .55 * lift)).toFixed(3) + ')';
+        var d = Math.max(1, 3 / Math.sqrt(z));
+        ctx.fillRect(sx - d / 2, sy - d / 2, d, d);
+      }
+    }
+    motes.forEach(function (o) {
+      var yy = ((o.y - t * o.v * .00003) % 1 + 1) % 1;
+      var tw = .25 + .75 * Math.pow(Math.sin(o.p + t * .0012 * o.s), 2);
+      ctx.fillStyle = 'rgba(169,207,255,' + (.6 * tw).toFixed(3) + ')';
+      ctx.beginPath(); ctx.arc(o.x * W, yy * H, o.s, 0, 6.283); ctx.fill();
+    });
+  };
+  size(); window.addEventListener('resize', size);
+  if (reduce) { frame(0); window.addEventListener('resize', function () { frame(0); }); return; }
+  var on = false, last = 0;
+  var loop = function (t) {
+    if (!on) return;
+    if (t - last > 33) { frame(t); last = t; }               /* ~30fps is plenty for slow drift */
+    requestAnimationFrame(loop);
+  };
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) {
+      var vis = en[0].isIntersecting;
+      if (vis && !on) { on = true; requestAnimationFrame(loop); } else if (!vis) on = false;
+    }).observe(hero);
+  } else { on = true; requestAnimationFrame(loop); }
 })();
