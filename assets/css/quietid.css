@@ -1137,3 +1137,32 @@ section:has(> .qid-split):not(.qid-section--gray):not(.qid-band) { background: r
   .qid-hero--video .qid-hero__copy { padding-bottom: 0; }
   .qid-hero--video .qid-hero__side { margin: 0; }
 }
+
+/* primary buttons: gradient fills the border box (no seam ring at the edge) */
+.qid-btn--primary, .qid-btn--primary:hover { background-origin: border-box; border-color: transparent; }
+.qid-btn--primary { box-shadow: 0 8px 18px -10px rgba(0, 71, 199, .75); }
+
+/* index-2 header: floats over the hero and fades down; becomes a compact translucent bar once you scroll */
+.qid-header--overlay { position: fixed; left: 0; right: 0; top: 0; background: transparent; isolation: isolate; }
+.qid-header--overlay::before, .qid-header--overlay::after { content: ""; position: absolute; left: 0; right: 0; top: 0; z-index: -1; pointer-events: none; transition: opacity .45s ease; }
+.qid-header--overlay::before { bottom: -3rem;
+  background: linear-gradient(180deg, rgba(16, 23, 74, .82) 0%, rgba(16, 23, 74, .5) 50%, rgba(16, 23, 74, 0) 100%);
+  -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
+  -webkit-mask-image: linear-gradient(180deg, #000 35%, transparent 100%); mask-image: linear-gradient(180deg, #000 35%, transparent 100%); }
+.qid-header--overlay::after { bottom: 0; opacity: 0; background: rgba(16, 23, 74, .78);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: 0 1px 0 rgba(169, 207, 255, .12), 0 12px 30px -20px rgba(0, 0, 0, .7); }
+.qid-header--overlay .qid-header__bar { min-height: 5.5rem; transition: min-height .4s cubic-bezier(.2, .7, .2, 1); }
+.qid-header--overlay .qid-header__logo img { transition: width .4s cubic-bezier(.2, .7, .2, 1); }
+.qid-header--overlay.is-scrolled::before { opacity: 0; }
+.qid-header--overlay.is-scrolled::after, .qid-header--overlay[data-menu="open"]::after { opacity: 1; }
+.qid-header--overlay[data-menu="open"]::after { background: var(--qid-navy); }
+.qid-header--overlay.is-scrolled .qid-header__bar { min-height: 3.75rem; }
+.qid-header--overlay.is-scrolled .qid-header__logo img { width: 7.75rem; }
+.qid-hero--video { padding-top: calc(5.5rem + clamp(1.5rem, 4vh, 3rem)); }
+@media (min-width: 921px) {
+  .qid-hero--video { min-height: 100vh; min-height: 100svh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .qid-header--overlay .qid-header__bar, .qid-header--overlay .qid-header__logo img, .qid-header--overlay::before, .qid-header--overlay::after { transition: none; }
+}

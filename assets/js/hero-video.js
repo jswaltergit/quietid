@@ -1,3 +1,11 @@
+/* index-2 header: compact bar once the visitor scrolls */
+(function () {
+  var h = document.querySelector('.qid-header--overlay');
+  if (!h) return;
+  var set = function () { h.classList.toggle('is-scrolled', window.scrollY > 24); };
+  set(); window.addEventListener('scroll', set, { passive: true });
+})();
+
 /* index-2 hero: the clip plays for a beat, holds on the phone, and the scan
    demo runs out of the device: a gradient orbit circles the phone and curved
    data lines reach each listing as it's found. */
