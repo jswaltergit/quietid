@@ -1184,3 +1184,7 @@ section:has(> .qid-split):not(.qid-section--gray):not(.qid-band) { background: r
 .qid-hero--video h1 { font-size: clamp(3.25rem, 1rem + 6.3vw, 7.25rem); }
 @media (min-width: 921px) { .qid-hero--video .qid-scan__note { white-space: nowrap; } }
 .qid-scan__label { margin: 0 0 .7rem; font-size: 1.125rem; font-weight: 600; letter-spacing: .005em; color: #fff; }
+
+/* top nav labels never wrap; tighten spacing on narrow desktops */
+.qid-nav > ul > li > a, .qid-nav button.qid-nav__parent { white-space: nowrap; }
+@media (max-width: 1120px) { .qid-nav { gap: 1.1rem; } .qid-nav > ul { gap: 1.1rem; } }
