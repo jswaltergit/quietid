@@ -67,7 +67,12 @@
       var w = Hh * VW / VH, left = want - CORNER[0] * w;
       left = Math.max(Math.min(left, .38 * Wh), Wh - w * 1.3);   /* the right edge may come in a little; it fades out */
       media.style.width = Math.round(w) + 'px'; media.style.left = Math.round(left) + 'px';
-      media.style.top = Math.round(hb.height - Hh) + 'px';
+      /* lift the clip so the top of the phone lines up with the Q icon in the card's header */
+      var rhFit = w * VH / VW, icon = panel.querySelector('.qid-exposure__radar');
+      var top = hb.height - rhFit;
+      if (icon) top = icon.getBoundingClientRect().top - hb.top + 4 - CORNER[1] * rhFit;
+      top = Math.max(top, hb.height - rhFit - .16 * hb.height);   /* never float too far off the bottom */
+      media.style.top = Math.round(Math.min(top, hb.height - rhFit)) + 'px';
       vb = video.getBoundingClientRect();
     }
     svg.setAttribute('viewBox', '0 0 ' + hb.width + ' ' + hb.height);
