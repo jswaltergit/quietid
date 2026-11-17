@@ -21,7 +21,7 @@
   var HOLD = 1.1;                          /* seconds of footage before it holds */
   var CORNER = [.605, .27];                  /* phone's top-right corner in the mirrored frame at the hold */
   var ZOOM = .84;                            /* clip height as a share of the hero: lower = more zoomed out */
-  var ORBIT = [.555, .32];                   /* orbit centre: over the phone's upper half */
+  var ORBIT = [.555, .37];                   /* orbit centre: over the phone's upper half */
   var VW = 1280, VH = 720;
 
   var track = svg.querySelector('[data-orbit-track]');
@@ -121,14 +121,15 @@
     rows.forEach(function (row, n) {
       var rb = row.getBoundingClientRect();
       var tx = panel.getBoundingClientRect().left - hb.left - 2, ty = rb.top - hb.top + rb.height / 2;
-      /* leave the orbit from its lower-left, fanned out, and swoop into the card's edge */
-      var lift = Math.max(-.3, Math.min(.97, (ty - 34 - g.cy) / g.r));
-      var ang = Math.max(Math.PI - Math.asin(lift), (150 - n * 16) * Math.PI / 180);
-      var sx = g.cx + g.r * Math.cos(ang), sy = g.cy + g.r * Math.sin(ang);
-      var out = 54;
+      /* leave from the orbit's left side, spread evenly top to bottom, and ease across into the card's edge
+         (lines run left to right and never loop below the card) */
+      var N = rows.length, k = N > 1 ? n / (N - 1) : .5;
+      var sy = g.cy + (-.5 + k) * 1.1 * g.r;
+      var sx = g.cx - Math.sqrt(Math.max(0, g.r * g.r - (sy - g.cy) * (sy - g.cy)));
+      var span = Math.max(40, tx - sx);
       var d = 'M' + sx.toFixed(1) + ' ' + sy.toFixed(1) +
-        'C' + (sx + Math.cos(ang) * out).toFixed(1) + ' ' + (sy + Math.sin(ang) * out).toFixed(1) + ' ' +
-        (tx - 70).toFixed(1) + ' ' + ty.toFixed(1) + ' ' + tx.toFixed(1) + ' ' + ty.toFixed(1);
+        'C' + (sx + span * .45).toFixed(1) + ' ' + sy.toFixed(1) + ' ' +
+        (tx - span * .45).toFixed(1) + ' ' + ty.toFixed(1) + ' ' + tx.toFixed(1) + ' ' + ty.toFixed(1);
       var el = links[n];
       if (el.getAttribute('d') !== d) el.setAttribute('d', d);
       var state = row.classList.contains('is-removed') ? 'removed' : row.classList.contains('is-found') ? 'found' : 'off';
