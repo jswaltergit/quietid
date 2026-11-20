@@ -1273,3 +1273,11 @@ section:has(> .qid-split):not(.qid-section--gray):not(.qid-band) { background: r
 /* Sticky header: fully opaque once scrolled */
 .qid-header--overlay::after { background: var(--qid-navy); -webkit-backdrop-filter: none; backdrop-filter: none; }
 @media (max-width: 920px) { .qid-nav__menu { width: auto; } }
+
+/* Nav: tighter dropdown corners, blue reversed hover, smooth hover fades */
+.qid-nav__menu { border-radius: .25rem; padding: .375rem; }
+.qid-nav__menu a { border-radius: .125rem; transition: background-color .25s ease, color .25s ease; }
+.qid-nav__menu a:hover, .qid-nav__menu a:focus-visible { background: var(--qid-blue); color: var(--qid-white); }
+.qid-nav__menu a[aria-current="page"]:not(:hover) { background: var(--qid-mist); }
+.qid-nav a, .qid-nav button.qid-nav__parent { transition: color .25s ease; }
+.qid-nav__menu a[aria-current="page"]:not(:hover):not(:focus-visible) { color: var(--qid-navy); }
