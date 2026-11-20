@@ -5,7 +5,7 @@
   <script>document.documentElement.classList.add("qid-js")</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>QuietID pricing</title>
-  <meta name="description" content="QuietID plans for individuals, households and organizations. Every plan includes unlimited removals and continuous monitoring.">
+  <meta name="description" content="QuietID plans for government, organizations, individuals and households. Every plan includes unlimited removals and continuous monitoring.">
   <link rel="icon" href="assets/img/favicon.ico" sizes="any">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -61,6 +61,24 @@
   <section class="qid-section qid-section--gray" aria-labelledby="plans-title">
     <div class="qid-wrap">
       <h2 id="plans-title" class="qid-visually-hidden">Plans</h2>
+      <div class="qid-plans qid-plans--pair">
+        <article class="qid-plan">
+          <h3>Government &amp; public service</h3>
+          <p class="qid-plan__who">Officials, staff, law enforcement and their families.</p>
+          <p class="qid-plan__price">Contact for pricing</p>
+          <span class="qid-price-period">For agencies and individuals</span>
+          <ul><li>Coverage for households</li><li>Analyst support</li><li>Agency management, individual control</li></ul>
+          <a class="qid-btn qid-btn--outline" href="government.html#consult">Contact for Pricing</a>
+        </article>
+        <article class="qid-plan">
+          <h3>Organizations</h3>
+          <p class="qid-plan__who">Executives, board members and high-risk staff.</p>
+          <p class="qid-plan__price">Contact for pricing</p>
+          <span class="qid-price-period">Volume pricing by team size</span>
+          <ul><li>Admin view across your people</li><li>Companywide plans</li><li>Exposure reporting for security teams</li></ul>
+          <a class="qid-btn qid-btn--outline" href="plans-enterprise.html#demo">Contact for Pricing</a>
+        </article>
+      </div>
       <div class="qid-billing-row">
         <div class="qid-billing qid-billing--light" role="group" aria-label="Billing period" data-billing>
           <button type="button" aria-pressed="false" data-period="monthly">Monthly</button>
@@ -74,24 +92,23 @@
           <p class="qid-plan__price"><strong><span class="qid-tbd">$00</span></strong> a month</p>
           <span class="qid-price-period" data-period-label>Billed annually</span>
           <ul><li>Unlimited scans and removal requests</li><li>Continuous monitoring</li><li>Risk Score and reports</li><li>Alerts for new listings</li></ul>
-          <a class="qid-btn qid-btn--primary" href="signup.html?plan=individual">Start a Free Scan</a>
+          <a class="qid-btn qid-btn--primary" href="signup.html?plan=individual">Sign Up</a>
         </article>
-        <article class="qid-plan qid-plan--featured">
-          <span class="qid-plan__flag">Best for households</span>
+        <article class="qid-plan">
+          <h3>Duo</h3>
+          <p class="qid-plan__who">Two people, two dashboards.</p>
+          <p class="qid-plan__price"><strong><span class="qid-tbd">$00</span></strong> a month</p>
+          <span class="qid-price-period" data-period-label>Billed annually</span>
+          <ul><li>Everything in Individual</li><li>A separate dashboard for each person</li><li>One account holder manages billing</li><li>Swap your second person anytime</li></ul>
+          <a class="qid-btn qid-btn--primary" href="signup.html?plan=duo">Sign Up</a>
+        </article>
+        <article class="qid-plan">
           <h3>Family</h3>
           <p class="qid-plan__who">Up to 5 people in one household.</p>
           <p class="qid-plan__price"><strong><span class="qid-tbd">$00</span></strong> a month</p>
           <span class="qid-price-period" data-period-label>Billed annually</span>
           <ul><li>Everything in Individual</li><li>A dashboard for each person</li><li>One bill for the household</li><li>Add or swap people anytime</li></ul>
-          <a class="qid-btn qid-btn--primary" href="signup.html?plan=family">Start a Free Scan</a>
-        </article>
-        <article class="qid-plan">
-          <h3>Organizations</h3>
-          <p class="qid-plan__who">Executives, staff and their families.</p>
-          <p class="qid-plan__price">Priced per person</p>
-          <span class="qid-price-period">Volume pricing by team size</span>
-          <ul><li>Admin view across your organization</li><li>Bulk enrollment</li><li>Exposure reporting for security teams</li><li>Coverage for families</li></ul>
-          <a class="qid-btn qid-btn--outline" href="plans-enterprise.html#demo">Book a Demo</a>
+          <a class="qid-btn qid-btn--primary" href="signup.html?plan=family">Sign Up</a>
         </article>
       </div>
     </div>
@@ -106,17 +123,14 @@
       <div class="qid-compare-wrap">
         <table class="qid-compare">
           <thead>
-            <tr><th scope="col"><span class="qid-visually-hidden">Feature</span></th><th scope="col">Individual<small>1 person</small></th><th scope="col">Family<small>Up to 5 people</small></th><th scope="col">Organizations<small>Your whole list</small></th></tr>
+            <tr><th scope="col"><span class="qid-visually-hidden">Feature</span></th><th scope="col">Individual<small>1 person</small></th><th scope="col">Duo<small>2 people</small></th><th scope="col">Family<small>Up to 5 people</small></th></tr>
           </thead>
           <tbody>
             <tr><th scope="row">Data broker and people-search removals</th><td><span class="qid-yes" role="img" aria-label="Included"></span></td><td><span class="qid-yes" role="img" aria-label="Included"></span></td><td><span class="qid-yes" role="img" aria-label="Included"></span></td></tr>
             <tr><th scope="row">Continuous monitoring and re-removal</th><td><span class="qid-yes" role="img" aria-label="Included"></span></td><td><span class="qid-yes" role="img" aria-label="Included"></span></td><td><span class="qid-yes" role="img" aria-label="Included"></span></td></tr>
             <tr><th scope="row">Dashboard and Risk Score</th><td>1</td><td>One per person</td><td>One per person</td></tr>
             <tr><th scope="row">Alerts for new listings</th><td><span class="qid-yes" role="img" aria-label="Included"></span></td><td><span class="qid-yes" role="img" aria-label="Included"></span></td><td><span class="qid-yes" role="img" aria-label="Included"></span></td></tr>
-            <tr><th scope="row">Household billing</th><td><span class="qid-no" role="img" aria-label="Not included"></span></td><td><span class="qid-yes" role="img" aria-label="Included"></span></td><td><span class="qid-no" role="img" aria-label="Not included"></span></td></tr>
-            <tr><th scope="row">Admin view and reporting</th><td><span class="qid-no" role="img" aria-label="Not included"></span></td><td><span class="qid-no" role="img" aria-label="Not included"></span></td><td><span class="qid-yes" role="img" aria-label="Included"></span></td></tr>
-            <tr><th scope="row">Bulk enrollment</th><td><span class="qid-no" role="img" aria-label="Not included"></span></td><td><span class="qid-no" role="img" aria-label="Not included"></span></td><td><span class="qid-yes" role="img" aria-label="Included"></span></td></tr>
-            <tr><th scope="row"><span class="qid-tbd">SSO and SCIM</span></th><td><span class="qid-no" role="img" aria-label="Not included"></span></td><td><span class="qid-no" role="img" aria-label="Not included"></span></td><td><span class="qid-yes" role="img" aria-label="Included"></span></td></tr>
+            <tr><th scope="row">Household billing</th><td><span class="qid-no" role="img" aria-label="Not included"></span></td><td><span class="qid-yes" role="img" aria-label="Included"></span></td><td><span class="qid-yes" role="img" aria-label="Included"></span></td></tr>
             <tr><th scope="row">Support</th><td><span class="qid-tbd">TBC</span></td><td><span class="qid-tbd">TBC</span></td><td><span class="qid-tbd">TBC</span></td></tr>
           </tbody>
         </table>

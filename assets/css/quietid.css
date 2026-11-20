@@ -551,6 +551,8 @@ html.qid-js .qid-dash:not(.is-in) .qid-score__meter i { left: 82%; }
 
 /* plan cards: two up on the Individuals page */
 .qid-plans--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 56rem; }
+/* Pricing: Government + Organizations pair above the consumer plans */
+.qid-plans--pair { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 3.5rem; }
 .qid-plan__note { margin-top: .4rem; font-size: var(--qid-step--1); color: var(--qid-slate); }
 
 /* numbered points on white (Enterprise "why") */
@@ -636,7 +638,7 @@ html.qid-js .qid-dash:not(.is-in) .qid-score__meter i { left: 82%; }
 .qid-compare .qid-yes { display: inline-block; width: 1rem; height: .55rem; border: solid var(--qid-blue); border-width: 0 0 2px 2px; transform: rotate(-45deg) translate(1px, -2px); }
 .qid-compare .qid-no { display: inline-block; width: .8rem; height: 2px; background: #c9cbe0; vertical-align: middle; }
 .qid-compare tbody tr:hover { background: #fafbfe; }
-.qid-compare thead th:nth-child(3), .qid-compare td:nth-child(3) { background: rgba(0, 71, 199, .04); }
+/* (featured-column tint removed: no plan is featured since Duo was added) */
 
 /* how it works: long-form process */
 .qid-process { list-style: none; margin: 0; padding: 0; counter-reset: proc; }
@@ -737,7 +739,7 @@ html.qid-loaded .qid-page-hero__grid > :nth-child(2) { animation: qid-slide-in .
   .qid-process__aside { grid-column: 2; }
 }
 @media (max-width: 920px) {
-  .qid-plans--2 { grid-template-columns: 1fr; }
+  .qid-plans--2, .qid-plans--pair { grid-template-columns: 1fr; }
   .qid-timeline { grid-template-columns: 1fr; gap: 2rem; }
   .qid-timeline::before { left: .55rem; right: auto; top: 0; bottom: 0; width: 2px; height: auto; background: linear-gradient(180deg, var(--qid-blue), rgba(0, 71, 199, .2)); }
   .qid-timeline li { padding: 0 0 0 2.75rem; }
@@ -1052,7 +1054,7 @@ main a:not(.qid-btn):hover { text-decoration-color: currentColor; }
 
 /* comparison table: accent ticks */
 .qid-compare .qid-yes { border-color: var(--qid-sky); }
-.qid-compare thead th:nth-child(3), .qid-compare td:nth-child(3) { background: rgba(90, 157, 224, .06); }
+
 
 /* process numbers (How it works): gradient discs */
 .qid-process > li::before { background: linear-gradient(145deg, var(--qid-sky), var(--qid-blue)); box-shadow: 0 8px 18px -8px rgba(0, 71, 199, .7); font-weight: 600; }

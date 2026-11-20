@@ -144,7 +144,7 @@
     if (plan) { var r = stepper.querySelector('input[name="plan"][value="' + plan + '"]'); if (r) r.checked = true; }
     var syncPlan = function () {
       var c = stepper.querySelector('input[name="plan"]:checked');
-      stepper.querySelector('[data-plan-name]').textContent = c && c.value === 'family' ? 'Family' : 'Individual';
+      stepper.querySelector('[data-plan-name]').textContent = c ? c.parentNode.querySelector('strong').textContent : 'Individual';
     };
     stepper.querySelectorAll('input[name="plan"]').forEach(function (r) { r.addEventListener('change', syncPlan); });
     syncPlan();
