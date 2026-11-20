@@ -1266,3 +1266,10 @@ section:has(> .qid-split):not(.qid-section--gray):not(.qid-band) { background: r
 .qid-plan--dark .qid-plan__price { font-size: clamp(1.75rem, 1.4rem + 1vw, 2.25rem); }
 :is(.qid-plan--ind, .qid-plan--duo, .qid-plan--fam) .qid-plan__price + .qid-price-period { margin-top: .6rem; }
 .qid-plan--dark .qid-plan__price { font-size: clamp(1.5rem, 1.25rem + .7vw, 1.875rem); }
+
+/* Nav: Who We Protect menu, one line per link, no descriptions */
+.qid-nav__menu { min-width: 0; width: max-content; }
+.qid-nav__menu a { white-space: nowrap; padding: .7rem 1.1rem; font-weight: 500; }
+/* Sticky header: fully opaque once scrolled */
+.qid-header--overlay::after { background: var(--qid-navy); -webkit-backdrop-filter: none; backdrop-filter: none; }
+@media (max-width: 920px) { .qid-nav__menu { width: auto; } }
