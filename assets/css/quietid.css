@@ -1202,3 +1202,43 @@ section:has(> .qid-split):not(.qid-section--gray):not(.qid-band) { background: r
 .qid-compare--5 { min-width: 52rem; }
 .qid-compare--5 thead th:not(:first-child), .qid-compare--5 td { width: 13%; }
 .qid-compare td a { color: var(--qid-blue); font-weight: 600; }
+
+/* ---------- Pricing cards: colour-coded by plan ---------- */
+.qid-plan-group { font-size: var(--qid-step--1); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--qid-slate); margin: 0 0 1.25rem; display: flex; align-items: center; gap: .75rem; }
+.qid-plan-group::after { content: ""; flex: 1; height: 1px; background: var(--qid-hair); }
+.qid-plan-group-row { margin-top: .5rem; }
+.qid-plan-group-row + .qid-billing-row { margin-top: -.25rem; }
+.qid-plans--pair + .qid-plan-group-row { margin-top: 0; }
+[class*="qid-plan--"]:is(.qid-plan--gov, .qid-plan--org, .qid-plan--ind, .qid-plan--duo, .qid-plan--fam) { position: relative; overflow: hidden; }
+.qid-plan--gov { --plan: #6f86ff; --plan-soft: rgba(111, 134, 255, .16); }
+.qid-plan--org { --plan: var(--qid-sky); --plan-soft: rgba(90, 157, 224, .18); }
+.qid-plan--ind { --plan: var(--qid-blue); --plan-soft: #e9f0fc; }
+.qid-plan--duo { --plan: #3f9e85; --plan-soft: #e6f5ef; }
+.qid-plan--fam { --plan: #8a5fa3; --plan-soft: #f3ecf7; }
+.qid-plan--ind::before, .qid-plan--duo::before, .qid-plan--fam::before, .qid-plan--gov::before, .qid-plan--org::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: var(--plan); }
+.qid-plan--ind::before { background: linear-gradient(90deg, var(--qid-blue), var(--qid-sky)); }
+.qid-plan--duo::before { background: linear-gradient(90deg, #3f9e85, var(--qid-mint)); }
+.qid-plan--fam::before { background: linear-gradient(90deg, #8a5fa3, var(--qid-lavender)); }
+.qid-plan--gov::before { background: linear-gradient(90deg, #4d63e8, #8fa2ff); }
+.qid-plan--org::before { background: linear-gradient(90deg, var(--qid-blue), var(--qid-sky)); }
+.qid-plan__chip { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; margin-bottom: 1.1rem; border-radius: .75rem; background: var(--plan-soft); color: var(--plan); }
+.qid-plan__chip .qid-icon { width: 1.4rem; height: 1.4rem; }
+:is(.qid-plan--ind, .qid-plan--duo, .qid-plan--fam) li::before { border-color: var(--plan); }
+:is(.qid-plan--ind, .qid-plan--duo, .qid-plan--fam) .qid-plan__price { padding-top: 1.25rem; border-top: 1px solid var(--qid-hair); }
+:is(.qid-plan--ind, .qid-plan--duo, .qid-plan--fam) .qid-plan__price strong { color: var(--qid-navy); }
+/* agency and organization plans: navy cards */
+.qid-plan--dark, .qid-plan--dark + .qid-plan--dark { background: radial-gradient(120% 140% at 100% 0%, rgba(47, 123, 255, .28) 0%, rgba(47, 123, 255, 0) 55%), linear-gradient(160deg, #1a2468 0%, var(--qid-navy) 70%) !important; border-color: rgba(255, 255, 255, .08) !important; color: var(--qid-white); }
+.qid-plan--dark h3, .qid-plan--dark .qid-plan__price, .qid-plan--dark ul { color: var(--qid-white); }
+.qid-plan--dark .qid-plan__who, .qid-plan--dark .qid-price-period { color: rgba(255, 255, 255, .68); }
+.qid-plan--dark .qid-plan__price { font-size: var(--qid-step-2); font-weight: 600; letter-spacing: -.01em; padding-top: 1.25rem; border-top: 1px solid rgba(255, 255, 255, .12); }
+.qid-plan--dark li::before { border-color: var(--plan); }
+.qid-plan--dark .qid-plan__chip { background: var(--plan-soft); color: #c9d4ff; }
+.qid-plan--org .qid-plan__chip { color: #bcdcff; }
+.qid-btn--light { background: var(--qid-white); color: var(--qid-navy); border-color: var(--qid-white); --qid-btn-icon: var(--qid-blue); }
+.qid-btn--light:hover { background: #eef3ff; }
+.qid-plan--org, .qid-plan--dark.qid-plan--org { background: radial-gradient(120% 140% at 100% 0%, rgba(90, 157, 224, .38) 0%, rgba(90, 157, 224, 0) 55%), linear-gradient(160deg, #0b3aa3 0%, #142a7a 60%, var(--qid-navy) 100%) !important; }
+/* Pricing cards: hairlines between features */
+:is(.qid-plan--gov, .qid-plan--org, .qid-plan--ind, .qid-plan--duo, .qid-plan--fam) li { padding-top: .6rem; padding-bottom: .6rem; }
+:is(.qid-plan--gov, .qid-plan--org, .qid-plan--ind, .qid-plan--duo, .qid-plan--fam) li + li { border-top: 1px solid var(--qid-hair); }
+:is(.qid-plan--gov, .qid-plan--org, .qid-plan--ind, .qid-plan--duo, .qid-plan--fam) li::before { top: .98rem; }
+.qid-plan--dark li + li { border-top-color: rgba(255, 255, 255, .1); }
