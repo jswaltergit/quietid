@@ -4,7 +4,8 @@ Static HTML build of the QuietID site (a Veilant product). This is the design pr
 
 ## Structure
 
-- `index.html` — Home
+- `index.html` — Home (video hero)
+- `index-classic.html` — previous static-hero Home, kept unlinked for comparison
 - `plans-individuals.html`, `plans-enterprise.html` — Plans (Individuals & families, Enterprise with demo form)
 - `pricing.html` — plan cards, monthly/annual toggle, comparison table
 - `how-it-works.html` — process, timeline, what we can and can't remove
