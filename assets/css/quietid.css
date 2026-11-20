@@ -1259,3 +1259,10 @@ section:has(> .qid-split):not(.qid-section--gray):not(.qid-band) { background: r
 
 /* Pricing: toggle aligned left under the group label */
 .qid-billing-row { justify-content: flex-start; }
+/* Pricing: larger prices */
+:is(.qid-plan--ind, .qid-plan--duo, .qid-plan--fam) .qid-plan__price { display: flex; align-items: baseline; gap: .4rem; font-size: var(--qid-step-1); color: var(--qid-slate); }
+:is(.qid-plan--ind, .qid-plan--duo, .qid-plan--fam) .qid-plan__price strong { font-size: clamp(2.5rem, 1.9rem + 1.6vw, 3.25rem); font-weight: 600; line-height: 1; letter-spacing: -.03em; }
+:is(.qid-plan--ind, .qid-plan--duo, .qid-plan--fam) .qid-plan__price strong .qid-tbd { font-size: inherit; font-weight: inherit; padding: 0 .1em; line-height: 1; }
+.qid-plan--dark .qid-plan__price { font-size: clamp(1.75rem, 1.4rem + 1vw, 2.25rem); }
+:is(.qid-plan--ind, .qid-plan--duo, .qid-plan--fam) .qid-plan__price + .qid-price-period { margin-top: .6rem; }
+.qid-plan--dark .qid-plan__price { font-size: clamp(1.5rem, 1.25rem + .7vw, 1.875rem); }
