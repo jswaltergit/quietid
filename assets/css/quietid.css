@@ -1197,3 +1197,8 @@ section:has(> .qid-split):not(.qid-section--gray):not(.qid-band) { background: r
 /* top nav labels never wrap; tighten spacing on narrow desktops */
 .qid-nav > ul > li > a, .qid-nav button.qid-nav__parent { white-space: nowrap; }
 @media (max-width: 1120px) { .qid-nav { gap: 1.1rem; } .qid-nav > ul { gap: 1.1rem; } }
+
+/* Pricing: five-plan compare table */
+.qid-compare--5 { min-width: 52rem; }
+.qid-compare--5 thead th:not(:first-child), .qid-compare--5 td { width: 13%; }
+.qid-compare td a { color: var(--qid-blue); font-weight: 600; }
