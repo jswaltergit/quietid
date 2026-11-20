@@ -1256,3 +1256,6 @@ section:has(> .qid-split):not(.qid-section--gray):not(.qid-band) { background: r
 .qid-plan__chip { position: relative; z-index: 1; background: linear-gradient(var(--plan-soft), var(--plan-soft)), var(--qid-white); box-shadow: 0 0 0 3px var(--qid-white), 0 6px 14px -6px rgba(20, 28, 81, .35); }
 .qid-plan--dark .qid-plan__chip { background: linear-gradient(var(--plan-soft), var(--plan-soft)), #18225f; box-shadow: 0 0 0 3px #18225f, 0 6px 14px -6px rgba(0, 0, 0, .5); }
 .qid-plan--org .qid-plan__chip { background: linear-gradient(var(--plan-soft), var(--plan-soft)), #0e349a; box-shadow: 0 0 0 3px #0e349a, 0 6px 14px -6px rgba(0, 0, 0, .5); }
+
+/* Pricing: toggle aligned left under the group label */
+.qid-billing-row { justify-content: flex-start; }
