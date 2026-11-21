@@ -1347,6 +1347,7 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
 @media (max-width: 920px) {
   /* Hero: headline, then the scan card bleeding off the right with the phone in view to its left, then copy and form */
   .qid-hero--video .qid-hero__grid { row-gap: 0; }
+  .qid-hero--video { padding-bottom: 3.5rem; }   /* breathing room under the scan note */
   .qid-hero--video .qid-hero__copy { display: contents; }
   .qid-hero--video h1 { order: 0; font-size: clamp(3.9rem, 18.5vw, 5.75rem); }
   .qid-hero--video .qid-hero__side { order: 1; margin: 2.75rem 0 1.5rem; }
