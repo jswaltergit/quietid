@@ -209,8 +209,27 @@
     };
     tick();
   };
+  /* Phones and tablets (home hero): two listings show at a time; the list slides to keep the active one in view. */
+  var win = panel.querySelector('.qid-exposure__window');
+  var windowed = function () { return !!win && window.matchMedia('(max-width: 920px)').matches; };
+  var fitWindow = function () {
+    if (!win) return;
+    if (!windowed() || allRows.length < 3) { win.style.removeProperty('--qid-win'); win.style.setProperty('--qid-shift', '0px'); return; }
+    win.style.setProperty('--qid-win', (allRows[2].offsetTop - allRows[0].offsetTop + 1) + 'px');
+  };
+  var showFrom = function (i, jump) {
+    if (!windowed()) return;
+    fitWindow();
+    i = Math.max(0, Math.min(i, allRows.length - 2));
+    if (jump) { win.classList.add('is-jump'); }
+    win.style.setProperty('--qid-shift', -(allRows[i].offsetTop - allRows[0].offsetTop) + 'px');
+    if (jump) { void win.offsetWidth; win.classList.remove('is-jump'); }
+  };
+  window.addEventListener('resize', function () { fitWindow(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWindow);
   var reset = function () {
     timers.forEach(clearTimeout); timers = [];
+    fitWindow(); if (win) showFrom(0, true);
     panel.setAttribute('data-phase', 'idle');
     rows.forEach(function (r, n) {
       r.className = 'qid-row';
@@ -222,6 +241,7 @@
   };
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    fitWindow();
     rows.forEach(function (r) { r.className = 'qid-row is-found is-removed'; chip(r, 'removed', 'Removed'); redactNow(r); });
     panel.setAttribute('data-phase', 'done');
     count.textContent = '0'; bar.style.width = '100%';
@@ -240,19 +260,24 @@
       bar.style.transition = 'width 2.6s linear'; bar.style.width = '100%';
     }, t);
     rows.forEach(function (r, n) {
+      if (n >= 2) later(function () { showFrom(n - 1); }, t + 500 + n * 550 - 60);
       later(function () {
         r.classList.add('is-found'); found += 1; setCount(found);
         status.textContent = 'Found on ' + r.querySelector('.qid-row__site').textContent;
       }, t + 500 + n * 550);
     });
-    t += 500 + rows.length * 550 + 500;
+    t += 500 + rows.length * 550 + (windowed() ? 900 : 500);
     later(function () {
       panel.setAttribute('data-phase', 'remove');
       status.textContent = 'Filing Removal Requests';
+      showFrom(0);
     }, t);
-    t += 400;
+    t += windowed() ? 900 : 400;
+    var pageGap = 0;
     rows.forEach(function (r, n) {
-      var at = t + n * 900;
+      /* phones: after each pair is cleared, slide up to the next pair */
+      if (windowed() && n >= 2 && n % 2 === 0) { later(function () { showFrom(n); }, t + n * 900 + pageGap + 200); pageGap += 800; }
+      var at = t + n * 900 + pageGap;
       later(function () { chip(r, 'pending', 'Removing'); }, at);
       later(function () {
         scramble(r, function () {
@@ -261,7 +286,7 @@
         });
       }, at + 300);
     });
-    t += rows.length * 900 + 500;
+    t += rows.length * 900 + pageGap + 500;
     later(function () {
       panel.setAttribute('data-phase', 'done');
       status.textContent = "Gone Quiet. We'll Keep Watching.";

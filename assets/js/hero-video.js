@@ -128,7 +128,14 @@
 
     /* curved data lines from the orbit to each listing as it's found */
     var ends = [];
-    var shown = rows.filter(function (r) { return r.offsetParent !== null; });
+    /* only lines to listings in view (phones scroll the list through a two-row window) */
+    var winEl = panel.querySelector('.qid-exposure__window'), wr = winEl && winEl.getBoundingClientRect();
+    var shown = rows.filter(function (r) {
+      if (r.offsetParent === null) return false;
+      if (!wr || !wr.height || window.innerWidth > 920) return true;
+      var rr = r.getBoundingClientRect(), mid = rr.top + rr.height / 2;
+      return mid > wr.top && mid < wr.bottom;
+    });
     rows.forEach(function (row) {
       var n = shown.indexOf(row), el0 = links[rows.indexOf(row)];
       if (n < 0) { if (el0.getAttribute('data-state') !== 'off') el0.setAttribute('data-state', 'off'); return; }
