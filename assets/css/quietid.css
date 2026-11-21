@@ -1432,3 +1432,10 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
   .qid-focus .qid-callout__bar { height: 3px; margin-top: .35rem; }
   .qid-focus .qid-callout .qid-chip { font-size: .5625rem; padding: .1rem .4rem; }
 }
+
+/* Eyebrows: a touch larger, tighter tracking (all kickers and page eyebrows) */
+.qid-kicker, .qid-eyebrow { font-size: .875rem; letter-spacing: .06em; }
+/* body-paragraph rules in these sections were enlarging their eyebrows; match the section-head style */
+.qid-focus__copy > p.qid-kicker, .qid-biz p.qid-kicker { font-size: .875rem; letter-spacing: .06em; line-height: 1.3; margin-top: 0; }
+.qid-focus__copy > p.qid-kicker { color: var(--qid-blue); }
+.qid-biz p.qid-kicker { color: rgba(255, 255, 255, .78); }
