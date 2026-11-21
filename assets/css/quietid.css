@@ -1281,3 +1281,23 @@ section:has(> .qid-split):not(.qid-section--gray):not(.qid-band) { background: r
 .qid-nav__menu a[aria-current="page"]:not(:hover) { background: var(--qid-mist); }
 .qid-nav a, .qid-nav button.qid-nav__parent { transition: color .25s ease; }
 .qid-nav__menu a[aria-current="page"]:not(:hover):not(:focus-visible) { color: var(--qid-navy); }
+
+/* ---------- Who We Protect pages: full-screen photo headers (same treatment as the Home hero) ---------- */
+.qid-page-hero--image { background: #10174a; min-height: 100vh; min-height: 100svh; display: grid; align-content: center; padding-top: calc(5.5rem + clamp(1.5rem, 4vh, 3rem)); padding-bottom: clamp(2.5rem, 6vh, 4.5rem); }
+.qid-page-hero--image > .qid-wrap { position: relative; z-index: 1; }
+.qid-page-hero__media { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
+.qid-page-hero__media img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(1.05) contrast(1.04); }
+.qid-page-hero__media::after { content: ""; position: absolute; inset: 0; background: rgba(0, 71, 199, .24); mix-blend-mode: soft-light; }
+.qid-page-hero--image::before { display: none; }
+.qid-page-hero--image::after { right: auto; top: 0; left: 0; width: 100%; height: 100%; transform: none; z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(16, 23, 74, .96) 0%, rgba(16, 23, 74, .88) 32%, rgba(16, 23, 74, .5) 52%, rgba(16, 23, 74, .2) 70%, rgba(16, 23, 74, .3) 100%),
+    linear-gradient(0deg, rgba(16, 23, 74, .7) 0%, rgba(16, 23, 74, 0) 24%),
+    linear-gradient(180deg, rgba(16, 23, 74, .55) 0%, rgba(16, 23, 74, 0) 22%),
+    linear-gradient(180deg, rgba(0, 50, 160, .16), rgba(0, 50, 160, .1)); }
+.qid-page-hero--image .qid-hero__field { z-index: -1; }
+.qid-page-hero--image .qid-hero-card, .qid-page-hero--image .qid-panel { background: rgba(16, 23, 74, .55); border-color: rgba(169, 207, 255, .22); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+@media (max-width: 920px) {
+  .qid-page-hero--image { min-height: 0; padding-top: calc(4.5rem + 2.5rem); }
+  .qid-page-hero--image::after { background: linear-gradient(180deg, rgba(16, 23, 74, .82) 0%, rgba(16, 23, 74, .9) 55%, rgba(16, 23, 74, .96) 100%); }
+}

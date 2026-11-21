@@ -1,4 +1,4 @@
-/* Home header: compact bar once the visitor scrolls */
+/* Home and Who We Protect headers: compact bar once the visitor scrolls */
 (function () {
   var h = document.querySelector('.qid-header--overlay');
   if (!h) return;
@@ -189,8 +189,8 @@
 
 /* Home hero: a quiet field of blue data points drifting through the scene. */
 (function () {
-  var hero = document.querySelector('.qid-hero--video');
-  var media = hero && hero.querySelector('.qid-hero__media');
+  var hero = document.querySelector('.qid-hero--video, .qid-page-hero--image');
+  var media = hero && hero.querySelector('.qid-hero__media, .qid-page-hero__media');
   if (!media || !window.HTMLCanvasElement) return;
   var cv = document.createElement('canvas');
   cv.className = 'qid-hero__field'; cv.setAttribute('aria-hidden', 'true');
