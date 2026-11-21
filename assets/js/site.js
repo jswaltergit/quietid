@@ -173,6 +173,7 @@
   var panel = document.querySelector('.qid-exposure');
   if (!panel) return;
   var rows = Array.prototype.slice.call(panel.querySelectorAll('.qid-row'));
+  var allRows = rows;
   var count = panel.querySelector('[data-count]');
   var status = panel.querySelector('[data-status]');
   var bar = panel.querySelector('[data-progress]');
@@ -230,6 +231,8 @@
 
   var run = function () {
     reset();
+    /* Only animate the listings that are showing (phones show fewer). */
+    var rows = allRows.filter(function (r) { return r.offsetParent !== null; });
     var t = 500, found = 0;
     later(function () {
       panel.setAttribute('data-phase', 'scan');

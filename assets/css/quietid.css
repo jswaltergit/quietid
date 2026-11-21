@@ -1345,3 +1345,90 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
   .qid-menu-toggle span:not(.qid-visually-hidden) { transition: none; }
   .qid-header[data-menu="open"] .qid-nav, .qid-header[data-menu="open"] .qid-header__actions { animation: none; }
 }
+
+/* ---------- Home, phones and small tablets: smaller illustrative graphics, placed with the headlines ----------
+   Hero: scan card above the headline. Other sections: graphic between the headline and the body copy. */
+@media (max-width: 920px) {
+  /* Hero scan card: above the headline, compact, two listings */
+  .qid-hero--video .qid-hero__grid { row-gap: 2rem; }
+  .qid-hero--video .qid-hero__side { order: -1; margin: 0; }
+  .qid-hero--video .qid-exposure { width: 85%; max-width: 21rem; margin: 0 auto; padding: .85rem 1rem .5rem; border-radius: .75rem; }
+  .qid-hero--video .qid-exposure__head { gap: .55rem; padding-bottom: .6rem; }
+  .qid-hero--video .qid-exposure__radar { width: 2.4rem; height: 2.4rem; margin: -.2rem -.1rem -.2rem -.3rem; }
+  .qid-hero--video .qid-exposure__name { font-size: .875rem; }
+  .qid-hero--video .qid-exposure__status { margin-top: .1rem; font-size: .75rem; min-height: 1.3em; }
+  .qid-hero--video .qid-exposure__count strong { font-size: 1.9rem; }
+  .qid-hero--video .qid-exposure__count span { margin-top: .15rem; font-size: .6875rem; }
+  .qid-hero--video .qid-exposure__progress { height: 3px; }
+  .qid-hero--video .qid-exposure__list { margin-top: .25rem; }
+  .qid-hero--video .qid-row:nth-child(n+3) { display: none; }
+  .qid-hero--video .qid-row { padding: .55rem 0; }
+  .qid-hero--video .qid-row:not(.is-found)::after { inset: .55rem 0; }
+  .qid-hero--video .qid-row__site { font-size: .6875rem; }
+  .qid-hero--video .qid-row__data { font-size: .8125rem; }
+  .qid-hero--video .qid-row__data small { font-size: .6875rem; }
+  .qid-hero--video .qid-row .qid-chip { font-size: .6875rem; padding: .15rem .5rem; }
+
+  /* "Your name is all it takes.": headline, listing, then body */
+  .qid-exposed { gap: 0; }
+  .qid-exposed__intro { display: contents; }
+  .qid-exposed > .qid-record { order: 1; width: 85%; max-width: 24rem; margin: 1.75rem auto 0; border-radius: .75rem; }
+  .qid-exposed__intro p { order: 2; margin-top: 1.75rem; }
+  .qid-record__bar { padding: .5rem .75rem; gap: .3rem; }
+  .qid-record__bar span { width: .45rem; height: .45rem; }
+  .qid-record__bar p { margin-left: .4rem; padding: .15rem .6rem; font-size: .6875rem; }
+  .qid-record__top { gap: .65rem; padding: .9rem 1rem .6rem; }
+  .qid-record__avatar { width: 2.25rem; height: 2.25rem; font-size: .75rem; }
+  .qid-record__name { font-size: .9375rem; }
+  .qid-record__meta { font-size: .6875rem; line-height: 1.35; }
+  .qid-record__top .qid-chip { font-size: .6875rem; padding: .15rem .5rem; }
+  .qid-record__rows { padding: 0 1rem .35rem; }
+  .qid-record__row:nth-child(n+4), .qid-record__risk, .qid-record figcaption { display: none; }
+  .qid-record__row { grid-template-columns: auto minmax(0, 1fr); gap: .65rem; padding: .55rem 0; }
+  .qid-record__icon { width: 1.9rem; height: 1.9rem; border-radius: .45rem; }
+  .qid-record__icon .qid-icon { width: 1rem; height: 1rem; }
+  .qid-record__label { font-size: .6875rem; }
+  .qid-record__value { font-size: .8125rem; }
+
+  /* "Protection you can see.": headline, dashboard, then body and list */
+  .qid-dash-wrap { gap: 0; }
+  .qid-dash-wrap__copy { display: contents; }
+  .qid-dash-wrap > .qid-dash { order: 1; width: 85%; max-width: 24rem; margin: 1.75rem auto 0; border-radius: .75rem; }
+  .qid-dash-wrap__copy p { order: 2; margin-top: 1.75rem; }
+  .qid-dash-wrap__copy ul { order: 3; }
+  .qid-dash__bar { gap: .5rem; padding: .6rem .9rem; font-size: .8125rem; white-space: nowrap; }
+  .qid-dash__bar img { width: 1.1rem; height: auto; }
+  .qid-dash__bar span { font-size: .6875rem; }
+  .qid-dash__body { grid-template-columns: 1fr; }
+  .qid-score { padding: .9rem 1rem .85rem; border-right: 0; border-bottom: 1px solid var(--qid-gray); }
+  .qid-score__label, .qid-score__trend { font-size: .6875rem; }
+  .qid-score__value { font-size: 2.5rem; margin-top: .25rem; }
+  .qid-score__trend { margin-top: .3rem; }
+  .qid-score__meter { margin-top: .75rem; height: .375rem; }
+  .qid-score__meter i { width: .8rem; height: .8rem; border-width: 2px; }
+  .qid-dash__panel { padding: .8rem 1rem .9rem; }
+  .qid-dash__stats { gap: .5rem; padding-bottom: 0; border-bottom: 0; }
+  .qid-dash__stats strong { font-size: 1.375rem; }
+  .qid-dash__stats span { display: block; font-size: .6875rem; line-height: 1.3; }
+  .qid-dash .qid-alert { display: none; }
+
+  /* "Technology finds it. Analysts see it through.": kicker and headline, photo, then body */
+  .qid-focus { gap: 0; }
+  .qid-focus__copy { display: contents; }
+  .qid-focus__copy .qid-kicker { order: 0; }
+  .qid-focus__copy h2 { order: 1; }
+  .qid-focus > .qid-photo-wrap { order: 2; width: 85%; max-width: 24rem; margin: 1.75rem auto 0; border-radius: .75rem; }
+  .qid-focus .qid-photo { aspect-ratio: 4 / 3.4; border-radius: .75rem; }
+  .qid-focus__copy > p { order: 3; margin-top: 1.75rem; }
+  .qid-focus .qid-points { order: 4; }
+  .qid-focus .qid-callout { min-width: 0; max-width: calc(100% - 1.5rem); gap: .5rem; padding: .5rem .6rem; border-radius: .5rem; }
+  .qid-focus .qid-callout--tl { top: .75rem; left: .75rem; }
+  .qid-focus .qid-callout--br { bottom: .75rem; right: .75rem; }
+  .qid-focus .qid-callout__icon { width: 1.6rem; height: 1.6rem; border-radius: .4rem; }
+  .qid-focus .qid-callout__icon .qid-icon { width: .9rem; height: .9rem; }
+  .qid-focus .qid-callout strong { font-size: .75rem; }
+  .qid-focus .qid-callout small { font-size: .625rem; }
+  .qid-focus .qid-callout__time { display: none; }
+  .qid-focus .qid-callout__bar { height: 3px; margin-top: .35rem; }
+  .qid-focus .qid-callout .qid-chip { font-size: .5625rem; padding: .1rem .4rem; }
+}
