@@ -54,6 +54,8 @@
 
   var geo = null;
   var media = hero.querySelector('.qid-hero__media');
+  var isMob = function () { return window.innerWidth <= 920; };
+  if (isMob()) { video.removeAttribute('autoplay'); video.preload = 'none'; video.pause(); }
   var measure = function () {
     /* slide the scene so the phone's corner lands just left of the card, whatever the screen width */
     var desk = getComputedStyle(svg).display !== 'none' && window.innerWidth > 920;
@@ -74,14 +76,14 @@
       top = Math.max(top, hb.height - rhFit - .16 * hb.height);   /* never float too far off the bottom */
       media.style.top = Math.round(Math.min(top, hb.height - rhFit)) + 'px';
       vb = video.getBoundingClientRect();
-    } else if (window.innerWidth <= 920) {
-      /* phones: a band of footage behind the card, scaled so the phone sits in view just left of the card */
+    } else if (isMob()) {
+      /* phones and tablets: no video; the orbit sits in the open space just left of the card */
       var cb = panel.getBoundingClientRect();
-      var bh = Math.max(200, cb.height * 1.15), bw = bh * VW / VH;
-      media.style.width = Math.round(bw) + 'px';
-      media.style.left = Math.round(cb.left - hb.left - .02 * bw - CORNER[0] * bw) + 'px';
-      media.style.top = Math.round(cb.top - hb.top + cb.height * .08 - CORNER[1] * bh) + 'px';
-      vb = video.getBoundingClientRect();
+      svg.setAttribute('viewBox', '0 0 ' + hb.width + ' ' + hb.height);
+      /* centred on the card's top-left corner; may run up behind the headline a little */
+      var kx0 = cb.left - hb.left, mr = Math.max(46, Math.min(cb.height * .34, kx0 * .7));
+      geo = { hb: hb, cx: kx0, cy: cb.top - hb.top, r: mr, clear: true };
+      return;
     }
     svg.setAttribute('viewBox', '0 0 ' + hb.width + ' ' + hb.height);
     var s = Math.max(vb.width / VW, vb.height / VH), rw = VW * s, rh = VH * s;
@@ -172,13 +174,19 @@
   var running = false, started = performance.now();
   var loop = function (now) {
     if (!video.paused) { if (video.currentTime >= HOLD - .35) switchOn(now); holdAt(now); }
-    else if (video.currentTime >= HOLD - .05 || now - started > 2200) switchOn(now);
+    else if (video.currentTime >= HOLD - .05 || now - started > (isMob() ? 900 : 2200)) switchOn(now);
     draw(now);
     if (running) requestAnimationFrame(loop);
   };
   var go = function () { if (!running) { running = true; requestAnimationFrame(loop); } };
   var stop = function () { running = false; };
-  window.addEventListener('resize', function () { geo = null; });
+  window.addEventListener('resize', function () {
+    geo = null;
+    /* widened from phone to desktop: start the footage that was skipped */
+    if (!isMob() && !reduce && video.paused && video.currentTime < HOLD) {
+      video.preload = 'auto'; var pr = video.play(); if (pr && pr.catch) pr.catch(function () {});
+    }
+  });
   panel.addEventListener('animationend', function () { geo = null; });
 
   if (reduce) {
@@ -193,7 +201,7 @@
     new IntersectionObserver(function (en) {
       if (en[0].isIntersecting) {
         go();
-        if (video.currentTime < HOLD) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); }
+        if (!isMob() && video.currentTime < HOLD) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); }
       } else { stop(); }
     }).observe(hero);
   } else { go(); }
@@ -212,9 +220,12 @@
   var ctx = cv.getContext('2d');
   if (!ctx) return;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var W = 0, H = 0, dpr = 1;
+  var W = 0, H = 0, dpr = 1, Z = 1;
+  var homeHero = hero.classList.contains('qid-hero--video');
   var size = function () {
     dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    /* home, phones and tablets: a much finer field (smaller waves, smaller and denser points), as if seen from further back */
+    Z = homeHero && window.innerWidth <= 920 ? 2.4 : 1;
     W = hero.clientWidth; H = hero.clientHeight;
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -226,18 +237,20 @@
   var frame = function (t) {
     ctx.clearRect(0, 0, W, H);
     var horizon = H * .44, f = W * .55;
-    for (var r = 0; r < ROWS; r++) {
-      var z = 1 + r * .16 - ((t * .00006) % .16);           /* the field slides slowly toward the viewer */
-      var depth = 1 - r / ROWS;
-      for (var c = 0; c < COLS; c++) {
-        var x = (c / (COLS - 1) - .5) * 15;
-        var y = .62 + .26 * Math.sin(x * .8 + t * .00022) * Math.cos(z * 1.1 - t * .00018);
-        var sx = W * .6 + (x / z) * f, sy = horizon + (y / z) * f * .9;
+    var NR = Math.round(ROWS * Z), NC = Math.round(COLS * Z), zs = .16 / Z, xr = 15 / Math.max(1, Z * .55);
+    for (var r = 0; r < NR; r++) {
+      var z = 1 + r * zs - ((t * .00006 / Z) % zs);         /* the field slides slowly toward the viewer */
+      var depth = 1 - r / NR;
+      for (var c = 0; c < NC; c++) {
+        var x = (c / (NC - 1) - .5) * xr;
+        if (Z > 1 && Math.abs((x / z) * f) > W * .7) continue;  /* off screen: skip */
+        var y = .62 + .26 / Z * Math.sin(x * .8 * Z + t * .00022) * Math.cos(z * 1.1 * Z - t * .00018);
+        var sx = W * .6 + (x / z) * f, sy = horizon + (y / z) * f * (Z > 1 ? 1.45 : .9);
         if (sx < -4 || sx > W + 4 || sy > H + 4) continue;
         var a = .95 * Math.pow(depth, 1.3);
-        var lift = (y - .46) / .32;                           /* crests catch more light */
+        var lift = .5 + .8125 * (y - .62) / (.26 / Z);                         /* crests catch more light */
         ctx.fillStyle = 'rgba(' + (lift > .7 ? '169,207,255' : '90,157,224') + ',' + Math.min(.95, a * (.65 + .55 * lift)).toFixed(3) + ')';
-        var d = Math.max(1, 3 / Math.sqrt(z));
+        var d = Math.max(Z > 1 ? .9 : 1, 3 / Math.sqrt(z) / Z);
         ctx.fillRect(sx - d / 2, sy - d / 2, d, d);
       }
     }
