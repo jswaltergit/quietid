@@ -74,6 +74,14 @@
       top = Math.max(top, hb.height - rhFit - .16 * hb.height);   /* never float too far off the bottom */
       media.style.top = Math.round(Math.min(top, hb.height - rhFit)) + 'px';
       vb = video.getBoundingClientRect();
+    } else if (window.innerWidth <= 920) {
+      /* phones: a band of footage behind the card, scaled so the phone sits in view just left of the card */
+      var cb = panel.getBoundingClientRect();
+      var bh = Math.max(200, cb.height * 1.15), bw = bh * VW / VH;
+      media.style.width = Math.round(bw) + 'px';
+      media.style.left = Math.round(cb.left - hb.left - .02 * bw - CORNER[0] * bw) + 'px';
+      media.style.top = Math.round(cb.top - hb.top + cb.height * .08 - CORNER[1] * bh) + 'px';
+      vb = video.getBoundingClientRect();
     }
     svg.setAttribute('viewBox', '0 0 ' + hb.width + ' ' + hb.height);
     var s = Math.max(vb.width / VW, vb.height / VH), rw = VW * s, rh = VH * s;
@@ -84,7 +92,7 @@
     var kx = pb.left - hb.left, ky = pb.top - hb.top;
     var r = Math.max(.15 * rw, Math.min(Math.hypot(kx - cx, ky - cy) + 34, .19 * rw));
     var copy = hero.querySelector('.qid-hero__copy .qid-scan');
-    var clear = cx < kx + 40 && cx > (copy ? copy.getBoundingClientRect().right - hb.left - 30 : 0);
+    var clear = window.innerWidth <= 920 ? true : cx < kx + 40 && cx > (copy ? copy.getBoundingClientRect().right - hb.left - 30 : 0);
     geo = { hb: hb, cx: cx, cy: cy, r: r, clear: clear };
   };
   var onAt = null;                         /* when the orbit switches on, as the footage comes to rest */
@@ -118,19 +126,22 @@
 
     /* curved data lines from the orbit to each listing as it's found */
     var ends = [];
-    rows.forEach(function (row, n) {
+    var shown = rows.filter(function (r) { return r.offsetParent !== null; });
+    rows.forEach(function (row) {
+      var n = shown.indexOf(row), el0 = links[rows.indexOf(row)];
+      if (n < 0) { if (el0.getAttribute('data-state') !== 'off') el0.setAttribute('data-state', 'off'); return; }
       var rb = row.getBoundingClientRect();
       var tx = panel.getBoundingClientRect().left - hb.left - 2, ty = rb.top - hb.top + rb.height / 2;
       /* leave from the orbit's left side, spread evenly top to bottom, and ease across into the card's edge
          (lines run left to right and never loop below the card) */
-      var N = rows.length, k = N > 1 ? n / (N - 1) : .5;
+      var N = shown.length, k = N > 1 ? n / (N - 1) : .5;
       var sy = g.cy + (-.5 + k) * 1.1 * g.r;
       var sx = g.cx - Math.sqrt(Math.max(0, g.r * g.r - (sy - g.cy) * (sy - g.cy)));
       var span = Math.max(40, tx - sx);
       var d = 'M' + sx.toFixed(1) + ' ' + sy.toFixed(1) +
         'C' + (sx + span * .45).toFixed(1) + ' ' + sy.toFixed(1) + ' ' +
         (tx - span * .45).toFixed(1) + ' ' + ty.toFixed(1) + ' ' + tx.toFixed(1) + ' ' + ty.toFixed(1);
-      var el = links[n];
+      var el = el0;
       if (el.getAttribute('d') !== d) el.setAttribute('d', d);
       var state = row.classList.contains('is-removed') ? 'removed' : row.classList.contains('is-found') ? 'found' : 'off';
       if (el.getAttribute('data-state') !== state) el.setAttribute('data-state', state);
@@ -168,6 +179,7 @@
   var go = function () { if (!running) { running = true; requestAnimationFrame(loop); } };
   var stop = function () { running = false; };
   window.addEventListener('resize', function () { geo = null; });
+  panel.addEventListener('animationend', function () { geo = null; });
 
   if (reduce) {
     video.removeAttribute('autoplay'); video.pause();

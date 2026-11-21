@@ -217,7 +217,7 @@
       r.querySelector('[data-redact]').textContent = originals[n];
       chip(r, 'exposed', 'Exposed');
     });
-    count.textContent = '0'; status.textContent = 'Ready to scan';
+    count.textContent = '0'; status.textContent = 'Ready to Scan';
     bar.style.transition = 'none'; bar.style.width = '0'; void bar.offsetWidth; bar.style.transition = '';
   };
 
@@ -225,7 +225,7 @@
     rows.forEach(function (r) { r.className = 'qid-row is-found is-removed'; chip(r, 'removed', 'Removed'); redactNow(r); });
     panel.setAttribute('data-phase', 'done');
     count.textContent = '0'; bar.style.width = '100%';
-    status.textContent = "Gone quiet. We'll keep watching.";
+    status.textContent = "Gone Quiet. We'll Keep Watching.";
     return;
   }
 
@@ -236,7 +236,7 @@
     var t = 500, found = 0;
     later(function () {
       panel.setAttribute('data-phase', 'scan');
-      status.textContent = 'Searching people-search sites';
+      status.textContent = 'Searching People-Search Sites';
       bar.style.transition = 'width 2.6s linear'; bar.style.width = '100%';
     }, t);
     rows.forEach(function (r, n) {
@@ -248,7 +248,7 @@
     t += 500 + rows.length * 550 + 500;
     later(function () {
       panel.setAttribute('data-phase', 'remove');
-      status.textContent = 'Filing removal requests';
+      status.textContent = 'Filing Removal Requests';
     }, t);
     t += 400;
     rows.forEach(function (r, n) {
@@ -264,7 +264,7 @@
     t += rows.length * 900 + 500;
     later(function () {
       panel.setAttribute('data-phase', 'done');
-      status.textContent = "Gone quiet. We'll keep watching.";
+      status.textContent = "Gone Quiet. We'll Keep Watching.";
     }, t);
     later(run, t + 4000);
   };
