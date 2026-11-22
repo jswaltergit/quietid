@@ -1524,3 +1524,6 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
 .qid-compare--5 tr > :nth-child(4) .qid-yes { border-color: #8a5fa3; }
 .qid-compare--5 tr > :nth-child(5) .qid-yes { border-color: #4d63e8; }
 .qid-compare--5 tr > :nth-child(6) .qid-yes { border-color: #2f7bff; }
+
+/* Pricing compare table: flat white on the gray section, no shadow */
+.qid-compare-wrap, .qid-section--gray .qid-compare-wrap { box-shadow: none !important; background: var(--qid-white); }
