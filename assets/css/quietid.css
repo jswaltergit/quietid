@@ -1498,3 +1498,6 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
 @media (max-width: 920px) and (prefers-reduced-motion: reduce) {
   .qid-hero--video .qid-exposure__window .qid-exposure__list { transition: none; }
 }
+
+/* People behind the protection: analyst callouts fit on one line each (desktop) */
+@media (min-width: 921px) { .qid-focus .qid-callout { max-width: 24rem; } .qid-focus .qid-callout small, .qid-focus .qid-callout__time { white-space: nowrap; } }
