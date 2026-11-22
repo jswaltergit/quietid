@@ -1505,3 +1505,6 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
 
 /* Who We Protect headers: box top lines up with the top of the intro paragraph (margin set in site.js) */
 @media (min-width: 921px) { .qid-page-hero--image .qid-hero-card { align-self: start; } }
+
+/* Buttons: no drop shadows (Jeff, 2026-11-22) */
+.qid-btn, .qid-btn:hover, .qid-btn:focus, .qid-btn--primary, .qid-btn--primary:hover { box-shadow: none; }
