@@ -302,3 +302,26 @@
     }, { threshold: 0.3 }).observe(panel);
   } else { start(); }
 })();
+
+/* Who We Protect headers: line the box's top up with the top of the intro paragraph (desktop) */
+(function () {
+  var heroes = document.querySelectorAll('.qid-page-hero--image');
+  if (!heroes.length) return;
+  function align() {
+    heroes.forEach(function (h) {
+      var card = h.querySelector('.qid-hero-card'), lede = h.querySelector('.qid-page-hero__lede');
+      if (!card || !lede) return;
+      if (window.innerWidth <= 920) { card.style.marginTop = ''; return; }
+      var m = parseFloat(card.style.marginTop) || 0;
+      var d = lede.getBoundingClientRect().top - card.getBoundingClientRect().top;
+      card.style.marginTop = Math.max(0, m + d) + 'px';
+    });
+  }
+  align();
+  window.addEventListener('resize', align);
+  window.addEventListener('load', align);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(align);
+  /* re-measure once the entrance animations (which move both elements) have finished */
+  heroes.forEach(function (h) { h.addEventListener('animationend', align); });
+  setTimeout(align, 1600);
+})();

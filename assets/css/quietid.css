@@ -1502,5 +1502,6 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
 /* People behind the protection: analyst callouts fit on one line each (desktop) */
 @media (min-width: 921px) { .qid-focus .qid-callout { max-width: 24rem; } .qid-focus .qid-callout small, .qid-focus .qid-callout__time { white-space: nowrap; } }
 
-/* Individuals header: panel sits low so the photo subject's face stays clear (desktop) */
-@media (min-width: 921px) { .qid-page-hero--panel-low .qid-hero-card { align-self: end; } }
+
+/* Who We Protect headers: box top lines up with the top of the intro paragraph (margin set in site.js) */
+@media (min-width: 921px) { .qid-page-hero--image .qid-hero-card { align-self: start; } }
