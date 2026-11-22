@@ -1508,3 +1508,19 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
 
 /* Buttons: no drop shadows (Jeff, 2026-11-22) */
 .qid-btn, .qid-btn:hover, .qid-btn:focus, .qid-btn--primary, .qid-btn--primary:hover { box-shadow: none; }
+
+/* Pricing compare table: colour-coded columns, vertical dividers, top-aligned headers */
+.qid-compare--5 thead th { vertical-align: top; position: relative; padding-top: 1.75rem; }
+.qid-compare--5 thead th small { white-space: nowrap; }
+.qid-compare--5 th:not(:first-child), .qid-compare--5 td { border-left: 1px solid var(--qid-hair); }
+.qid-compare--5 .qid-col--ind { --col: var(--qid-blue); --col-b: var(--qid-sky); }
+.qid-compare--5 .qid-col--duo { --col: #3f9e85; --col-b: var(--qid-mint); }
+.qid-compare--5 .qid-col--fam { --col: #8a5fa3; --col-b: var(--qid-lavender); }
+.qid-compare--5 .qid-col--gov { --col: #4d63e8; --col-b: #8fa2ff; }
+.qid-compare--5 .qid-col--org { --col: #2f7bff; --col-b: var(--qid-sky); }
+.qid-compare--5 thead th[class*="qid-col--"]::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--col), var(--col-b)); }
+.qid-compare--5 tr > :nth-child(2) .qid-yes { border-color: var(--qid-blue); }
+.qid-compare--5 tr > :nth-child(3) .qid-yes { border-color: #3f9e85; }
+.qid-compare--5 tr > :nth-child(4) .qid-yes { border-color: #8a5fa3; }
+.qid-compare--5 tr > :nth-child(5) .qid-yes { border-color: #4d63e8; }
+.qid-compare--5 tr > :nth-child(6) .qid-yes { border-color: #2f7bff; }
