@@ -1606,3 +1606,7 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
 /* How It Works asides: light gray box, colour only in a thicker top bar */
 .qid-process__aside { background: var(--qid-mist); border: 0; padding-top: 1.65rem; }
 .qid-process__aside::before { height: 6px; }
+/* How It Works steps: flat dots; asides lighter gray with the colour bar on the left edge */
+.qid-process > li::before { background: var(--st); box-shadow: none; }
+.qid-process__aside { background: #f5f6fa; padding: 1.25rem 1.5rem 1.25rem 1.85rem; }
+.qid-process__aside::before { left: 0; top: 0; bottom: 0; right: auto; width: 6px; height: auto; background: var(--st); }
