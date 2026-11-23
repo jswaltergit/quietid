@@ -1616,3 +1616,23 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
 .qid-plan--dark.qid-plan--org .qid-plan__chip { color: var(--qid-blue); box-shadow: 0 0 0 3px #0e349a, 0 6px 14px -6px rgba(0, 0, 0, .5); }
 .qid-plan--dark.qid-plan--gov .qid-plan__chip { background: #eceffd; }
 .qid-plan--dark.qid-plan--org .qid-plan__chip { background: #e6effc; }
+/* How It Works: full-height color bar per step with the number in a white circle */
+.qid-process > li { position: relative; padding: 0; border-top: 0; grid-template-columns: 7.5rem minmax(0, 1.3fr) minmax(0, 1fr); column-gap: clamp(2rem, 4.5vw, 5rem); row-gap: 0; background: linear-gradient(rgba(20, 28, 81, .15), rgba(20, 28, 81, .15)) right bottom / calc(100% - 7.5rem) 1px no-repeat; }
+.qid-process > li::before { content: ""; width: auto; height: auto; border-radius: 0; align-self: stretch; background: var(--st); box-shadow: none; }
+.qid-process > li::after { content: counter(proc); position: absolute; left: 2rem; top: 1.75rem; display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border-radius: 50%; background: var(--qid-white); color: var(--st); font-weight: 700; font-size: var(--qid-step-1); }
+.qid-process > li > div { padding-block: clamp(2.5rem, 4vw, 3.25rem); }
+.qid-process__aside { align-self: start; margin-block: clamp(2.5rem, 4vw, 3.25rem); padding: 1.25rem 1.5rem; background: #f5f6fa; }
+.qid-process__aside::before { content: none; }
+@media (max-width: 1060px) {
+  .qid-process > li { grid-template-columns: 6rem minmax(0, 1fr); background-size: calc(100% - 6rem) 1px; }
+  .qid-process > li::before { grid-row: span 2; }
+  .qid-process > li::after { left: 1.25rem; }
+  .qid-process > li > div { padding-bottom: 1.25rem; }
+  .qid-process__aside { grid-column: 2; margin-top: 0; }
+}
+@media (max-width: 600px) {
+  .qid-process > li { grid-template-columns: 4.25rem minmax(0, 1fr); column-gap: 1.25rem; background-size: calc(100% - 4.25rem) 1px; }
+  .qid-process > li::after { left: .75rem; top: 1.5rem; width: 2.75rem; height: 2.75rem; }
+  .qid-process > li > div { padding-top: 1.75rem; }
+  .qid-process__aside { grid-column: 2; padding: 1rem 1.25rem; }
+}
