@@ -1591,3 +1591,15 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
 /* Closing scan sections: data-point field behind the copy and form */
 .qid-close > .qid-wrap { position: relative; z-index: 1; }
 .qid-close .qid-hero__field { z-index: 0; opacity: .7; -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, .3) 0%, #000 60%); mask-image: linear-gradient(90deg, rgba(0, 0, 0, .3) 0%, #000 60%); }
+
+/* How It Works steps: colour-coded by step (dot, aside strip and outline), slightly smaller body copy */
+.qid-process > li:nth-child(1) { --st: var(--qid-blue);  --st-b: var(--qid-sky);      --st-soft: #edf3fd; }
+.qid-process > li:nth-child(2) { --st: #3f9e85;          --st-b: var(--qid-mint);     --st-soft: #edf7f3; }
+.qid-process > li:nth-child(3) { --st: #e0574f;          --st-b: var(--qid-coral);    --st-soft: #fcf0ef; }
+.qid-process > li:nth-child(4) { --st: #c99a2e;          --st-b: var(--qid-gold);     --st-soft: #fbf6ea; }
+.qid-process > li:nth-child(5) { --st: #8a5fa3;          --st-b: var(--qid-lavender); --st-soft: #f5eff8; }
+.qid-process > li::before { background: linear-gradient(145deg, var(--st-b), var(--st)); box-shadow: 0 8px 18px -8px var(--st); }
+.qid-process p { font-size: var(--qid-step-0); }
+.qid-process__aside { position: relative; overflow: hidden; background: var(--st-soft); border: 1px solid color-mix(in srgb, var(--st) 28%, transparent); padding-top: 1.5rem; }
+.qid-process__aside::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--st), var(--st-b)); }
+.qid-process__aside strong { color: var(--qid-navy); }
