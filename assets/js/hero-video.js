@@ -216,14 +216,14 @@
 
 /* Home hero: a quiet field of blue data points drifting through the scene. */
 (function () {
-  var hero = document.querySelector('.qid-hero--video, .qid-page-hero--image');
-  var media = hero && hero.querySelector('.qid-hero__media, .qid-page-hero__media');
+  var hero = document.querySelector('.qid-hero--video, .qid-page-hero--image, .qid-account--field');
+  var media = hero && (hero.querySelector('.qid-hero__media, .qid-page-hero__media') || (hero.classList.contains('qid-account--field') && hero.firstElementChild));
   if (!media || !window.HTMLCanvasElement) return;
   var cv = document.createElement('canvas');
   cv.className = 'qid-hero__field'; cv.setAttribute('aria-hidden', 'true');
   /* sits above the colour overlays (so it reads as light, not murk), below the orbit and the content */
   var beam = hero.querySelector('[data-hero-beam]');
-  hero.insertBefore(cv, beam || media.nextSibling);
+  hero.insertBefore(cv, beam || (hero.classList.contains('qid-account--field') ? hero.firstChild : media.nextSibling));
   var ctx = cv.getContext('2d');
   if (!ctx) return;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
