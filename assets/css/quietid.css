@@ -1610,3 +1610,7 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
 .qid-process > li::before { background: var(--st); box-shadow: none; }
 .qid-process__aside { background: #f5f6fa; padding: 1.25rem 1.5rem 1.25rem 1.85rem; }
 .qid-process__aside::before { left: 0; top: 0; bottom: 0; right: auto; width: 6px; height: auto; background: var(--st); }
+/* Navy plan cards: icon chip white with the icon in the card colour */
+.qid-plan--dark .qid-plan__chip, .qid-plan--dark.qid-plan--org .qid-plan__chip { background: var(--qid-white); color: var(--plan); box-shadow: 0 0 0 3px #18225f, 0 6px 14px -6px rgba(0, 0, 0, .5); }
+.qid-plan--dark.qid-plan--gov .qid-plan__chip { color: #4d63e8; }
+.qid-plan--dark.qid-plan--org .qid-plan__chip { color: var(--qid-blue); box-shadow: 0 0 0 3px #0e349a, 0 6px 14px -6px rgba(0, 0, 0, .5); }
