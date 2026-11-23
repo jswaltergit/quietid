@@ -1587,3 +1587,7 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
 }
 @media (max-width: 920px) { .qid-page-hero--image .qid-page-hero__lede { font-size: 1.0625rem; line-height: 1.55; } }
 @media (max-width: 920px) { .qid-page-hero--image .qid-page-hero__media img[src*="about-hero"] { object-position: 42% center !important; } }
+
+/* Closing scan sections: data-point field behind the copy and form */
+.qid-close > .qid-wrap { position: relative; z-index: 1; }
+.qid-close .qid-hero__field { z-index: 0; opacity: .7; -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, .3) 0%, #000 60%); mask-image: linear-gradient(90deg, rgba(0, 0, 0, .3) 0%, #000 60%); }

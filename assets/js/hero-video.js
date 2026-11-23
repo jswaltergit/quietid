@@ -216,14 +216,17 @@
 
 /* Home hero: a quiet field of blue data points drifting through the scene. */
 (function () {
-  var hero = document.querySelector('.qid-hero--video, .qid-page-hero--image, .qid-account--field, .qid-page-hero--field');
-  var media = hero && (hero.querySelector('.qid-hero__media, .qid-page-hero__media') || ((hero.classList.contains('qid-account--field') || hero.classList.contains('qid-page-hero--field')) && hero.firstElementChild));
-  if (!media || !window.HTMLCanvasElement) return;
+ if (!window.HTMLCanvasElement) return;
+ /* every hero that wants the field, plus the closing scan sections */
+ document.querySelectorAll('.qid-hero--video, .qid-page-hero--image, .qid-account--field, .qid-page-hero--field, .qid-close').forEach(function (hero) {
+  var realMedia = hero.querySelector('.qid-hero__media, .qid-page-hero__media');
+  var media = realMedia || hero.firstElementChild;
+  if (!media) return;
   var cv = document.createElement('canvas');
   cv.className = 'qid-hero__field'; cv.setAttribute('aria-hidden', 'true');
   /* sits above the colour overlays (so it reads as light, not murk), below the orbit and the content */
   var beam = hero.querySelector('[data-hero-beam]');
-  hero.insertBefore(cv, beam || ((hero.classList.contains('qid-account--field') || hero.classList.contains('qid-page-hero--field')) ? hero.firstChild : media.nextSibling));
+  hero.insertBefore(cv, beam || (realMedia ? realMedia.nextSibling : hero.firstChild));
   var ctx = cv.getContext('2d');
   if (!ctx) return;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -282,4 +285,5 @@
       if (vis && !on) { on = true; requestAnimationFrame(loop); } else if (!vis) on = false;
     }).observe(hero);
   } else { on = true; requestAnimationFrame(loop); }
+ });
 })();
