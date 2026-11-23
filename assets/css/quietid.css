@@ -1650,3 +1650,4 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
   .qid-process > li:first-child { background-size: calc(100% - 3.75rem) 1px, calc(100% - 3.75rem) 1px; }
   .qid-process > li::after { left: .5rem; }
 }
+.qid-biz__grid { align-items: start; }
