@@ -1575,3 +1575,13 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
 
 /* How It Works and Pricing heroes: no circle rings behind the data-point field */
 .qid-page-hero--field::after { display: none; }
+
+/* Who We Protect heroes, phones and tablets: eyebrow stays at the top, the rest drops down so more of the photo shows */
+@media (max-width: 920px) {
+  .qid-page-hero--image .qid-page-hero__media { bottom: auto; height: 80svh; }
+  .qid-page-hero--image::after { background: linear-gradient(180deg, rgba(16, 23, 74, .7) 0, rgba(16, 23, 74, .25) 16svh, rgba(16, 23, 74, .2) 36svh, rgba(16, 23, 74, .75) 58svh, #10174a 78svh, #10174a 100%); }
+  .qid-page-hero--image .qid-eyebrow { margin-bottom: 36svh; }
+  .qid-page-hero--image .qid-page-hero__media img[src*="government-hero"] { object-position: 68% center !important; }
+  .qid-page-hero--image .qid-page-hero__media img[src*="individuals-hero"] { object-position: 60% center !important; }
+  .qid-page-hero--image .qid-page-hero__media img[src*="organizations-hero"] { object-position: 50% center !important; }
+}
