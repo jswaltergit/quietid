@@ -1603,3 +1603,6 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
 .qid-process__aside { position: relative; overflow: hidden; background: var(--st-soft); border: 1px solid color-mix(in srgb, var(--st) 28%, transparent); padding-top: 1.5rem; }
 .qid-process__aside::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--st), var(--st-b)); }
 .qid-process__aside strong { color: var(--qid-navy); }
+/* How It Works asides: light gray box, colour only in a thicker top bar */
+.qid-process__aside { background: var(--qid-mist); border: 0; padding-top: 1.65rem; }
+.qid-process__aside::before { height: 6px; }
