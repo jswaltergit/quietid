@@ -1651,3 +1651,10 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
   .qid-process > li::after { left: .5rem; }
 }
 .qid-biz__grid { align-items: start; }
+/* Eyebrows: match Veilant (bold, navy, short blue bar underneath) */
+.qid-kicker, .qid-eyebrow, .qid-focus__copy > p.qid-kicker, .qid-biz p.qid-kicker { display: flex !important; flex-direction: column; align-items: flex-start; gap: .8rem; font-size: 1.0625rem; font-weight: 700; letter-spacing: .03em; line-height: 1.2; color: var(--qid-navy); }
+.qid-kicker::before, .qid-eyebrow::before { order: 1; width: 1.5rem; height: 3px; border-radius: 0; background: var(--qid-blue); }
+.qid-section__head .qid-kicker, .qid-focus__copy > p.qid-kicker { color: var(--qid-navy); }
+.qid-kicker--light, .qid-biz p.qid-kicker, .qid-page-hero .qid-eyebrow, .qid-hero .qid-eyebrow, .qid-close .qid-kicker, .qid-close .qid-eyebrow { color: var(--qid-white); }
+.qid-kicker--light::before, .qid-biz .qid-kicker::before, .qid-page-hero .qid-eyebrow::before, .qid-hero .qid-eyebrow::before, .qid-close .qid-kicker::before, .qid-close .qid-eyebrow::before { background: var(--qid-mint); }
+.qid-section__head p.qid-kicker { font-size: 1.0625rem; letter-spacing: .03em; line-height: 1.2; }
