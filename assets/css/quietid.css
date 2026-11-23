@@ -1614,3 +1614,5 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
 .qid-plan--dark .qid-plan__chip, .qid-plan--dark.qid-plan--org .qid-plan__chip { background: var(--qid-white); color: var(--plan); box-shadow: 0 0 0 3px #18225f, 0 6px 14px -6px rgba(0, 0, 0, .5); }
 .qid-plan--dark.qid-plan--gov .qid-plan__chip { color: #4d63e8; }
 .qid-plan--dark.qid-plan--org .qid-plan__chip { color: var(--qid-blue); box-shadow: 0 0 0 3px #0e349a, 0 6px 14px -6px rgba(0, 0, 0, .5); }
+.qid-plan--dark.qid-plan--gov .qid-plan__chip { background: #eceffd; }
+.qid-plan--dark.qid-plan--org .qid-plan__chip { background: #e6effc; }
