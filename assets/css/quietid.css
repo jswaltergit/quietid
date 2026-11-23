@@ -1586,3 +1586,4 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
   .qid-page-hero--image .qid-page-hero__media img[src*="organizations-hero"] { object-position: 50% center !important; }
 }
 @media (max-width: 920px) { .qid-page-hero--image .qid-page-hero__lede { font-size: 1.0625rem; line-height: 1.55; } }
+@media (max-width: 920px) { .qid-page-hero--image .qid-page-hero__media img[src*="about-hero"] { object-position: 42% center !important; } }
