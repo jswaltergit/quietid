@@ -1636,3 +1636,17 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
   .qid-process > li > div { padding-top: 1.75rem; }
   .qid-process__aside { grid-column: 2; padding: 1rem 1.25rem; }
 }
+/* How It Works: narrower bars, rule above the first step */
+.qid-process > li { grid-template-columns: 5.5rem minmax(0, 1.3fr) minmax(0, 1fr); background-size: calc(100% - 5.5rem) 1px; }
+.qid-process > li::after { left: 1rem; }
+.qid-process > li:first-child { background-image: linear-gradient(rgba(20, 28, 81, .15), rgba(20, 28, 81, .15)), linear-gradient(rgba(20, 28, 81, .15), rgba(20, 28, 81, .15)); background-position: right top, right bottom; background-size: calc(100% - 5.5rem) 1px, calc(100% - 5.5rem) 1px; background-repeat: no-repeat; }
+@media (max-width: 1060px) {
+  .qid-process > li { grid-template-columns: 5rem minmax(0, 1fr); background-size: calc(100% - 5rem) 1px; }
+  .qid-process > li:first-child { background-size: calc(100% - 5rem) 1px, calc(100% - 5rem) 1px; }
+  .qid-process > li::after { left: .75rem; }
+}
+@media (max-width: 600px) {
+  .qid-process > li { grid-template-columns: 3.75rem minmax(0, 1fr); background-size: calc(100% - 3.75rem) 1px; }
+  .qid-process > li:first-child { background-size: calc(100% - 3.75rem) 1px, calc(100% - 3.75rem) 1px; }
+  .qid-process > li::after { left: .5rem; }
+}
