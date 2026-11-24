@@ -93,7 +93,7 @@
     /* the orbit takes in the top of the phone; make sure the card's top-left corner sits inside it */
     var kx = pb.left - hb.left, ky = pb.top - hb.top;
     var r = Math.max(.15 * rw, Math.min(Math.hypot(kx - cx, ky - cy) + 34, .19 * rw));
-    var copy = hero.querySelector('.qid-hero__copy .qid-scan');
+    var copy = hero.querySelector('.qid-hero__copy .qid-hero__actions, .qid-hero__copy .qid-scan');
     var clear = window.innerWidth <= 920 ? true : cx < kx + 40 && cx > (copy ? copy.getBoundingClientRect().right - hb.left - 30 : 0);
     geo = { hb: hb, cx: cx, cy: cy, r: r, clear: clear };
   };

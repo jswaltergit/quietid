@@ -72,21 +72,10 @@
         <h1 id="hero-title"><span>Find it.</span> <span>Remove it.</span> <span class="qid-hero__quiet">Go quiet.</span></h1>
         <p class="qid-hero__lede">QuietID protects you by keeping your personal information off data brokers and out of search results and monitors the dark web for your&nbsp;details.</p>
 
-        <form class="qid-scan" action="signup.html" method="get" aria-labelledby="hero-scan-label">
-          <p class="qid-scan__label" id="hero-scan-label">Start a Free Scan:</p>
-          <div class="qid-scan__fields">
-            <label><span class="qid-visually-hidden">First Name</span><input name="first" autocomplete="given-name" placeholder="First Name" required></label>
-            <label><span class="qid-visually-hidden">Last Name</span><input name="last" autocomplete="family-name" placeholder="Last Name" required></label>
-            <label><span class="qid-visually-hidden">State</span>
-              <select name="state" autocomplete="address-level1" required>
-                <option value="">State</option>
-                <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DC</option><option>DE</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
-              </select>
-            </label>
-          </div>
-          <button class="qid-btn qid-btn--primary qid-btn--block" type="submit">Start a Free Scan</button>
-          <p class="qid-scan__note">See where you're listed in about a minute. No card needed for the scan.</p>
-        </form>
+        <div class="qid-hero__actions">
+          <a class="qid-btn qid-btn--primary" href="pricing.html">Sign Up</a>
+          <a class="qid-btn qid-btn--outline" href="government.html">Protect Your Team</a>
+        </div>
       </div>
 
       <div class="qid-hero__side">
@@ -135,11 +124,12 @@
         <div class="qid-exposure__window">
         <ul class="qid-exposure__list">
           <li class="qid-row"><span class="qid-row__site">Whitepages</span><span class="qid-row__data"><small>Home Address</small><span data-redact>1412 M&bull;&bull;&bull; Ct, Arlington</span></span><span class="qid-row__status"><span class="qid-chip qid-chip--exposed">Exposed</span></span></li>
-          <li class="qid-row"><span class="qid-row__site">Spokeo</span><span class="qid-row__data"><small>Cell Phone</small><span data-redact>(703) 555-0148</span></span><span class="qid-row__status"><span class="qid-chip qid-chip--exposed">Exposed</span></span></li>
+          <li class="qid-row"><span class="qid-row__site">Spokeo</span><span class="qid-row__data"><small>Cell Phone</small><span data-redact>(555) 555-0123</span></span><span class="qid-row__status"><span class="qid-chip qid-chip--exposed">Exposed</span></span></li>
           <li class="qid-row"><span class="qid-row__site">BeenVerified</span><span class="qid-row__data"><small>Email</small><span data-redact>jordan.ellis@example.com</span></span><span class="qid-row__status"><span class="qid-chip qid-chip--exposed">Exposed</span></span></li>
           <li class="qid-row"><span class="qid-row__site">Radaris</span><span class="qid-row__data"><small>Relatives</small><span data-redact>M. Ellis, K. Ellis</span></span><span class="qid-row__status"><span class="qid-chip qid-chip--exposed">Exposed</span></span></li>
         </ul>
         </div>
+        <p class="qid-exposure__note">Illustrative Example</p>
       </div>
       </div>
     </div>
@@ -149,7 +139,7 @@
   <section class="qid-section" aria-labelledby="exposed-title" data-feedback="home-exposed">
     <div class="qid-wrap qid-exposed">
       <div class="qid-exposed__intro">
-        <h2 id="exposed-title">Your name is all it takes.</h2>
+        <h2 id="exposed-title">Your Name Is All It Takes.</h2>
         <p>People-search sites link your name to your home address, past residences, and family members, so anyone can piece together your household in a single search. Taking those listings down closes that door.</p>
       </div>
       <figure class="qid-record" aria-label="Example of a people-search listing">
@@ -167,7 +157,7 @@
           </li>
           <li class="qid-record__row">
             <span class="qid-record__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
-            <span class="qid-record__field"><span class="qid-record__label">Phone and Email</span><span class="qid-record__value">(703) 555-0148</span></span>
+            <span class="qid-record__field"><span class="qid-record__label">Phone and Email</span><span class="qid-record__value">(555) 555-0123</span></span>
             <span class="qid-record__risk">The raw material for scam calls and phishing.</span>
           </li>
           <li class="qid-record__row">
@@ -195,15 +185,15 @@
   <section class="qid-section qid-section--gray" aria-labelledby="steps-title" data-feedback="home-steps">
     <div class="qid-wrap">
       <div class="qid-section__head">
-        <p class="qid-kicker">More control over your exposure</p>
-        <h2 id="steps-title">Less for anyone to find.</h2>
-        <p>QuietID reduces the information others can find and use about you, wherever it surfaces, and keeps reducing it as new listings appear.</p>
+        <p class="qid-kicker">More Control Over Your Exposure</p>
+        <h2 id="steps-title">Less for Anyone to Find.</h2>
+        <p>QuietID reduces the information others can find and use about you wherever it surfaces, and keeps reducing it as new listings appear.</p>
       </div>
       <ol class="qid-steps">
-        <li class="qid-step"><span class="qid-step__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-remove"/></svg></span><h3>Data brokers</h3><p>We remove your profiles from public and non-public brokers and people-search sites and remove them again when they return.</p></li>
-        <li class="qid-step"><span class="qid-step__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-find"/></svg></span><h3>Search results</h3><p>We work to reduce what turns up when someone searches your name.</p></li>
-        <li class="qid-step"><span class="qid-step__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-radar"/></svg></span><h3>Dark web</h3><p>We watch for your details in breached and leaked data and let you know what we found and what to do next.</p></li>
-        <li class="qid-step"><span class="qid-step__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-report"/></svg></span><h3>Exposure reports</h3><p>Clear reports show what was found, what came down, and what's still in progress.</p></li>
+        <li class="qid-step"><span class="qid-step__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-remove"/></svg></span><h3>Data Brokers</h3><p>We remove your profiles from public and non-public brokers and people-search sites and remove them again when they return.</p></li>
+        <li class="qid-step"><span class="qid-step__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-find"/></svg></span><h3>Search Results</h3><p>We work to reduce what turns up when someone searches your name.</p></li>
+        <li class="qid-step"><span class="qid-step__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-radar"/></svg></span><h3>Dark Web</h3><p>We watch for your details in breached and leaked data and let you know what we found and what to do next.</p></li>
+        <li class="qid-step"><span class="qid-step__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-report"/></svg></span><h3>Exposure Reports</h3><p>Clear reports show what was found, what came down, and what's still in progress.</p></li>
       </ol>
       <p class="qid-steps__more"><a href="how-it-works.html">See how QuietID works</a></p>
     </div>
@@ -213,7 +203,7 @@
   <section class="qid-section" aria-labelledby="dash-title" data-feedback="home-dash">
     <div class="qid-wrap qid-dash-wrap">
       <div class="qid-dash-wrap__copy">
-        <h2 id="dash-title">Protection you can see.</h2>
+        <h2 id="dash-title">Protection You Can See.</h2>
         <p>Every person gets a dashboard and regular exposure reports, so you can see what changed.</p>
         <ul>
           <li><svg class="qid-icon" aria-hidden="true"><use href="#i-report"/></svg><span>Risk Score updated as removals clear</span></li>
@@ -241,6 +231,26 @@
         </div>
       </figure>
     </div>
+    <div class="qid-wrap qid-track-wrap">
+      <h3 class="qid-track-title">One Listing, Start to Finish.</h3>
+      <figure class="qid-track" aria-label="Example: what happened to one listing">
+        <div class="qid-track__head">
+          <span class="qid-track__site">people-search-site.com/jordan-ellis</span>
+          <span class="qid-track__field">Home Address</span>
+          <span class="qid-track__tag">Illustrative Example</span>
+        </div>
+        <ol class="qid-track__steps">
+          <li class="is-done"><strong>Found</strong><span>The listing shows a current home address.</span></li>
+          <li class="is-done"><strong>Removal Requested</strong><span>We file an opt-out with the site.</span></li>
+          <li class="is-done"><strong>No Longer Visible When Checked</strong><span>We recheck the page and the listing is gone.</span></li>
+          <li class="is-watch"><strong>If It Returns</strong><span>Brokers relist. We keep checking, and file a new request if it comes back.</span></li>
+        </ol>
+        <ul class="qid-track__notes">
+          <li>Removing a broker listing doesn&rsquo;t erase the public record behind it, such as a property or court filing.</li>
+          <li>A dark-web alert isn&rsquo;t a removal. Leaked data can&rsquo;t be pulled back, so we tell you what was exposed and what to do next.</li>
+        </ul>
+      </figure>
+    </div>
   </section>
 
   <!-- THEME 2: PEOPLE BEHIND THE PROTECTION -->
@@ -250,13 +260,13 @@
         <picture><source srcset="assets/img/photos/homepage-people-behind-the-protection.webp" type="image/webp"><img src="assets/img/photos/homepage-people-behind-the-protection.jpg" alt="A woman checking her phone while working at a laptop" width="2400" height="1600" loading="lazy" decoding="async" style="object-position:40% center"></picture>
       <div class="qid-scanline"></div></figure><div class="qid-callout qid-callout--tl" aria-hidden="true"><span class="qid-callout__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-analyst"/></svg></span><span><strong>Matches Verified</strong><small>Analyst review · 38 listings today</small><span class="qid-callout__time">Queue cleared · 9:42 AM</span></span><span class="qid-chip qid-chip--removed">Verified</span></div><div class="qid-callout qid-callout--br" aria-hidden="true"><span class="qid-callout__icon"><svg class="qid-icon" aria-hidden="true"><use href="#i-remove"/></svg></span><span><strong>Follow-Up Sent</strong><small>Slow-to-respond site · 3 open removals</small><span class="qid-callout__bar" style="--p:68%"><i></i></span><span class="qid-callout__time">Analyst escalation · day 12</span></span><span class="qid-chip qid-chip--live">Working</span></div></div>
       <div class="qid-focus__copy">
-        <p class="qid-kicker">People behind the protection</p>
-        <h2 id="focus-title">Technology finds it. Analysts see it&nbsp;through.</h2>
-        <p>Automation covers the ground. Our analysts make sure the work gets done and stay with it after the first removals.</p>
+        <p class="qid-kicker">People Behind the Protection</p>
+        <h2 id="focus-title">Technology Finds It. Analysts See It&nbsp;Through.</h2>
+        <p>Our technology continuously searches data brokers, people-search sites, and search results for your details. Our analysts make sure the work gets done and stay with it after the first removals.</p>
         <ol class="qid-points">
-          <li><h3>Analysts check the findings</h3><p>People review what our technology finds, so the right listings come down and nothing is guessed.</p></li>
-          <li><h3>Follow-up until it's resolved</h3><p>When a site is slow or doesn't comply, we keep after it.</p></li>
-          <li><h3>Experts behind the technology</h3><p>You get the best protection technology backed by the industry&rsquo;s leading analysts.</p></li>
+          <li><h3>Analysts Check the Findings</h3><p>People review what our technology finds, so the right listings come down and nothing is guessed.</p></li>
+          <li><h3>Follow-Up Until It's Resolved</h3><p>When a site is slow or doesn't comply, we keep after it.</p></li>
+          <li><h3>Experts Behind the Technology</h3><p>You get the best protection technology backed by the industry&rsquo;s leading analysts.</p></li>
         </ol>
       </div>
     </div>
@@ -267,7 +277,7 @@
     <div class="qid-wrap qid-biz__grid">
       <div>
         <p class="qid-kicker qid-kicker--light">100% U.S.-Based</p>
-        <h2 id="us-title">Who handles your data matters.</h2>
+        <h2 id="us-title">Who Handles Your Data Matters.</h2>
         <p>Where your information goes is as important as what we do with it. QuietID is U.S.-based from ownership to access.</p>
       </div>
       <ul class="qid-biz__list">
@@ -282,7 +292,7 @@
   <section class="qid-section qid-section--gray" aria-labelledby="plans-title" data-feedback="home-plans">
     <div class="qid-wrap">
       <div class="qid-section__head">
-        <h2 id="plans-title">We&rsquo;ve got you covered.</h2>
+        <h2 id="plans-title">We&rsquo;ve Got You Covered.</h2>
         <p>Whether your name is in the news or just in a database.</p>
       </div>
       <div class="qid-plans">
@@ -303,9 +313,9 @@
         <article class="qid-plan qid-plan--ind">
           <span class="qid-plan__chip"><svg class="qid-icon" aria-hidden="true"><use href="#i-family"/></svg></span>
           <h3>Individuals &amp; Families</h3>
-          <p class="qid-plan__who">Anyone who wants their details off the internet, and the people they live with.</p>
-          <ul><li>A dashboard for each person</li><li>One plan for the household</li><li>Complete security package</li></ul>
-          <a class="qid-btn qid-btn--primary" href="plans-individuals.html">Plans for Individuals</a>
+          <p class="qid-plan__who">Anyone who wants their details, and their family&rsquo;s details, off the internet.</p>
+          <ul><li>Individual plan for one person</li><li>Duo plan for two people</li><li>Family plan for up to 5 people in one household</li><li>A dashboard for each person</li></ul>
+          <a class="qid-btn qid-btn--primary" href="plans-individuals.html">Individual &amp; Family Plans</a>
         </article>
       </div>
       <p class="qid-plans__all"><a href="pricing.html">Compare plans and pricing</a></p>
@@ -316,7 +326,7 @@
   <section class="qid-section" aria-labelledby="faq-title" data-feedback="home-faq">
     <div class="qid-wrap qid-faq-grid">
       <div>
-        <h2 id="faq-title">Questions, answered.</h2>
+        <h2 id="faq-title">Questions, Answered.</h2>
         <p>Something else on your mind? <a href="about.html#contact">Contact us</a>.</p>
       </div>
       <div class="qid-faq">
@@ -333,7 +343,7 @@
   <section class="qid-section qid-close" aria-labelledby="close-title" data-feedback="home-closing-cta">
     <div class="qid-wrap qid-close__grid">
       <div>
-        <h2 id="close-title">Protection starts today.</h2>
+        <h2 id="close-title">Protection Starts Today.</h2>
         <p class="qid-close__sub">See where you're listed in about a minute.<br>No card needed for the scan.</p>
       </div>
       <form class="qid-scan" action="signup.html" method="get">

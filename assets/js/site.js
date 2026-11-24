@@ -169,7 +169,9 @@
     show(params.get('first') && params.get('last') && params.get('state') ? 2 : 1, false);
   }
 
-  /* Hero: scan finds the listings, then QuietID redacts and removes them, then loops. */
+  /* Hero: two illustrative profiles. J. Ellis: scan finds the listings, then QuietID files removals and they clear.
+     Then it cycles once to a second adult, where one listing is no longer visible and another is still pending,
+     and settles there (no loop). Reduced motion shows that final frame. */
   var panel = document.querySelector('.qid-exposure');
   if (!panel) return;
   var rows = Array.prototype.slice.call(panel.querySelectorAll('.qid-row'));
@@ -177,7 +179,20 @@
   var count = panel.querySelector('[data-count]');
   var status = panel.querySelector('[data-status]');
   var bar = panel.querySelector('[data-progress]');
-  var originals = rows.map(function (r) { return r.querySelector('[data-redact]').textContent; });
+  var nameEl = panel.querySelector('.qid-exposure__name');
+  var DONE = 'No Longer Visible';
+  var profiles = [
+    { name: nameEl ? nameEl.textContent : '', rows: rows.map(function (r) {
+        return { site: r.querySelector('.qid-row__site').textContent, label: r.querySelector('.qid-row__data small').textContent, value: r.querySelector('[data-redact]').textContent };
+      }), outcome: rows.map(function () { return 'gone'; }), end: "Gone Quiet. We'll Keep Watching." },
+    { name: 'R. Moreno, Silver Spring, MD', rows: [
+        { site: 'Whitepages', label: 'Home Address', value: '27 W••• Ave, Silver Spring' },
+        { site: 'Spokeo', label: 'Cell Phone', value: '(555) 555-0187' },
+        { site: 'BeenVerified', label: 'Email', value: 'r.moreno@example.com' },
+        { site: 'Radaris', label: 'Household', value: 'A. Moreno, L. Moreno' }
+      ], outcome: ['gone', 'pending', 'gone', 'pending'], end: '2 Pending. Still Checking.' }
+  ];
+  var cur = 0;
   var timers = [];
   var later = function (fn, ms) { timers.push(setTimeout(fn, ms)); };
   var setCount = function (n) {
@@ -191,7 +206,7 @@
   var redactNow = function (row) {
     var el = row.querySelector('[data-redact]');
     var w = el.getBoundingClientRect().width;
-    el.innerHTML = '<span class="qid-bar" style="width:' + Math.round(Math.min(w, 150)) + 'px"></span>';
+    el.innerHTML = '<span class="qid-bar" style="width:' + Math.round(Math.min(w || 100, 100)) + 'px"></span>';
   };
   var scramble = function (row, done) {
     var el = row.querySelector('[data-redact]');
@@ -227,30 +242,46 @@
   };
   window.addEventListener('resize', function () { fitWindow(); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWindow);
-  var reset = function () {
+  var load = function (p) {
+    var pr = profiles[p];
+    if (nameEl) nameEl.textContent = pr.name;
+    rows.forEach(function (r, n) {
+      var d = pr.rows[n];
+      r.querySelector('.qid-row__site').textContent = d.site;
+      r.querySelector('.qid-row__data small').textContent = d.label;
+      r.querySelector('[data-redact]').textContent = d.value;
+    });
+  };
+  var reset = function (p) {
     timers.forEach(clearTimeout); timers = [];
+    cur = p; load(p);
     fitWindow(); if (win) showFrom(0, true);
     panel.setAttribute('data-phase', 'idle');
-    rows.forEach(function (r, n) {
-      r.className = 'qid-row';
-      r.querySelector('[data-redact]').textContent = originals[n];
-      chip(r, 'exposed', 'Exposed');
-    });
+    rows.forEach(function (r) { r.className = 'qid-row'; chip(r, 'exposed', 'Exposed'); });
     count.textContent = '0'; status.textContent = 'Ready to Scan';
     bar.style.transition = 'none'; bar.style.width = '0'; void bar.offsetWidth; bar.style.transition = '';
   };
+  var settle = function (p) {
+    /* the final frame of a profile, without animation */
+    var pr = profiles[p], left = 0;
+    load(p); fitWindow();
+    rows.forEach(function (r, n) {
+      if (pr.outcome[n] === 'gone') { r.className = 'qid-row is-found is-removed'; chip(r, 'removed', DONE); redactNow(r); }
+      else { r.className = 'qid-row is-found'; chip(r, 'pending', 'Pending'); left += 1; }
+    });
+    panel.setAttribute('data-phase', 'done');
+    count.textContent = left; bar.style.width = '100%';
+    status.textContent = pr.end;
+  };
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    fitWindow();
-    rows.forEach(function (r) { r.className = 'qid-row is-found is-removed'; chip(r, 'removed', 'Removed'); redactNow(r); });
-    panel.setAttribute('data-phase', 'done');
-    count.textContent = '0'; bar.style.width = '100%';
-    status.textContent = "Gone Quiet. We'll Keep Watching.";
+    settle(profiles.length - 1);
     return;
   }
 
-  var run = function () {
-    reset();
+  var run = function (p) {
+    reset(p);
+    var pr = profiles[p];
     /* Only animate the listings that are showing (phones show fewer). */
     var rows = allRows.filter(function (r) { return r.offsetParent !== null; });
     var t = 500, found = 0;
@@ -278,10 +309,15 @@
       /* phones: after each pair is cleared, slide up to the next pair */
       if (windowed() && n >= 2 && n % 2 === 0) { later(function () { showFrom(n); }, t + n * 900 + pageGap + 200); pageGap += 800; }
       var at = t + n * 900 + pageGap;
+      var idx = allRows.indexOf(r);
       later(function () { chip(r, 'pending', 'Removing'); }, at);
+      if (pr.outcome[idx] === 'pending') {
+        later(function () { chip(r, 'pending', 'Pending'); }, at + 600);
+        return;
+      }
       later(function () {
         scramble(r, function () {
-          chip(r, 'removed', 'Removed'); r.classList.add('is-removed');
+          chip(r, 'removed', DONE); r.classList.add('is-removed');
           found -= 1; setCount(found);
         });
       }, at + 300);
@@ -289,13 +325,14 @@
     t += rows.length * 900 + pageGap + 500;
     later(function () {
       panel.setAttribute('data-phase', 'done');
-      status.textContent = "Gone Quiet. We'll Keep Watching.";
+      status.textContent = pr.end;
     }, t);
-    later(run, t + 4000);
+    /* cycle once to the next profile, then settle */
+    if (p + 1 < profiles.length) later(function () { run(p + 1); }, t + 3500);
   };
 
   var started = false;
-  var start = function () { if (!started) { started = true; run(); } };
+  var start = function () { if (!started) { started = true; run(0); } };
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (entries, obs) {
       if (entries[0].isIntersecting) { start(); obs.disconnect(); }
