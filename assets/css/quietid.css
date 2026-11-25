@@ -1860,8 +1860,8 @@ html.qid-js .qid-track--play.is-in .qid-track__notes { animation: qid-fade .6s 3
 
 /* F2 · Home: "Your Name Is All It Takes" sits on the same gray as the steps below, joined into one band, a little tighter */
 section.qid-section--mist { background: radial-gradient(38% 55% at 76% 52%, rgba(90, 157, 224, .13), transparent 70%), #f3f4fa; border-top: 1px solid var(--qid-hair); }
-.qid-section--join-next { padding-bottom: calc(var(--qid-section) * .8); }
-.qid-section--join-prev { padding-top: calc(var(--qid-section) * .8); border-top: 0; }
+.qid-section--join-next { padding-bottom: calc(var(--qid-section) * .65); }
+.qid-section--join-prev { padding-top: calc(var(--qid-section) * .65); border-top: 0; }
 
 /* F3 · Eyebrow › headline › body rhythm, site-wide: more room under the eyebrow rule, a little less between headline and body */
 .qid-kicker { margin-bottom: 1.75rem !important; }
@@ -1871,3 +1871,18 @@ section.qid-section--mist { background: radial-gradient(38% 55% at 76% 52%, rgba
 /* on phones these two put a listing or photo between headline and body, so their mobile spacing stays as is */
 @media (min-width: 921px) { .qid-focus__copy > h2 + p, .qid-exposed__intro h2 + p { margin-top: 1rem; } }
 .qid-page-hero h1 + .qid-page-hero__lede { margin-top: 1.25rem; }
+
+/* F4 · Home tracker notes: two columns, no bullets, light gray boxes */
+.qid-track--play .qid-track__notes { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .75rem; padding-top: 0; border-top: 0; }
+.qid-track--play .qid-track__notes li { padding: 1rem 1.15rem; border-radius: 7px; background: var(--qid-mist); }
+.qid-track--play .qid-track__notes li::before { content: none; display: none; }
+@media (max-width: 600px) { .qid-track--play .qid-track__notes { grid-template-columns: minmax(0, 1fr); } }
+
+/* F5 · Home: more room between "One Listing, Start to Finish." and the tracker card */
+.qid-track-col .qid-track-title { margin-bottom: 1.75rem; }
+
+/* F6 · Home: "Protection You Can See." aligns to the top of the tracker column, not centred */
+@media (min-width: 921px) { .qid-dash-wrap--track { align-items: start; } }
+
+/* F7 · U.S.-based list titles (Home, Government): solid white */
+.qid-biz__list li span strong { color: var(--qid-white); }
