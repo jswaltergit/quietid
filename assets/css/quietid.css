@@ -1795,3 +1795,10 @@ html.qid-js .qid-track--play.is-in .qid-track__notes { animation: qid-fade .6s 3
   html.qid-js .qid-track--play .qid-track__steps li > *, html.qid-js .qid-track--play .qid-track__notes { opacity: 1; animation: none !important; }
   html.qid-js .qid-track--play .qid-track__steps li::before, html.qid-js .qid-track--play .qid-track__steps li::after { transform: none; animation: none !important; }
 }
+
+/* Tracker: the exposed detail reads as an alert on that site, not subtext */
+.qid-track__alert { justify-self: start; font-weight: 600; }
+.qid-track__alert::before { animation: qid-alert-pulse 1.8s ease-in-out 3; }
+@keyframes qid-alert-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(235, 113, 107, .55); } 50% { box-shadow: 0 0 0 5px rgba(235, 113, 107, 0); } }
+@media (max-width: 920px) { .qid-track--play .qid-track__alert { grid-column: 1 / -1; } }
+@media (prefers-reduced-motion: reduce) { .qid-track__alert::before { animation: none; } }
