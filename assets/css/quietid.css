@@ -14,7 +14,7 @@
 :root {
   /* color — Veilant palette */
   --qid-blue: #0047c7;      /* Primary Brand Blue — buttons, enterprise band */
-  --qid-signal: #2f7bff;    /* QuietID symbol blue — logo mark only */
+  --qid-signal: #2f7bff;    /* QuietID blue — logo mark and icon accents */
   --qid-navy: #141c51;      /* Navy */
   --qid-sky: #5a9de0;       /* Accent Blue — highlights only, never a background */
   --qid-slate: #505b75;     /* Slate — secondary text */
@@ -1848,3 +1848,26 @@ html.qid-js .qid-track--play.is-in .qid-track__notes { animation: qid-fade .6s 3
 @media (min-width: 921px) and (max-width: 1199px) { .qid-track__callout { flex-direction: column; align-items: flex-start; border-radius: 1.1rem; padding: .85rem 1.25rem; } }
 .qid-track__radar { width: 4.5rem; height: 4.5rem; margin: -.45rem -.2rem -.45rem -.5rem; }
 @media (max-width: 920px) { .qid-track__radar { width: 3.5rem; height: 3.5rem; } }
+
+/* ==========================================================================
+   FORTH feedback, Nov 25, 2026
+   ========================================================================== */
+
+/* F1 · U.S.-based list (Home, Government): icons top-aligned, in a solid white rounded box, QuietID blue */
+.qid-biz__list li { align-items: flex-start; }
+.qid-biz__list li .qid-biz__icon { flex: none; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: .6rem; background: var(--qid-white); color: var(--qid-signal); font-weight: inherit; }
+.qid-biz__list .qid-biz__icon .qid-icon { width: 1.4rem; height: 1.4rem; color: var(--qid-signal); opacity: 1; --qid-icon-bg: var(--qid-white); }
+
+/* F2 · Home: "Your Name Is All It Takes" sits on the same gray as the steps below, joined into one band, a little tighter */
+section.qid-section--mist { background: radial-gradient(38% 55% at 76% 52%, rgba(90, 157, 224, .13), transparent 70%), #f3f4fa; border-top: 1px solid var(--qid-hair); }
+.qid-section--join-next { padding-bottom: calc(var(--qid-section) * .8); }
+.qid-section--join-prev { padding-top: calc(var(--qid-section) * .8); border-top: 0; }
+
+/* F3 · Eyebrow › headline › body rhythm, site-wide: more room under the eyebrow rule, a little less between headline and body */
+.qid-kicker { margin-bottom: 1.75rem !important; }
+.qid-eyebrow { margin-bottom: 1.75rem; }
+@media (max-width: 920px) { .qid-page-hero--image .qid-eyebrow { margin-bottom: 36svh; } }
+.qid-section__head h2 + p, .qid-split__copy > h2 + p, .qid-band__copy > h2 + p, .qid-biz h2 + p { margin-top: 1rem; }
+/* on phones these two put a listing or photo between headline and body, so their mobile spacing stays as is */
+@media (min-width: 921px) { .qid-focus__copy > h2 + p, .qid-exposed__intro h2 + p { margin-top: 1rem; } }
+.qid-page-hero h1 + .qid-page-hero__lede { margin-top: 1.25rem; }
