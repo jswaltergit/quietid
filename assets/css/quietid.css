@@ -1663,9 +1663,17 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
    Client edits, round 1 (Nov 24, 2026)
    ========================================================================== */
 
-/* Icon boxes: one style everywhere, matching About > How We Work (no multi-coloured tints) */
+/* Icon boxes: solid fills, no gradients.
+   On white or light gray sections: solid pale blue. On medium or dark grounds: solid white.
+   Four-step rows keep their accent colour coding (matching each step's top rule) as solid tints. */
+.qid-step__icon,
 .qid-steps .qid-step:nth-child(n) .qid-step__icon,
-.qid-features .qid-feature:nth-child(n) .qid-step__icon { background: linear-gradient(160deg, #ffffff 0%, #eef4fd 100%) !important; border-color: rgba(0, 71, 199, .12); }
+.qid-features .qid-feature:nth-child(n) .qid-step__icon { background: #eef4fd !important; border-color: rgba(0, 71, 199, .14) !important; }
+.qid-steps .qid-step:nth-child(2) .qid-step__icon { background: #e9f2fc !important; border-color: rgba(90, 157, 224, .45) !important; }
+.qid-steps .qid-step:nth-child(3) .qid-step__icon { background: #ebf7f2 !important; border-color: rgba(141, 208, 185, .6) !important; }
+.qid-steps .qid-step:nth-child(4) .qid-step__icon { background: #f4eef8 !important; border-color: rgba(179, 140, 199, .5) !important; }
+.qid-hero .qid-step__icon, .qid-page-hero .qid-step__icon, .qid-plan--dark .qid-step__icon,
+.qid-section--navy .qid-step__icon, .qid-section--blue .qid-step__icon, .qid-cta .qid-step__icon { background: var(--qid-white) !important; border-color: transparent !important; }
 
 /* No 01/02/03 numbering on point lists */
 .qid-points li { grid-template-columns: minmax(0, 1fr); }
