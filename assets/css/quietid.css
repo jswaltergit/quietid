@@ -1809,3 +1809,20 @@ html.qid-js .qid-track--play.is-in .qid-track__notes { animation: qid-fade .6s 3
 .qid-track-col .qid-track { margin: 0; }
 .qid-track--play .qid-track__head { grid-template-columns: minmax(0, 1fr) max-content; }
 .qid-track--play .qid-track__alert { grid-column: 1 / -1; }
+
+/* Home tracker head: animated Q mark, then the site and alert in a callout pill */
+.qid-track--play .qid-track__head { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1rem; }
+.qid-track__radar { width: 3rem; height: 3rem; margin: -.3rem -.2rem -.3rem -.4rem; }
+.qid-track__callout { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .4rem .75rem; min-width: 0; padding: .4rem .45rem .4rem 1.1rem; border-radius: 999px; background: var(--qid-mist); border: 1px solid var(--qid-hair); }
+.qid-track--play .qid-track__site { font-size: var(--qid-step-0); }
+.qid-track--play .qid-track__tag { margin-left: auto; }
+@media (max-width: 920px) {
+  .qid-track--play .qid-track__head { display: grid; grid-template-columns: max-content minmax(0, 1fr); }
+  .qid-track__radar { width: 2.5rem; height: 2.5rem; }
+  .qid-track__callout { flex-direction: column; align-items: flex-start; border-radius: .9rem; padding: .6rem .75rem; }
+  .qid-track--play .qid-track__tag { grid-column: 1 / -1; margin-left: 0; }
+}
+.qid-track__tag--foot { display: block; margin: 1rem 0 0 !important; text-align: right; }
+.qid-track--play .qid-track__site { overflow-wrap: normal; }
+@media (max-width: 920px) { .qid-track__tag--foot { text-align: left; } .qid-track--play .qid-track__site { font-size: var(--qid-step--1); } }
+.qid-nowrap { white-space: nowrap; }
