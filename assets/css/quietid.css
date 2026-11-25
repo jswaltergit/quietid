@@ -1846,3 +1846,5 @@ html.qid-js .qid-track--play.is-in .qid-track__notes { animation: qid-fade .6s 3
 }
 @media (min-width: 1200px) { .qid-track__callout { flex-wrap: nowrap; } }
 @media (min-width: 921px) and (max-width: 1199px) { .qid-track__callout { flex-direction: column; align-items: flex-start; border-radius: 1.1rem; padding: .85rem 1.25rem; } }
+.qid-track__radar { width: 4.5rem; height: 4.5rem; margin: -.45rem -.2rem -.45rem -.5rem; }
+@media (max-width: 920px) { .qid-track__radar { width: 3.5rem; height: 3.5rem; } }
