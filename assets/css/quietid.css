@@ -1886,3 +1886,8 @@ section.qid-section--mist { background: radial-gradient(38% 55% at 76% 52%, rgba
 
 /* F7 · U.S.-based list titles (Home, Government): solid white */
 .qid-biz__list li span strong { color: var(--qid-white); }
+
+/* How It Works: same card as Home (Q mark, callout pill, gray note boxes), all four steps shown at once, no entrance animation */
+html.qid-js .qid-track--static .qid-track__steps li > *, html.qid-js .qid-track--static .qid-track__notes { opacity: 1; animation: none !important; }
+html.qid-js .qid-track--static .qid-track__steps li::before, html.qid-js .qid-track--static .qid-track__steps li::after { transform: none; animation: none !important; }
+.qid-track-title + .qid-track--static { margin-top: 1.75rem; }
