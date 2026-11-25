@@ -13,7 +13,7 @@
   var groups = [
     ['.qid-exposed__intro', 'up', 0], ['.qid-record', 'scale', 0], ['.qid-record__row', 'up', 90],
     ['.qid-section__head', 'up', 0], ['.qid-step', 'up', 140],
-    ['.qid-dash-wrap__copy', 'up', 0], ['.qid-dash', 'scale', 0], ['.qid-dash-wrap__copy li', 'up', 90],
+    ['.qid-dash-wrap__copy', 'up', 0], ['.qid-dash', 'scale', 0], ['.qid-track--play', 'up', 0], ['.qid-dash-wrap__copy li', 'up', 90],
     ['.qid-plan', 'up', 130], ['.qid-plans__all', 'up', 0], ['.qid-steps__more', 'up', 0],
     ['.qid-biz__grid > div', 'up', 0], ['.qid-biz__list li', 'right', 90],
     ['.qid-faq-grid > div:first-child', 'up', 0], ['.qid-faq details', 'up', 70],

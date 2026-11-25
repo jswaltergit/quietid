@@ -201,7 +201,7 @@
 
   <!-- DASHBOARD -->
   <section class="qid-section" aria-labelledby="dash-title" data-feedback="home-dash">
-    <div class="qid-wrap qid-dash-wrap">
+    <div class="qid-wrap qid-dash-wrap qid-dash-wrap--track">
       <div class="qid-dash-wrap__copy">
         <h2 id="dash-title">Protection You Can See.</h2>
         <p>Every person gets a dashboard and regular exposure reports, so you can see what changed.</p>
@@ -211,33 +211,12 @@
           <li><svg class="qid-icon" aria-hidden="true"><use href="#i-radar"/></svg><span>Alerts when your details show up somewhere new, with next steps</span></li>
         </ul>
       </div>
-      <figure class="qid-dash" aria-label="Example QuietID dashboard">
-        <div class="qid-dash__bar"><img src="assets/img/QuietID_Mark_White_Web.svg" alt="" width="24" height="24" loading="lazy" decoding="async">Your Dashboard<span>Sample data</span></div>
-        <div class="qid-dash__body">
-          <div class="qid-score">
-            <p class="qid-score__label">Risk Score</p>
-            <p class="qid-score__value" data-count-from="82" data-count-to="14">14</p>
-            <p class="qid-score__trend">Down from 82 at sign-up</p>
-            <div class="qid-score__meter" aria-hidden="true"><i></i></div>
-          </div>
-          <div class="qid-dash__panel">
-            <div class="qid-dash__stats">
-              <p><strong data-count-to="41">41</strong><span>Removed</span></p>
-              <p><strong data-count-to="6">6</strong><span>In progress</span></p>
-              <p><strong data-count-to="2">2</strong><span>New this month</span></p>
-            </div>
-            <div class="qid-alert"><strong>New Listing Found</strong>Your phone number appeared on a new people-search site. A removal request has been filed.</div>
-          </div>
-        </div>
-      </figure>
-    </div>
-    <div class="qid-wrap qid-track-wrap">
-      <h3 class="qid-track-title">One Listing, Start to Finish.</h3>
-      <figure class="qid-track" aria-label="Example: what happened to one listing">
+      <figure class="qid-track qid-track--play" aria-label="Example: what happened to one listing">
         <div class="qid-track__head">
+          <span class="qid-track__label">One Listing, Start to Finish</span>
+          <span class="qid-track__tag">Illustrative Example</span>
           <span class="qid-track__site">people-search-site.com/jordan-ellis</span>
           <span class="qid-track__field">Home Address</span>
-          <span class="qid-track__tag">Illustrative Example</span>
         </div>
         <ol class="qid-track__steps">
           <li class="is-done"><strong>Found</strong><span>The listing shows a current home address.</span></li>
