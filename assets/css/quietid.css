@@ -1826,3 +1826,23 @@ html.qid-js .qid-track--play.is-in .qid-track__notes { animation: qid-fade .6s 3
 .qid-track--play .qid-track__site { overflow-wrap: normal; }
 @media (max-width: 920px) { .qid-track__tag--foot { text-align: left; } .qid-track--play .qid-track__site { font-size: var(--qid-step--1); } }
 .qid-nowrap { white-space: nowrap; }
+
+/* Home tracker head, sized up: larger Q mark, pill spans the card */
+.qid-track--play .qid-track__head { flex-wrap: nowrap; gap: 1rem; padding-bottom: 1.5rem; }
+.qid-track__radar { width: 3.75rem; height: 3.75rem; margin: -.35rem -.15rem -.35rem -.4rem; }
+.qid-track__callout { flex: 1 1 auto; justify-content: space-between; gap: .6rem 1rem; padding: .85rem .85rem .85rem 1.5rem; }
+.qid-track--play .qid-track__site { font-size: var(--qid-step-1); }
+.qid-track--play .qid-track__alert { padding: .45rem .9rem; font-size: var(--qid-step-0); }
+@media (max-width: 920px) {
+  .qid-track--play .qid-track__head { display: flex; gap: .75rem; }
+  .qid-track__radar { width: 3rem; height: 3rem; }
+  .qid-track__callout { padding: .8rem 1rem; gap: .55rem; }
+  .qid-track--play .qid-track__site { font-size: var(--qid-step--1); }
+  .qid-track--play .qid-track__alert { font-size: var(--qid-step--1); padding: .35rem .75rem; }
+}
+@media (min-width: 921px) {
+  .qid-track--play .qid-track__site { font-size: 1.0625rem; }
+  .qid-track--play .qid-track__alert { font-size: .875rem; }
+}
+@media (min-width: 1200px) { .qid-track__callout { flex-wrap: nowrap; } }
+@media (min-width: 921px) and (max-width: 1199px) { .qid-track__callout { flex-direction: column; align-items: flex-start; border-radius: 1.1rem; padding: .85rem 1.25rem; } }
