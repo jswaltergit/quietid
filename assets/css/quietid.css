@@ -1415,7 +1415,8 @@ html.qid-menu-open, html.qid-menu-open body { overflow: hidden; }
   /* "Protection you can see.": headline, dashboard, then body and list */
   .qid-dash-wrap { gap: 0; }
   .qid-dash-wrap__copy { display: contents; }
-  .qid-dash-wrap > .qid-dash, .qid-dash-wrap > .qid-track { order: 1; width: 100%; max-width: none; margin: 1.75rem 0 0; border-radius: .75rem; }
+  .qid-dash-wrap > .qid-dash { order: 1; width: 100%; max-width: none; margin: 1.75rem 0 0; border-radius: .75rem; }
+  .qid-dash-wrap > .qid-track-col { order: 1; width: 100%; margin: 1.75rem 0 0; }
   .qid-dash-wrap__copy p { order: 2; margin-top: 1.75rem; }
   .qid-dash-wrap__copy ul { order: 3; }
   .qid-dash__bar { gap: .5rem; padding: .6rem .9rem; font-size: .8125rem; white-space: nowrap; }
@@ -1802,3 +1803,9 @@ html.qid-js .qid-track--play.is-in .qid-track__notes { animation: qid-fade .6s 3
 @keyframes qid-alert-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(235, 113, 107, .55); } 50% { box-shadow: 0 0 0 5px rgba(235, 113, 107, 0); } }
 @media (max-width: 920px) { .qid-track--play .qid-track__alert { grid-column: 1 / -1; } }
 @media (prefers-reduced-motion: reduce) { .qid-track__alert::before { animation: none; } }
+
+/* Home: subhead sits above the tracker card */
+.qid-track-col .qid-track-title { margin: 0 0 1rem; }
+.qid-track-col .qid-track { margin: 0; }
+.qid-track--play .qid-track__head { grid-template-columns: minmax(0, 1fr) max-content; }
+.qid-track--play .qid-track__alert { grid-column: 1 / -1; }
